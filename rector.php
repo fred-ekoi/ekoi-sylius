@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Sylius\SyliusRector\Set\SyliusPlus;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->importNames();
@@ -11,4 +12,6 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
         __DIR__ . '/src'
     ]);
+    $rectorConfig->sets([SyliusPlus::LOYALTY_PLUGIN]);
+    $rectorConfig->sets([SyliusPlus::MULTI_SOURCE_INVENTORY_PLUGIN]);
 };
