@@ -546,6 +546,20 @@
     "sylius/grid-bundle": {
         "version": "v1.5.1"
     },
+    "sylius/loyalty-plugin": {
+        "version": "0.6",
+        "recipe": {
+            "repo": "github.com/Sylius/SyliusRecipes",
+            "branch": "main",
+            "version": "0.1",
+            "ref": "7713b10e78ecbc5b5b277162a4b184bbc9ad950e"
+        },
+        "files": [
+            "config/packages/sylius_loyalty_plugin.yaml",
+            "config/routes/sylius_loyalty_plugin_admin.yaml",
+            "config/routes/sylius_loyalty_plugin_shop.yaml"
+        ]
+    },
     "sylius/mailer-bundle": {
         "version": "v1.4.4"
     },

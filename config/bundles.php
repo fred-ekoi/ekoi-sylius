@@ -63,4 +63,5 @@ return [
     Sylius\PayPalPlugin\SyliusPayPalPlugin::class => ['all' => true],
     Sylius\GmvBundle\SyliusGmvBundle::class => ['all' => true],
     Sylius\CustomerServicePlugin\SyliusCustomerServicePlugin::class => ['all' => true],
+    Sylius\LoyaltyPlugin\SyliusLoyaltyPlugin::class => ['all' => true],
 ];
