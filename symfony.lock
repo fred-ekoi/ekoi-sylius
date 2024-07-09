@@ -563,6 +563,19 @@
     "sylius/mailer-bundle": {
         "version": "v1.4.4"
     },
+    "sylius/multi-source-inventory-plugin": {
+        "version": "0.6",
+        "recipe": {
+            "repo": "github.com/Sylius/SyliusRecipes",
+            "branch": "main",
+            "version": "0.1",
+            "ref": "006ddc7123fe175c92fa000c554a92bca4b8f845"
+        },
+        "files": [
+            "config/packages/sylius_multi_source_inventory_plugin.yaml",
+            "config/routes/sylius_multi_source_inventory_plugin.yaml"
+        ]
+    },
     "sylius/paypal-plugin": {
         "version": "dev-support-sylius-dev-version"
     },

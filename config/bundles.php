@@ -64,4 +64,5 @@ return [
     Sylius\GmvBundle\SyliusGmvBundle::class => ['all' => true],
     Sylius\CustomerServicePlugin\SyliusCustomerServicePlugin::class => ['all' => true],
     Sylius\LoyaltyPlugin\SyliusLoyaltyPlugin::class => ['all' => true],
+    Sylius\MultiSourceInventoryPlugin\SyliusMultiSourceInventoryPlugin::class => ['all' => true],
 ];
