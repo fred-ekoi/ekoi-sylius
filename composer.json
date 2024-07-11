@@ -23,7 +23,11 @@
     ],
     "require": {
         "php": "^8.1",
+        "sylius/customer-service-plugin": "^0.6.0",
+        "sylius/loyalty-plugin": "^0.6.0",
+        "sylius/multi-source-inventory-plugin": "^0.6.0",
         "sylius/paypal-plugin": "^1.6",
+        "sylius/refund-plugin": "^1.5",
         "sylius/sylius": "~1.13.2",
         "symfony/dotenv": "^5.4 || ^6.4",
         "symfony/flex": "^2.4",

@@ -61,4 +61,10 @@ return [
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Sylius\PayPalPlugin\SyliusPayPalPlugin::class => ['all' => true],
+    Sylius\GmvBundle\SyliusGmvBundle::class => ['all' => true],
+    Sylius\CustomerServicePlugin\SyliusCustomerServicePlugin::class => ['all' => true],
+    Sylius\LoyaltyPlugin\SyliusLoyaltyPlugin::class => ['all' => true],
+    Sylius\MultiSourceInventoryPlugin\SyliusMultiSourceInventoryPlugin::class => ['all' => true],
+    Knp\Bundle\SnappyBundle\KnpSnappyBundle::class => ['all' => true],
+    Sylius\RefundPlugin\SyliusRefundPlugin::class => ['all' => true],
 ];

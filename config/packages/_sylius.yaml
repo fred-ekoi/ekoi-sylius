@@ -11,6 +11,9 @@ imports:
 
 parameters:
     sylius_core.public_dir: '%kernel.project_dir%/public'
+    sylius.form.type.add_to_cart.validation_groups:
+        - sylius_loyalty
+        - sylius_multi_source_inventory
 
 when@dev:
     sylius_api:

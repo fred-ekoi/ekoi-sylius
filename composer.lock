@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47dbd0ee5da46c26f1e2950b401c0f2a",
+    "content-hash": "0dcd2543002128ef3b281b2fd0ef6681",
     "packages": [
         {
             "name": "alcohol/iso4217",
@@ -3426,6 +3426,131 @@
             "time": "2024-06-03T08:48:36+00:00"
         },
         {
+            "name": "knplabs/knp-snappy",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/snappy.git",
+                "reference": "98468898b50c09f26d56d905b79b0f52a2215da6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/98468898b50c09f26d56d905b79b0f52a2215da6",
+                "reference": "98468898b50c09f26d56d905b79b0f52a2215da6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "psr/log": "^2.0||^3.0",
+                "symfony/process": "^5.0||^6.0||^7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "pedrotroller/php-cs-custom-fixer": "^2.19",
+                "phpstan/phpstan": "^1.0.0",
+                "phpstan/phpstan-phpunit": "^1.0.0",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Knp\\Snappy\\": "src/Knp/Snappy"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KNP Labs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/snappy/contributors"
+                }
+            ],
+            "description": "PHP library allowing thumbnail, snapshot or PDF generation from a url or a html page. Wrapper for wkhtmltopdf/wkhtmltoimage.",
+            "homepage": "http://github.com/KnpLabs/snappy",
+            "keywords": [
+                "knp",
+                "knplabs",
+                "pdf",
+                "snapshot",
+                "thumbnail",
+                "wkhtmltopdf"
+            ],
+            "support": {
+                "issues": "https://github.com/KnpLabs/snappy/issues",
+                "source": "https://github.com/KnpLabs/snappy/tree/v1.5.0"
+            },
+            "time": "2023-12-18T09:12:11+00:00"
+        },
+        {
+            "name": "knplabs/knp-snappy-bundle",
+            "version": "v1.10.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
+                "reference": "39ffad9e7294e3c9d87ee5de7da7e4495b055126"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/39ffad9e7294e3c9d87ee5de7da7e4495b055126",
+                "reference": "39ffad9e7294e3c9d87ee5de7da7e4495b055126",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-snappy": "^1.4.3",
+                "php": ">=8.1",
+                "symfony/framework-bundle": "^5.1|^6.0|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5",
+                "symfony/yaml": "^5.1|^6.0|^7.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Knp\\Bundle\\SnappyBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/KnpSnappyBundle/contributors"
+                }
+            ],
+            "description": "Easily create PDF and images in Symfony by converting Twig/HTML templates.",
+            "homepage": "http://github.com/KnpLabs/KnpSnappyBundle",
+            "keywords": [
+                "bundle",
+                "knp",
+                "knplabs",
+                "pdf",
+                "snappy"
+            ],
+            "support": {
+                "issues": "https://github.com/KnpLabs/KnpSnappyBundle/issues",
+                "source": "https://github.com/KnpLabs/KnpSnappyBundle/tree/v1.10.2"
+            },
+            "time": "2024-06-10T12:38:45+00:00"
+        },
+        {
             "name": "laminas/laminas-code",
             "version": "4.14.0",
             "source": {
@@ -4571,6 +4696,69 @@
                 }
             ],
             "time": "2024-04-12T20:52:51+00:00"
+        },
+        {
+            "name": "myclabs/php-enum",
+            "version": "1.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/php-enum.git",
+                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/a867478eae49c9f59ece437ae7f9506bfaa27483",
+                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "1.*",
+                "vimeo/psalm": "^4.6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MyCLabs\\Enum\\": "src/"
+                },
+                "classmap": [
+                    "stubs/Stringable.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Enum contributors",
+                    "homepage": "https://github.com/myclabs/php-enum/graphs/contributors"
+                }
+            ],
+            "description": "PHP Enum implementation",
+            "homepage": "http://github.com/myclabs/php-enum",
+            "keywords": [
+                "enum"
+            ],
+            "support": {
+                "issues": "https://github.com/myclabs/php-enum/issues",
+                "source": "https://github.com/myclabs/php-enum/tree/1.8.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/myclabs/php-enum",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-08-04T09:53:51+00:00"
         },
         {
             "name": "namshi/jose",
@@ -6929,6 +7117,103 @@
             "time": "2023-03-31T09:47:16+00:00"
         },
         {
+            "name": "sylius/customer-service-plugin",
+            "version": "v0.6.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://sylius.repo.packagist.com/16h33/dists/sylius/customer-service-plugin/0.6.0.0/24d9dcb89c8b66aa683b162c90ce07a39a274af0.zip",
+                "reference": "24d9dcb89c8b66aa683b162c90ce07a39a274af0",
+                "mirrors": [
+                    {
+                        "url": "https://sylius.repo.packagist.com/16h33/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "api-platform/core": "^2.7.11",
+                "php": "^8.1",
+                "sylius/gmv-bundle": "~0.1",
+                "sylius/shared-kernel": "^0.6",
+                "sylius/state-machine-abstraction": "~1.13.2",
+                "sylius/sylius": "~1.12.0 || ~1.13.0"
+            },
+            "conflict": {
+                "behat/mink-selenium2-driver": ">=1.7.0"
+            },
+            "require-dev": {
+                "behat/behat": "^3.6.1",
+                "behat/mink-selenium2-driver": "^1.4",
+                "dmore/behat-chrome-extension": "^1.3",
+                "dmore/chrome-mink-driver": "^2.7",
+                "friends-of-behat/mink": "^1.8",
+                "friends-of-behat/mink-browserkit-driver": "^1.4",
+                "friends-of-behat/mink-debug-extension": "^2.0.0",
+                "friends-of-behat/mink-extension": "^2.4",
+                "friends-of-behat/page-object-extension": "^0.3",
+                "friends-of-behat/suite-settings-extension": "^1.0",
+                "friends-of-behat/symfony-extension": "^2.1",
+                "friends-of-behat/variadic-extension": "^1.3",
+                "polishsymfonycommunity/symfony-mocker-container": "^1.0",
+                "robertfausk/behat-panther-extension": "^1.1",
+                "sylius-labs/suite-tags-extension": "~0.1",
+                "sylius-labs/sylius-1-11-shim-bundle": "^1.0",
+                "symfony/browser-kit": "^5.4 || ^6.0",
+                "symfony/debug-bundle": "^5.4 || ^6.0",
+                "symfony/dotenv": "^5.4 || ^6.0",
+                "symfony/intl": "^5.4 || ^6.0",
+                "symfony/web-profiler-bundle": "^5.4 || ^6.0",
+                "symfony/webpack-encore-bundle": "^1.15"
+            },
+            "type": "sylius-plugin",
+            "extra": {
+                "symfony": {
+                    "require": "6.4.*"
+                },
+                "branch-alias": {
+                    "dev-main": "0.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\CustomerServicePlugin\\": "src/",
+                    "Tests\\Sylius\\CustomerServicePlugin\\Behat\\": "tests/Behat/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\Sylius\\CustomerServicePlugin\\Application\\": "tests/Application/src/"
+                }
+            },
+            "notification-url": "https://sylius.repo.packagist.com/16h33/downloads/",
+            "scripts": {
+                "post-install-cmd": [
+                    "php bin/create_node_symlink.php"
+                ],
+                "post-update-cmd": [
+                    "php bin/create_node_symlink.php"
+                ],
+                "post-create-project-cmd": [
+                    "php bin/create_node_symlink.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "The plugin provides the possibility to manage partial shipments.",
+            "keywords": [
+                "shipments",
+                "sylius",
+                "sylius-plugin",
+                "sylius-plus"
+            ],
+            "support": {
+                "source": "https://github.com/Sylius/CustomerServicePlugin/tree/v0.6.0",
+                "issues": "https://github.com/Sylius/CustomerServicePlugin/issues"
+            },
+            "time": "2024-07-08T08:59:05+00:00"
+        },
+        {
             "name": "sylius/fixtures-bundle",
             "version": "v1.8.0",
             "source": {
@@ -7002,6 +7287,57 @@
                 "source": "https://github.com/Sylius/SyliusFixturesBundle/tree/v1.8.0"
             },
             "time": "2022-10-18T07:14:55+00:00"
+        },
+        {
+            "name": "sylius/gmv-bundle",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/GmvBundle.git",
+                "reference": "db632f787689b0a5ad087531d401083196078a4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/GmvBundle/zipball/db632f787689b0a5ad087531d401083196078a4d",
+                "reference": "db632f787689b0a5ad087531d401083196078a4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "sylius/core-bundle": "~1.12.0 || ~1.13.0",
+                "symfony/console": "^5.4 || ^6.4",
+                "symfony/dependency-injection": "^5.4 || ^6.4",
+                "symfony/framework-bundle": "^5.4 || ^6.4"
+            },
+            "require-dev": {
+                "lchrusciel/api-test-case": "^5.0",
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-doctrine": "^1.4",
+                "phpunit/phpunit": "^10.5",
+                "sylius-labs/coding-standard": "^4.0",
+                "webmozart/assert": "^1.9"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony": {
+                    "require": "^5.4 || ^6.4"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\GmvBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Lightweight local command to calculate the Sylius instance GMV within a specific period",
+            "support": {
+                "issues": "https://github.com/Sylius/GmvBundle/issues",
+                "source": "https://github.com/Sylius/GmvBundle/tree/v0.1.0"
+            },
+            "time": "2024-06-28T07:41:04+00:00"
         },
         {
             "name": "sylius/grid-bundle",
@@ -7122,6 +7458,104 @@
             "time": "2024-01-05T14:42:50+00:00"
         },
         {
+            "name": "sylius/loyalty-plugin",
+            "version": "v0.6.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://sylius.repo.packagist.com/16h33/dists/sylius/loyalty-plugin/0.6.0.0/879cdecbf42c0dea8c53a9a1654da83a4c805a0d.zip",
+                "reference": "879cdecbf42c0dea8c53a9a1654da83a4c805a0d",
+                "mirrors": [
+                    {
+                        "url": "https://sylius.repo.packagist.com/16h33/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "api-platform/core": "^2.7.11",
+                "php": "^8.1",
+                "sylius/gmv-bundle": "~0.1",
+                "sylius/shared-kernel": "^0.6",
+                "sylius/state-machine-abstraction": "~1.13.2",
+                "sylius/sylius": "~1.12.0 || ~1.13.0"
+            },
+            "conflict": {
+                "behat/mink-selenium2-driver": ">=1.7.0"
+            },
+            "require-dev": {
+                "behat/behat": "^3.6.1",
+                "behat/mink-selenium2-driver": "^1.4",
+                "dmore/behat-chrome-extension": "^1.3",
+                "dmore/chrome-mink-driver": "^2.7",
+                "friends-of-behat/mink": "^1.8",
+                "friends-of-behat/mink-browserkit-driver": "^1.4",
+                "friends-of-behat/mink-debug-extension": "^2.0.0",
+                "friends-of-behat/mink-extension": "^2.4",
+                "friends-of-behat/page-object-extension": "^0.3",
+                "friends-of-behat/suite-settings-extension": "^1.0",
+                "friends-of-behat/symfony-extension": "^2.1",
+                "friends-of-behat/variadic-extension": "^1.3",
+                "matthiasnoback/symfony-config-test": "^4.2",
+                "polishsymfonycommunity/symfony-mocker-container": "^1.0",
+                "robertfausk/behat-panther-extension": "^1.1",
+                "sylius-labs/suite-tags-extension": "~0.1",
+                "sylius-labs/sylius-1-11-shim-bundle": "^1.0",
+                "symfony/browser-kit": "^5.4 || ^6.0",
+                "symfony/debug-bundle": "^5.4 || ^6.0",
+                "symfony/dotenv": "^5.4 || ^6.0",
+                "symfony/intl": "^5.4 || ^6.0",
+                "symfony/web-profiler-bundle": "^5.4 || ^6.0",
+                "symfony/webpack-encore-bundle": "^1.15"
+            },
+            "type": "sylius-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "0.6-dev"
+                },
+                "symfony": {
+                    "require": "6.4.*"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\LoyaltyPlugin\\": "src/",
+                    "Tests\\Sylius\\LoyaltyPlugin\\Behat\\": "tests/Behat/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\Sylius\\LoyaltyPlugin\\Application\\": "tests/Application/src/"
+                }
+            },
+            "notification-url": "https://sylius.repo.packagist.com/16h33/downloads/",
+            "scripts": {
+                "post-install-cmd": [
+                    "php bin/create_node_symlink.php"
+                ],
+                "post-update-cmd": [
+                    "php bin/create_node_symlink.php"
+                ],
+                "post-create-project-cmd": [
+                    "php bin/create_node_symlink.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "The plugin provides a loyalty points system for Sylius",
+            "keywords": [
+                "loyalty",
+                "sylius",
+                "sylius-plugin",
+                "sylius-plus"
+            ],
+            "support": {
+                "source": "https://github.com/Sylius/LoyaltyPlugin/tree/v0.6.0",
+                "issues": "https://github.com/Sylius/LoyaltyPlugin/issues"
+            },
+            "time": "2024-07-08T08:59:00+00:00"
+        },
+        {
             "name": "sylius/mailer-bundle",
             "version": "v2.0.0",
             "source": {
@@ -7212,6 +7646,137 @@
             "time": "2022-11-24T12:02:56+00:00"
         },
         {
+            "name": "sylius/multi-source-inventory-plugin",
+            "version": "v0.6.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://sylius.repo.packagist.com/16h33/dists/sylius/multi-source-inventory-plugin/0.6.0.0/3f2f4e12f70a2d3548cc6e59a87e4b9a3b19ed89.zip",
+                "reference": "3f2f4e12f70a2d3548cc6e59a87e4b9a3b19ed89",
+                "mirrors": [
+                    {
+                        "url": "https://sylius.repo.packagist.com/16h33/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "api-platform/core": "^2.7.11",
+                "php": "^8.1",
+                "php-http/message-factory": "^1.1",
+                "sylius/gmv-bundle": "~0.1",
+                "sylius/shared-kernel": "^0.6",
+                "sylius/state-machine-abstraction": "~1.13.2",
+                "sylius/sylius": "~1.12.0 || ~1.13.0"
+            },
+            "conflict": {
+                "behat/mink-selenium2-driver": ">=1.7.0"
+            },
+            "require-dev": {
+                "behat/behat": "^3.6.1",
+                "behat/mink-selenium2-driver": "^1.4",
+                "dmore/behat-chrome-extension": "^1.3",
+                "dmore/chrome-mink-driver": "^2.7",
+                "friends-of-behat/mink": "^1.8",
+                "friends-of-behat/mink-browserkit-driver": "^1.4",
+                "friends-of-behat/mink-debug-extension": "^2.0.0",
+                "friends-of-behat/mink-extension": "^2.4",
+                "friends-of-behat/page-object-extension": "^0.3",
+                "friends-of-behat/suite-settings-extension": "^1.0",
+                "friends-of-behat/symfony-extension": "^2.1",
+                "friends-of-behat/variadic-extension": "^1.3",
+                "matthiasnoback/symfony-config-test": "^4.2",
+                "no-response-mate/composer-integration-plugin": "^0.2",
+                "polishsymfonycommunity/symfony-mocker-container": "^1.0",
+                "robertfausk/behat-panther-extension": "^1.1",
+                "sylius-labs/suite-tags-extension": "~0.1",
+                "sylius-labs/sylius-1-11-shim-bundle": "^1.0",
+                "symfony/browser-kit": "^5.4 || ^6.0",
+                "symfony/debug-bundle": "^5.4 || ^6.0",
+                "symfony/dotenv": "^5.4 || ^6.0",
+                "symfony/intl": "^5.4 || ^6.0",
+                "symfony/web-profiler-bundle": "^5.4 || ^6.0",
+                "symfony/webpack-encore-bundle": "^1.15"
+            },
+            "type": "sylius-plugin",
+            "extra": {
+                "symfony": {
+                    "require": "6.4.*"
+                },
+                "branch-alias": {
+                    "dev-main": "0.6-dev"
+                },
+                "integration-options": {
+                    "env-path": "tests/Application"
+                },
+                "integration": {
+                    "customer-service": {
+                        "require": {
+                            "sylius/customer-service-plugin": "^0.6"
+                        },
+                        "env": "test_customer_service"
+                    },
+                    "return": {
+                        "require": {
+                            "sylius/return-plugin": "^0.6"
+                        },
+                        "env": "test_return"
+                    },
+                    "rbac": {
+                        "require": {
+                            "sylius/plus-rbac-plugin": "^0.6"
+                        },
+                        "env": "test_rbac"
+                    },
+                    "multi_store": {
+                        "require": {
+                            "sylius/multi-store-plugin": "^0.6"
+                        },
+                        "env": "test_multi_store"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\MultiSourceInventoryPlugin\\": "src/",
+                    "Tests\\Sylius\\MultiSourceInventoryPlugin\\Behat\\": "tests/Behat/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\Sylius\\MultiSourceInventoryPlugin\\Application\\": "tests/Application/src/"
+                }
+            },
+            "notification-url": "https://sylius.repo.packagist.com/16h33/downloads/",
+            "scripts": {
+                "post-install-cmd": [
+                    "php bin/create_node_symlink.php"
+                ],
+                "post-update-cmd": [
+                    "php bin/create_node_symlink.php"
+                ],
+                "post-create-project-cmd": [
+                    "php bin/create_node_symlink.php"
+                ],
+                "link-templates": [
+                    "ln -s $(pwd)/vendor/sylius/return-plugin/templates/bundles/* $(pwd)/tests/Application/templates/bundles"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "keywords": [
+                "inventory",
+                "sylius",
+                "sylius-plugin",
+                "sylius-plus"
+            ],
+            "support": {
+                "source": "https://github.com/Sylius/MultiSourceInventoryPlugin/tree/v0.6.0",
+                "issues": "https://github.com/Sylius/MultiSourceInventoryPlugin/issues"
+            },
+            "time": "2024-07-08T08:59:15+00:00"
+        },
+        {
             "name": "sylius/paypal-plugin",
             "version": "v1.6.0",
             "source": {
@@ -7298,6 +7863,108 @@
                 "source": "https://github.com/Sylius/PayPalPlugin/tree/v1.6.0"
             },
             "time": "2024-04-23T12:58:23+00:00"
+        },
+        {
+            "name": "sylius/refund-plugin",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/RefundPlugin.git",
+                "reference": "ca118a0e1bc587e2117e233257dd1ed8dfb4899f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/RefundPlugin/zipball/ca118a0e1bc587e2117e233257dd1ed8dfb4899f",
+                "reference": "ca118a0e1bc587e2117e233257dd1ed8dfb4899f",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-snappy-bundle": "^1.7",
+                "myclabs/php-enum": "^1.7",
+                "php": "^8.1",
+                "php-http/message-factory": "^1.1",
+                "sylius/resource-bundle": "^1.9",
+                "sylius/sylius": "~1.12.0 || ~1.13.0",
+                "symfony/messenger": "^5.4.21 || ^6.4"
+            },
+            "conflict": {
+                "behat/mink-selenium2-driver": ">=1.7.0"
+            },
+            "require-dev": {
+                "behat/behat": "^3.6.1",
+                "behat/mink-selenium2-driver": "^1.4",
+                "dmore/behat-chrome-extension": "^1.3",
+                "dmore/chrome-mink-driver": "^2.7",
+                "friends-of-behat/exclude-specifications-extension": "^0.2 || ^0.3",
+                "friends-of-behat/mink": "^1.8",
+                "friends-of-behat/mink-browserkit-driver": "^1.4",
+                "friends-of-behat/mink-debug-extension": "^2.0",
+                "friends-of-behat/mink-extension": "^2.4",
+                "friends-of-behat/page-object-extension": "^0.3",
+                "friends-of-behat/suite-settings-extension": "^1.0",
+                "friends-of-behat/symfony-extension": "^2.1",
+                "friends-of-behat/variadic-extension": "^1.3",
+                "matthiasnoback/symfony-config-test": "^4.2",
+                "matthiasnoback/symfony-dependency-injection-test": "^4.2",
+                "phpspec/phpspec": "^7.2",
+                "phpstan/phpstan": "^1.6",
+                "phpstan/phpstan-webmozart-assert": "^1.1",
+                "phpunit/phpunit": "^9.5",
+                "polishsymfonycommunity/symfony-mocker-container": "^1.0",
+                "sylius-labs/coding-standard": "^4.2",
+                "symfony/browser-kit": "^5.4.21 || ^6.4",
+                "symfony/debug-bundle": "^5.4.21 || ^6.4",
+                "symfony/dotenv": "^5.4.21 || ^6.4",
+                "symfony/intl": "^5.4 || ^6.0",
+                "symfony/web-profiler-bundle": "^5.4.21 || ^6.4",
+                "symfony/webpack-encore-bundle": "^1.15"
+            },
+            "type": "sylius-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.4": "1.4-dev"
+                },
+                "symfony": {
+                    "require": "^5.4 || ^6.0"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\RefundPlugin\\": "src/",
+                    "Tests\\Sylius\\RefundPlugin\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Zalewski",
+                    "homepage": "http://mpzalewski.com.pl"
+                },
+                {
+                    "name": "Bartosz Pietrzak",
+                    "homepage": "https://github.com/bartoszpietrzak1994"
+                },
+                {
+                    "name": "Sylius Team",
+                    "email": "team@sylius.com"
+                }
+            ],
+            "description": "Plugin provides basic refunds functionality for Sylius application.",
+            "keywords": [
+                "e-commerce",
+                "refunds",
+                "sylius",
+                "sylius-plugin",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/Sylius/RefundPlugin/issues",
+                "source": "https://github.com/Sylius/RefundPlugin/tree/v1.5.0"
+            },
+            "time": "2024-04-26T05:15:17+00:00"
         },
         {
             "name": "sylius/registry",
@@ -7476,6 +8143,56 @@
                 "source": "https://github.com/Sylius/SyliusResourceBundle/tree/v1.10.3"
             },
             "time": "2023-12-01T14:25:03+00:00"
+        },
+        {
+            "name": "sylius/shared-kernel",
+            "version": "v0.6.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://sylius.repo.packagist.com/16h33/dists/sylius/shared-kernel/0.6.0.0/e200a564c8c02059425304728a4a1561d84925be.zip",
+                "reference": "e200a564c8c02059425304728a4a1561d84925be",
+                "mirrors": [
+                    {
+                        "url": "https://sylius.repo.packagist.com/16h33/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": "^8.1",
+                "sylius/sylius": "~1.12.0 || ~1.13.0"
+            },
+            "type": "library",
+            "extra": {
+                "symfony": {
+                    "require": "6.4.*"
+                },
+                "branch-alias": {
+                    "dev-main": "0.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\SharedKernel\\": ""
+                }
+            },
+            "notification-url": "https://sylius.repo.packagist.com/16h33/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A set of contracts, commands, events and exceptions for making integration between plugins as easy as possible with minimum level of coupling.",
+            "keywords": [
+                "contracts",
+                "decoupling",
+                "sylius",
+                "sylius-plugin",
+                "sylius-plus"
+            ],
+            "support": {
+                "source": "https://github.com/Sylius/SharedKernel/tree/v0.6.0",
+                "issues": "https://github.com/Sylius/SharedKernel/issues"
+            },
+            "time": "2024-07-08T08:59:20+00:00"
         },
         {
             "name": "sylius/sylius",

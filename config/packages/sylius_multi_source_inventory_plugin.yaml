@@ -1,0 +1,3 @@
+imports:
+    - { resource: "@SyliusMultiSourceInventoryPlugin/config/config.yaml" }
+    - { resource: "@SyliusMultiSourceInventoryPlugin/src/Integration/CustomerService/Resources/config/parameters.yaml" }
