@@ -1,0 +1,20 @@
+sylius_resource:
+    resources:
+        app.menu:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Menu
+                repository: App\Repository\MenuRepository
+                form: App\Form\Type\MenuType
+        app.menu_page:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\MenuPage
+                repository: App\Repository\MenuPageRepository
+                form: App\Form\Type\MenuPageType
+        app.menu_item:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\MenuItem
+                repository: App\Repository\MenuItemRepository
+                form: App\Form\Type\MenuItemType
