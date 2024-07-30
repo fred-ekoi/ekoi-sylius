@@ -1,0 +1,8 @@
+'App\Entity\Menu':
+    collectionOperations:
+        get:
+            method: 'GET'
+            path: '/menus/{localeIso}'
+            controller: 'App\Controller\ApiMenuController::getMenus'
+            normalization_context:
+                groups: ['menu:read']
