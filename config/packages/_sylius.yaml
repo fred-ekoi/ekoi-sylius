@@ -10,7 +10,7 @@ imports:
     - { resource: "../parameters.yaml" }
 
 parameters:
-    sylius_core.public_dir: '%kernel.project_dir%/public'
+    sylius_core.public_dir: "%kernel.project_dir%/public"
     sylius.form.type.add_to_cart.validation_groups:
         - sylius_loyalty
         - sylius_multi_source_inventory
@@ -263,3 +263,79 @@ sylius_theme:
             scan_depth: 1
             directories:
                 - "%kernel.project_dir%/themes"
+
+sylius_grid:
+    grids:
+        app_admin_menu:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Menu
+            fields:
+                # lang:
+                #     type: relation
+                langName:
+                    type: string
+                    label: "app.ui.Language"
+                    path: "lang.name"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+        app_admin_menu_page:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\MenuPage
+            fields:
+                title:
+                    type: string
+                    label: "app.ui.Title"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+        app_admin_menu_item:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\MenuItem
+            fields:
+                position:
+                    type: string
+                    label: "app.ui.Position"
+                title:
+                    type: string
+                    label: "app.ui.Title"
+                type:
+                    type: string
+                    label: "app.ui.Type"
+            filters:
+                position:
+                    type: string
+                    label: "app.ui.Position"
+                title:
+                    type: string
+                    label: "app.ui.Title"
+                type:
+                    type: string
+                    label: "app.ui.Type"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

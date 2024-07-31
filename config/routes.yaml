@@ -1,2 +1,47 @@
 sylius_paypal_webhook:
     resource: "@SyliusPayPalPlugin/Resources/config/webhook_routing.yaml"
+
+app_admin_menu:
+    resource: |
+        alias: app.menu
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_menu
+        vars:
+            all:
+                subheader: app.ui.Handle your menus
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_menu_page:
+    resource: |
+        alias: app.menu_page
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_menu_page
+        vars:
+            all:
+                subheader: app.ui.Handle your menu pages
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_menu_item:
+    resource: |
+        alias: app.menu_item
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_menu_item
+        vars:
+            all:
+                subheader: app.ui.Handle your menus items
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin

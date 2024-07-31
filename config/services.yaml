@@ -20,11 +20,30 @@ services:
     # Makes classes in src/ available to be used as services;
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        resource: "../src/*"
+        exclude: "../src/{Entity,Migrations,Tests,Kernel.php}"
 
     # Controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
+        resource: "../src/Controller"
+        tags: ["controller.service_arguments"]
+
+    app.listener.admin.menu_builder:
+        class: App\Menu\AdminMenuListener
+        tags:
+            - {
+                  name: kernel.event_listener,
+                  event: sylius.menu.admin.main,
+                  method: addAdminMenuItems,
+              }
+
+    app.form.type.menu:
+        class: App\Form\Type\MenuType
+        arguments: [App\Entity\Menu]
+        tags:
+            - { name: form.type }
+
+    App\Service\LocaleService:
+        arguments:
+            $localeCollectionProvider: '@sylius.locale_collection_provider'

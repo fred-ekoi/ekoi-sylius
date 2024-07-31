@@ -36,7 +36,7 @@ $ cd project
 $ yarn install
 $ yarn build
 $ php bin/console sylius:install
-$ symfony serve
+$ symfony serve --p12=localhost.pem
 $ open http://localhost:8000/
 ```
 

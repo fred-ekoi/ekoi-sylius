@@ -1,0 +1,25 @@
+app:
+  ui:
+    Menus: Menus
+    menus: Menus
+    Menu: Menu
+    Handle your menus: Gérer vos menus
+    Front sites menus: Menu des sites frontaux
+    Front sites menus items: Items du menu des sites frontaux
+    Language: Langue
+    menu_items: Items du menu
+    new_menu_item: Nouvel item du menu
+    URL: URL
+    Position: Position
+    Title: Titre
+    Type: Type
+    new_menu_page: Nouvelle page de menu
+    Handle your menu pages: Gérer vos pages de menu
+    Menu item parent: Item du menu parent
+    menu_pages : Pages de menu
+    Front sites menu pages: Pages de menu des sites frontaux
+    edit_menu_item: Modifier l'item du menu
+    Handle your menus items: Gérer vos items de menu
+    No menu item: Pas d'item parent
+    Taxon: Taxon
+    edit_menu_page: Modifier la page de menu
