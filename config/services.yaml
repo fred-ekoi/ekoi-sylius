@@ -47,3 +47,28 @@ services:
     App\Service\LocaleService:
         arguments:
             $localeCollectionProvider: '@sylius.locale_collection_provider'
+
+    # app.category_promotion.form.type:
+    #     class: App\Form\Type\CategoryPromotionType
+    #     tags:
+    #         - { name: form.type }
+    #     arguments: ['%app.model.category_promotion.class%', ['sylius']]
+
+    # app.category_promotion_image.form.type:
+    #     class: App\Form\Type\CategoryPromotionImageType
+    #     tags:
+    #         - { name: form.type }
+    #     arguments: ['%app.model.category_promotion_image.class%', ['sylius']]
+
+    App\Form\Type\CategoryPromotionImageType:
+        tags: ['form.type']
+
+    app.listener.images_upload:
+        class: Sylius\Bundle\CoreBundle\EventListener\ImagesUploadListener
+        parent: sylius.listener.images_upload
+        autowire: true
+        autoconfigure: false
+        public: false
+        tags:
+            - { name: kernel.event_listener, event: app.category_promotion_translation.pre_create, method: uploadImages }
+            - { name: kernel.event_listener, event: app.category_promotion_translation.pre_update, method: uploadImages }
