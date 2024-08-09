@@ -26,7 +26,12 @@ sylius_resource:
                 repository: App\Repository\CategoryPromotion\CategoryPromotionRepository
                 form: App\Form\Type\CategoryPromotionType
             translation:
-                classes: 
+                classes:
                     model: App\Entity\CategoryPromotion\CategoryPromotionTranslation
                     form: App\Form\Type\CategoryPromotionTranslationType
 
+        app.category_promotion_image:
+            driver: doctrine/orm            
+            classes:
+                model: App\Entity\CategoryPromotion\CategoryPromotionImage
+                form: App\Form\Type\CategoryPromotionImageType

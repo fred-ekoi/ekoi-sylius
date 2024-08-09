@@ -21,7 +21,7 @@ class CategoryPromotionTranslationType extends AbstractType
         $builder
             ->add('title')
             ->add('image', CategoryPromotionImageType::class, [
-                'label' => 'sylius.form.shipping_method.images',
+                'label' => 'app.ui.Image',
                 'required' => false,
             ]);
     }

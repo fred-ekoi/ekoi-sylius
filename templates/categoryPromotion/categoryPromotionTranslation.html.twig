@@ -1,0 +1,37 @@
+{% form_theme form '@SyliusAdmin/Form/imagesTheme.html.twig' %}
+{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+{# all the contents copied from SyliusAdminBundle/views/PaymentMethod/_form.html.twig #}
+<div class="ui segment">
+	{{ form_row(form.position) }}
+	{{ form_row(form.taxons) }}
+	{{ form_row(form.locales) }}
+	{{ form_row(form.displayFrom) }}
+	{{ form_row(form.displayTo) }}
+</div>
+<div class="ui styled fluid accordion">
+	{% for locale, translationForm in form.translations %}
+		<div class="title{% if loop.first %} active{% endif %}">
+			<i class="dropdown icon"></i>
+			{{ flags.fromLocaleCode(locale) }}{{ locale|sylius_locale_name }}
+		</div>
+		<div class="content{% if loop.first %} active{% endif %}">
+
+			{{ form_row(translationForm.title) }}
+			<div class="ui upload box" id="{{ translationForm.vars.id }}">
+
+				<div class="ui field element">
+					{{ form_label(translationForm.image) }}
+					<img class="ui small bordered image mb-3 {% if translationForm.image.vars.data.path|default(null) is null %}hidden{% endif %}" src="{% if translationForm.image.vars.data.path|default(null) is not null %}{{ translationForm.image.vars.data.path|default(null)|imagine_filter('sylius_medium') }}{% endif %}" alt="{{ translationForm.vars.data.title|default }}"/>
+					{{ form_widget(translationForm.image) }}
+
+				</div>
+				<div class="ui element">
+					{{- form_errors(translationForm.image) -}}
+				</div>
+			</div>
+
+		</div>
+	{% endfor %}
+</div>
+
+<!--#WYSIWYG#--><h2 class="PBSTitle">Pour faire un bon café</h2><br />Cette cafetière <span style="font-weight: bold;">Bialetti</span> d'une contenance de 350ml permet de préparer l'équivalent de 3 tasses de café. Elle permet également de préparer votre thé ou infusion de prédilection.<br />• Le récipient est en verre borosilicate<br />• La structure métallique est en acier inoxydable 18/10<br />• La cafetière est équipée d'une poignée athermique pour ne pas vous bruler<br />• Lavable au lave-vaisselle<br />• Dimensions du produit (L x l x h) : 12,7 x 7,6 x 17,8 cm<br /><br /><img src="/Files/88723/Img/01/cafe-moulu-cameroun-150-2.jpg" alt="Café en cadeau" style="float: left; margin: 0px 10px 0px 0px; width: 100px; height: 100px;" title="Café en cadeau" border="0" /><br /><br /><br />100g de café moulu pur arabica offert avec la cafetière<br /><br /><br /><br /><ol>        	<li>    		<h3># BIALETTI #</h3><br />		<img src="/Files/88723/Img/10/menu-bialetti.jpg" alt="Bialetti Industrie" style="float: left; margin: 0px 15px 0px 0px; width: 100px; height: 100px;" title="Bialetti Industrie" border="0" />L'histoire de Bialetti démarre en 1933 avec l'invention de la Moka Express. C'est une marque qui a transformé l'art de faire du café dans chaque maison italienne de façon simple et naturelle jusqu’à devenir un rituel essentiel .<br />		la signature Bialetti avec son petit bonhomme à moustache continue d'être synonyme de plaisir authentique, compétence et passion.<br />		<br />		<br />		</li>  	<li># PRéPARATION DU CAFé #<br />		<img src="/Files/88723/Img/25/cafe-piston.jpg" alt="Préparation du café" style="float: left; margin: 0px 15px 0px 0px; width: 150px; height: 100px;" title="Préparation du café" border="0" />La cafetière à piston, qui est aussi appelée cafetière à pression, cafetière Bodum™, cafetière Melior, est à l'origine une invention française sous l'appellation Filtre-presseur à café, thé et infusions. <br />		C'est pourquoi elle est aussi appelée "French press" aux USA.<br />		<a rel="hlid[=]1[&]href[=]/cafetiere-piston.htm" style="font-weight: bold; font-size: 14pt;" href="javascript:window.open('/cafetiere-piston.htm','HLWindow1','toolbar=yes,menubar=yes,scrollbars=yes,resizable=yes');void(0);">>> Lire la suite</a><br />		<br />		<br />		</li>       <br />	  	<li>    		<h3># CAFé FRAÎCHEMENT MOULU #</h3><br />		      <a href="cafe-moulu-c102x1763161" rel="hlid[=]2[&]comp[=]2[&]catid[=]1763161[&]curl[=]cafe-moulu-c102x1763161" title="Café moulu pour cafetière à piston" style="float: left;"><img src="/Files/88723/Img/05/pack-aromatise-piston-150.jpg" alt="Café moulu pour cafetière à piston" style="float: left; margin: 10px 15px 0px 0px; width: 130px; height: 150px;" title="Café moulu pour cafetière à piston" rel="hlid[=]2[&]comp[=]2[&]catid[=]1763161[&]curl[=]cafe-moulu-c102x1763161" border="0" /></a><br />		Tous nos cafés sont moulus sur demande et vous pouvez sélectionner la mouture pour cafetière à piston ainsi que le conditionnement (250g ou 500g).<br />		Nous vous proposons aussi des packs découvertes avec une sélection de cafés doux, corsés, aromatisés et gourmet.<br />		<br />		<br />		<br />		</li>  </ol>

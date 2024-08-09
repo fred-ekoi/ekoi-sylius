@@ -2,7 +2,7 @@ class MenuItemForm {
   itemField = null;
   menuField = null;
   itemOptions = [];
-  __construct() {}
+  constructor() {}
 
   init = () => {
     if (document.querySelector('form[name="menu_page"]')) {

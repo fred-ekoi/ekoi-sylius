@@ -11,6 +11,19 @@ use Symfony\Component\Form\FormTypeInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'sylius_category_promotion_image')]
-class CategoryPromotionImage extends Image implements CategoryPromotionImageInterface
+class CategoryPromotionImage extends Image
 {
+    #[ORM\OneToOne(inversedBy: 'image', cascade: ['persist', 'remove'], targetEntity: CategoryPromotionTranslation::class)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    protected $owner = null;
+
+    public function getCategoryPromotionTranslation(): ?CategoryPromotionTranslation
+    {
+        return $this->owner;
+    }
+
+    public function setCategoryPromotionTranslation(?CategoryPromotionTranslation $categoryPromotionTranslation)
+    {
+        $this->owner = $categoryPromotionTranslation;
+    }
 }

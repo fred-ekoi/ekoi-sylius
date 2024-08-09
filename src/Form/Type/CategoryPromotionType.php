@@ -28,17 +28,22 @@ class CategoryPromotionType extends AbstractType
                 'class' => Taxon::class,
                 'choice_label' => 'id',
                 'multiple' => true,
+                'choice_label' => function (Taxon $taxon) {
+                    return $taxon->getSlug();
+                }
             ])
             ->add('locales', EntityType::class, [
                 'class' => Locale::class,
                 'choice_label' => 'id',
                 'multiple' => true,
+                'choice_label' => function (Locale $locale) {
+                    return $locale->getName();
+                }
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => CategoryPromotionTranslationType::class,
                 'label' => 'sylius.form.shipping_method.images',
-            ]);
-        ;
+            ]);;
     }
 
     /**

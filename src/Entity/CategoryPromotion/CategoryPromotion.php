@@ -169,14 +169,14 @@ class CategoryPromotion implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getImage()
+    public function getCategoryPromotionImage()
     {
-        return $this->getTranslation()->getImage();
+        return $this->getTranslation()->getCategoryPromotionImage();
     }
 
-    public function setImage($image): static
+    public function setCategoryPromotionImage($categoryPromotionImage): static
     {
-        $this->getTranslation()->setImage($image);
+        $this->getTranslation()->setCategoryPromotionImage($categoryPromotionImage);
 
         return $this;
     }

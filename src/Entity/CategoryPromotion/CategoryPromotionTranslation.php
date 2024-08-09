@@ -4,12 +4,14 @@ namespace App\Entity\CategoryPromotion;
 
 use App\Repository\CategoryPromotion\CategoryPromotionTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Core\Model\ImageAwareInterface;
+use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 #[ORM\Entity(repositoryClass: CategoryPromotionTranslationRepository::class)]
 #[ORM\Table(name: 'sylius_category_promotion_translation')]
-class CategoryPromotionTranslation extends AbstractTranslation implements ResourceInterface
+class CategoryPromotionTranslation extends AbstractTranslation implements ImageAwareInterface, ResourceInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,7 +21,7 @@ class CategoryPromotionTranslation extends AbstractTranslation implements Resour
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
     private ?CategoryPromotionImage $image = null;
 
     public function getId(): ?int
@@ -44,10 +46,10 @@ class CategoryPromotionTranslation extends AbstractTranslation implements Resour
         return $this->image;
     }
 
-    public function setImage(?CategoryPromotionImage $image): static
+    public function setImage(?ImageInterface $categoryPromotionImage): void
     {
-        $this->image = $image;
+        $categoryPromotionImage?->setOwner($this);
 
-        return $this;
+        $this->image = $categoryPromotionImage;
     }
 }
