@@ -13,6 +13,8 @@ app:
     Position: Position
     Title: Titre
     Type: Type
+    File: Fichier
+    Image: Image
     new_menu_page: Nouvelle page de menu
     Handle your menu pages: Gérer vos pages de menu
     Menu item parent: Item du menu parent
@@ -23,3 +25,6 @@ app:
     No menu item: Pas d'item parent
     Taxon: Taxon
     edit_menu_page: Modifier la page de menu
+    edit_category_promotion: Modifier la promotion de catégorie
+    add_category_promotion: Ajouter une promotion de catégorie
+    Handle your category promotions: Gérer vos promotions de catégorie

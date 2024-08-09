@@ -1,20 +1,37 @@
 sylius_resource:
     resources:
         app.menu:
-            driver: doctrine/orm # You can use also different driver here
+            driver: doctrine/orm
             classes:
                 model: App\Entity\Menu
                 repository: App\Repository\MenuRepository
                 form: App\Form\Type\MenuType
         app.menu_page:
-            driver: doctrine/orm # You can use also different driver here
+            driver: doctrine/orm
             classes:
                 model: App\Entity\MenuPage
                 repository: App\Repository\MenuPageRepository
                 form: App\Form\Type\MenuPageType
         app.menu_item:
-            driver: doctrine/orm # You can use also different driver here
+            driver: doctrine/orm
             classes:
                 model: App\Entity\MenuItem
                 repository: App\Repository\MenuItemRepository
                 form: App\Form\Type\MenuItemType
+
+        app.category_promotion:
+            driver: doctrine/orm
+            classes:
+                model: App\Entity\CategoryPromotion\CategoryPromotion
+                repository: App\Repository\CategoryPromotion\CategoryPromotionRepository
+                form: App\Form\Type\CategoryPromotionType
+            translation:
+                classes:
+                    model: App\Entity\CategoryPromotion\CategoryPromotionTranslation
+                    form: App\Form\Type\CategoryPromotionTranslationType
+
+        app.category_promotion_image:
+            driver: doctrine/orm            
+            classes:
+                model: App\Entity\CategoryPromotion\CategoryPromotionImage
+                form: App\Form\Type\CategoryPromotionImageType

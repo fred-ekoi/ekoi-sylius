@@ -5,7 +5,7 @@ class MenuItemForm {
   menuField = null;
   pageField = null;
   pageOptions = [];
-  __construct() {}
+  constructor() {}
 
   init = () => {
     if (document.querySelector('form[name="menu_item"]')) {

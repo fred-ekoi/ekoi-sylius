@@ -339,3 +339,22 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+
+        app_admin_category_promotion:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\CategoryPromotion\CategoryPromotion
+            fields:
+                title:
+                    type: string
+                    label: "app.ui.Title"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
