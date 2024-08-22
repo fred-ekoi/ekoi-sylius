@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Form\Type;
@@ -22,12 +23,13 @@ final class CategoryPromotionImageType extends ImageType
         parent::buildForm($builder, $options);
 
         $builder->remove('type')
-            ->add('file',FileType::class, [
+            ->add('file', FileType::class, [
                 'label' => false,
                 'required' => false,
-                'label_format'=>null
-            ]);
+                'label_format' => null,
+                'attr' => ['accept' => 'image/*']
 
+            ]);
     }
 
     public function getBlockPrefix(): string
