@@ -62,6 +62,4 @@ RUN set -eux; \
 	composer clear-cache
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
-CMD ["npm", "run", "watch"]
-
 WORKDIR /srv/sylius

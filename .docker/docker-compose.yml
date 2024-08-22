@@ -16,7 +16,7 @@ services:
       - ../public/media:/srv/sylius/public/media:rw
 
   mysql:
-    image: percona:5.7
+    image: mysql:9.0
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-nopassword}
       - MYSQL_DATABASE=sylius
@@ -63,6 +63,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
+    platform: linux/amd64
     depends_on:
       - php
     environment:

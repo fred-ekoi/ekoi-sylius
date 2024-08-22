@@ -1,13 +1,8 @@
 ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-alpine
 
-RUN useradd -ms /bin/sh -u 1001 app
-USER app
+USER root
 
-# Install dependencies
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
 
 # Copy source files into application directory
 COPY --chown=app:app . /app
@@ -20,7 +15,8 @@ RUN set -eux; \
 		gcc \
 		git \
 		make \
-		python \
+		python3 \
+		py3-pip \
 	;
 
 WORKDIR /srv/sylius
