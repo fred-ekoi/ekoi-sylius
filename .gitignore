@@ -51,3 +51,9 @@
 /yarn.lock
 /package-lock.json
 ###< symfony/webpack-encore-bundle ###
+
+###> Docker ###
+.docker/mysql/data
+.docker/mailhog
+
+.DS_Store
