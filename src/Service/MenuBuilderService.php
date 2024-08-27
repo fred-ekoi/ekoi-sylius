@@ -3,9 +3,9 @@
 namespace App\Service;
 
 use App\Entity\MenuItem;
-use App\Repository\MenuItemRepository;
-use App\Repository\MenuPageRepository;
-use App\Repository\MenuRepository;
+use App\Repository\Menu\MenuItemRepository;
+use App\Repository\Menu\MenuPageRepository;
+use App\Repository\Menu\MenuRepository;
 use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 
@@ -32,6 +32,11 @@ class MenuBuilderService
             "title" => $page->getTitle(),
         ];
         $itemsData = [];
+        
+        $pageImage = $page->getImage();
+        if (null !== $pageImage) {
+            $pageData["image"] = $pageImage->getPath();
+        }
 
         foreach ($pageItems as $item) {
             $pageWithItemParent = $this->menuPageRepository->findOneBy(['menuItemParent' => $item->getId()]);
