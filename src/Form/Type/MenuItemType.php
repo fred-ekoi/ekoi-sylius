@@ -2,11 +2,11 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Menu;
-use App\Entity\MenuItem;
-use App\Entity\MenuPage;
+use App\Entity\Menu\Menu;
+use App\Entity\Menu\MenuItem;
+use App\Entity\Menu\MenuPage;
 use App\Entity\Taxonomy\Taxon;
-use App\Repository\MenuRepository;
+use App\Repository\Menu\MenuRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

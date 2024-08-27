@@ -3,20 +3,26 @@ sylius_resource:
         app.menu:
             driver: doctrine/orm
             classes:
-                model: App\Entity\Menu
-                repository: App\Repository\MenuRepository
+                model: App\Entity\Menu\Menu
+                repository: App\Repository\Menu\MenuRepository
                 form: App\Form\Type\MenuType
         app.menu_page:
             driver: doctrine/orm
             classes:
-                model: App\Entity\MenuPage
-                repository: App\Repository\MenuPageRepository
+                model: App\Entity\Menu\MenuPage
+                repository: App\Repository\Menu\MenuPageRepository
                 form: App\Form\Type\MenuPageType
         app.menu_item:
             driver: doctrine/orm
             classes:
-                model: App\Entity\MenuItem
-                repository: App\Repository\MenuItemRepository
+                model: App\Entity\Menu\MenuItem
+                repository: App\Repository\Menu\MenuItemRepository
+                form: App\Form\Type\MenuItemType
+        app.page_menu_image:
+            driver: doctrine/orm
+            classes:
+                model: App\Entity\Menu\MenuPageImage
+                repository: App\Repository\Menu\MenuPageImageRepository
                 form: App\Form\Type\MenuItemType
 
         app.category_promotion:

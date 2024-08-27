@@ -1,4 +1,4 @@
-'App\Entity\Menu':
+'App\Entity\Menu\Menu':
     collectionOperations:
         get:
             method: 'GET'

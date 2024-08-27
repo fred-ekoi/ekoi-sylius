@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\MenuPageRepository;
-use App\Repository\MenuRepository;
+use App\Repository\Menu\MenuPageRepository;
+use App\Repository\Menu\MenuRepository;
 use App\Service\LocaleService;
 use App\Service\MenuBuilderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

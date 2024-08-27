@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Menu;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Taxonomy\Taxon;
-use App\Repository\MenuItemRepository;
+use App\Repository\Menu\MenuItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 

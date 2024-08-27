@@ -26,6 +26,8 @@ app_admin_menu_page:
         vars:
             all:
                 subheader: app.ui.Handle your menu pages
+                templates:
+                    form: "menu/menuPage.html.twig"
             index:
                 icon: 'file image outline'
     type: sylius.resource

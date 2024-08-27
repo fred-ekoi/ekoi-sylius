@@ -2,11 +2,12 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Menu;
-use App\Entity\MenuItem;
-use App\Entity\MenuPage;
-use App\Repository\MenuItemRepository;
-use App\Repository\MenuRepository;
+use App\Entity\Menu\Menu;
+use App\Entity\Menu\MenuItem;
+use App\Entity\Menu\MenuPage;
+use App\Form\Type\MenuPageImageType;
+use App\Repository\Menu\MenuItemRepository;
+use App\Repository\Menu\MenuRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -48,6 +49,10 @@ class MenuPageType extends AbstractType
                 'placeholder' => 'app.ui.No menu item',
                 'required' => false,
             ])
+            ->add('image', MenuPageImageType::class, [
+                'label' => 'app.ui.Image',
+                'required' => false,
+            ]);
         ;
     }
 

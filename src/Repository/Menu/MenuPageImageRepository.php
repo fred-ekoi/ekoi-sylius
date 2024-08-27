@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Menu;
 
-use App\Entity\MenuItem;
+use App\Entity\Menu\MenuItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -10,7 +10,7 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 /**
  * @extends ServiceEntityRepository<MenuItem>
  */
-class MenuItemRepository extends EntityRepository
+class MenuPageImageRepository extends EntityRepository
 {
     //    /**
     //     * @return MenuItem[] Returns an array of MenuItem objects

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Menu;
 
-use App\Entity\MenuPage;
+use App\Entity\Menu\MenuPage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

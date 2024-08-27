@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Menu;
 
 use ApiPlatform\Metadata\ApiResource;
-use App\Repository\MenuPageRepository;
+use App\Repository\Menu\MenuPageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Core\Model\ImageAwareInterface;
+use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 #[ORM\Entity(repositoryClass: MenuPageRepository::class)]
 #[ORM\Table(name: 'sylius_menu_page')]
 #[ApiResource]
-class MenuPage implements ResourceInterface
+class MenuPage implements ImageAwareInterface, ResourceInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,6 +29,9 @@ class MenuPage implements ResourceInterface
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?MenuItem $menuItemParent = null;
+
+    #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
+    private ?MenuPageImage $image = null;
 
     /**
      * @var Collection<int, MenuItem>
@@ -108,5 +113,17 @@ class MenuPage implements ResourceInterface
         }
 
         return $this;
+    }
+
+    public function getImage(): ?MenuPageImage
+    {
+        return $this->image;
+    }
+
+    public function setImage(?ImageInterface $menuPageImage): void
+    {
+        $menuPageImage?->setOwner($this);
+
+        $this->image = $menuPageImage;
     }
 }

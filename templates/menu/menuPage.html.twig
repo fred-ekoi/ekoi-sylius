@@ -1,0 +1,22 @@
+{% form_theme form '@SyliusAdmin/Form/imagesTheme.html.twig' %}
+{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+{# all the contents copied from SyliusAdminBundle/views/PaymentMethod/_form.html.twig #}
+<div class="ui segment">
+	{{ form_row(form.title) }}
+	{{ form_row(form.menu) }}
+	{{ form_row(form.menuItemParent) }}
+</div>
+<div class="ui segment">
+	<div class="ui upload box" id="{{ form.vars.id }}">
+
+		<div class="ui field element">
+			{{ form_label(form.image) }}
+			<img class="ui small bordered image mb-3 {% if form.image.vars.data.path|default(null) is null %}hidden{% endif %}" src="{% if form.image.vars.data.path|default(null) is not null %}{{ form.image.vars.data.path|default(null)|imagine_filter('sylius_medium') }}{% endif %}" alt="{{ form.vars.data.title|default }}"/>
+			{{ form_widget(form.image) }}
+		</div>
+
+		<div class="ui element">
+			{{- form_errors(form.image) -}}
+		</div>
+	</div>
+</div>

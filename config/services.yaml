@@ -40,7 +40,7 @@ services:
 
     app.form.type.menu:
         class: App\Form\Type\MenuType
-        arguments: [App\Entity\Menu]
+        arguments: [App\Entity\Menu\Menu]
         tags:
             - { name: form.type }
 
@@ -62,8 +62,8 @@ services:
 
     
 
-    App\EventSubscriber\ImageUploadSubscriber:
-        arguments:
-            - '@sylius.image_uploader'
-        tags:
-            - { name: kernel.event_subscriber }
+    # App\EventSubscriber\ImageUploadSubscriber:
+    #     arguments:
+    #         - '@sylius.image_uploader'
+    #     tags:
+    #         - { name: kernel.event_subscriber }

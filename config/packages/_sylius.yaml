@@ -270,7 +270,7 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\Menu
+                    class: App\Entity\Menu\Menu
             fields:
                 # lang:
                 #     type: relation
@@ -291,7 +291,7 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\MenuPage
+                    class: App\Entity\Menu\MenuPage
             fields:
                 title:
                     type: string
@@ -309,7 +309,7 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\MenuItem
+                    class: App\Entity\Menu\MenuItem
             fields:
                 position:
                     type: string

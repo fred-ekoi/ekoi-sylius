@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Locale\Locale;
-use App\Entity\Menu;
+use App\Entity\Menu\Menu;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

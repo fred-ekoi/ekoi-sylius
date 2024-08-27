@@ -19,12 +19,14 @@ final class ImageUploadSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            'app.category_promotion.pre_create' => 'uploadImage',
-            'app.category_promotion.pre_update' => 'uploadImage',
+            'app.category_promotion.pre_create' => 'uploadImageTranslations',
+            'app.category_promotion.pre_update' => 'uploadImageTranslations',
+            'app.menu_page.pre_create' => 'uploadImage',
+            'app.menu_page.pre_update' => 'uploadImage',
         ];
     }
 
-    public function uploadImage(GenericEvent $event): void
+    public function uploadImageTranslations(GenericEvent $event): void
     {
         $subject = $event->getSubject();
 
@@ -34,6 +36,16 @@ final class ImageUploadSubscriber implements EventSubscriberInterface
 
             $this->uploadSubjectImage($subjectTranslation);
         }
+    }
+
+    public function uploadImage(GenericEvent $event): void
+    {
+        $subject = $event->getSubject();
+
+        // dd($subject);
+        Assert::isInstanceOf($subject, ImageAwareInterface::class);
+
+        $this->uploadSubjectImage($subject);
     }
 
     private function uploadSubjectImage(ImageAwareInterface $subject): void
