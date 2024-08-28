@@ -34,6 +34,6 @@ final class MenuPageImageType extends ImageType
 
     public function getBlockPrefix(): string
     {
-        return 'category_promotion_image';
+        return 'menu_page_image';
     }
 }
