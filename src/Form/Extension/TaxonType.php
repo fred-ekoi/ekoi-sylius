@@ -6,6 +6,7 @@ use App\Entity\CategoryPromotion\CategoryPromotionImage;
 use App\Entity\Locale\Locale;
 use App\Entity\Taxonomy\Taxon;
 use App\Form\Type\TaxonPageImageType;
+use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonType as BaseTaxonType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -28,16 +29,12 @@ class TaxonType extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Taxon::class, // TaxonType::class,
+            'data_class' => Taxon::class,
         ]);
     }
 
-    public function getBlockPrefix(): string
-    {
-        return 'taxon';
-    }
     public static function getExtendedTypes(): iterable
     {
-        return [TaxonType::class];
+        return [BaseTaxonType::class];
     }
 }

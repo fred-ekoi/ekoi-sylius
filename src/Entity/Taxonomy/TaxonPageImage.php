@@ -18,14 +18,4 @@ class TaxonPageImage extends Image
     #[ORM\OneToOne(inversedBy: 'image', cascade: ['persist', 'remove'], targetEntity: Taxon::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     protected $owner = null;
-
-    public function getTaxon(): ?Taxon
-    {
-        return $this->owner;
-    }
-
-    public function setTaxon(?Taxon $taxon)
-    {
-        $this->owner = $taxon;
-    }
 }

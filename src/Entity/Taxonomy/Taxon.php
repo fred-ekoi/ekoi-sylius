@@ -8,8 +8,10 @@ use App\Entity\CategoryPromotion\CategoryPromotion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Core\Model\ImageAwareInterface;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\Taxon as BaseTaxon;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Taxonomy\Model\TaxonTranslationInterface;
 
 /**
@@ -18,16 +20,13 @@ use Sylius\Component\Taxonomy\Model\TaxonTranslationInterface;
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'sylius_taxon')]
-class Taxon extends BaseTaxon
+class Taxon extends BaseTaxon implements ImageAwareInterface, ResourceInterface
 {
     /**
      * @var Collection<int, CategoryPromotion>
      */
     #[ORM\ManyToMany(targetEntity: CategoryPromotion::class, mappedBy: 'taxons')]
     private Collection $categoryPromotions;
-
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
 
     #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
     private ?TaxonPageImage $image = null;
@@ -66,18 +65,6 @@ class Taxon extends BaseTaxon
         if ($this->categoryPromotions->removeElement($categoryPromotion)) {
             $categoryPromotion->removeTaxon($this);
         }
-
-        return $this;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): static
-    {
-        $this->title = $title;
 
         return $this;
     }

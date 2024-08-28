@@ -23,6 +23,8 @@ final class ImageUploadSubscriber implements EventSubscriberInterface
             'app.category_promotion.pre_update' => 'uploadImageTranslations',
             'app.menu_page.pre_create' => 'uploadImage',
             'app.menu_page.pre_update' => 'uploadImage',
+            'sylius.taxon.pre_create' => 'uploadImage',
+            'sylius.taxon.pre_update' => 'uploadImage',
         ];
     }
 
