@@ -22,15 +22,11 @@ class ApiTaxonController extends AbstractController
         $this->taxonBuilderService = $taxonBuilderService;
     }
 
-    public function getTaxons(String $slug, String $localeIso): JsonResponse
+    public function getTaxons(String $code, String $localeIso, TaxonRepository $taxonRepository): JsonResponse
     {
-        $taxonData = [];
-        $locales = $this->localeService->getLocaleByCode($localeIso);
+        // Logique personnalisée pour sélectionner les données de taxons
+        $taxonData = $this->taxonBuilderService->buildTaxon($code, $localeIso);     
 
-        $taxonData = $this->taxonBuilderService->buildTaxon($slug, $localeIso);        
-
-
-        // dd($menuPageTopLevelItems);
         return new JsonResponse($taxonData);
     }
 }

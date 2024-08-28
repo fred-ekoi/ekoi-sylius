@@ -10,7 +10,7 @@
     collectionOperations:
         get:
             method: 'GET'
-            path: '/taxons/{slug}/{localeIso}'
+            path: '/taxons/{code}/{localeIso}'
             controller: 'App\Controller\ApiTaxonController::getTaxons'
             normalization_context:
                 groups: ['taxon:read']

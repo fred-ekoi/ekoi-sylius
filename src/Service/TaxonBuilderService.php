@@ -20,18 +20,24 @@ class TaxonBuilderService
         $this->taxonRepository = $taxonRepository;
     }
 
-    public function buildTaxon($slug, $locale)
+    public function buildTaxon($code, $locale)
     {
-        $taxon = $this->taxonRepository->findOneBySlug($slug, $locale);
+        $taxon = $this->taxonRepository->findOneBy(['code' => $code]);
         // dd($taxon);
 
         $taxonTranslation = $taxon->getTranslation($locale);
+        // dd($taxonTranslation);
         $taxonData = [
             "title" => $taxonTranslation->getName(),
             "slug" => $taxonTranslation->getSlug(),
             "description" => $taxonTranslation->getDescription(),
-            "image" => $taxon->getImage()->getPath(),
+            "image" => null,
         ];
+
+        $pageImage = $taxon->getImage();
+        if (null !== $pageImage) {
+            $taxonData["image"] = $pageImage->getPath();
+        }
 
         return $taxonData;
     }
