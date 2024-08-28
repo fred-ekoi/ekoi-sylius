@@ -6,3 +6,11 @@
             controller: 'App\Controller\ApiMenuController::getMenus'
             normalization_context:
                 groups: ['menu:read']
+'App\Entity\Taxonomy\Taxon':
+    collectionOperations:
+        get:
+            method: 'GET'
+            path: '/taxons/{slug}/{localeIso}'
+            controller: 'App\Controller\ApiTaxonController::getTaxons'
+            normalization_context:
+                groups: ['taxon:read']

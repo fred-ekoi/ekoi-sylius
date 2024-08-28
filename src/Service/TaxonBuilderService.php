@@ -23,22 +23,16 @@ class TaxonBuilderService
     public function buildTaxon($slug, $locale)
     {
         $taxon = $this->taxonRepository->findOneBySlug($slug, $locale);
+        // dd($taxon);
+
         $taxonTranslation = $taxon->getTranslation($locale);
         $taxonData = [
             "title" => $taxonTranslation->getName(),
             "slug" => $taxonTranslation->getSlug(),
             "description" => $taxonTranslation->getDescription(),
+            "image" => $taxon->getImage()->getPath(),
         ];
 
-
-        $taxonImages = $taxon->getImages();
-        foreach ($taxonImages as $taxonImage) {
-            $taxonData["image"][] = $taxonImage->getPath();
-        }
-
-        dd($taxonData);
-
-
-        return $taxon;
+        return $taxonData;
     }
 }
