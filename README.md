@@ -72,15 +72,16 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
    docker-compose run --rm nodejs npm run build
    ```
 
-9. **Accéder à l'application :**
+9. **Accéder à PhpMyAdmin :**
 
-   Vous pouvez maintenant accéder à l'application via votre navigateur à l'adresse suivante :
+   Vous pouvez maintenant accéder à PhpMyAdmin via votre navigateur à l'adresse suivante :
 
    [http://localhost:8080](http://localhost:8080/)
 
 10. **Importer la base de données :**
 
-    Importez le fichier SQL situé à la racine du projet (`sql.sql`) dans votre base de données.
+   Vérifiez si la table sylius existe et est bien vide. Sinon, créez la ou videz la.
+   Importez le fichier SQL situé à la racine du projet (`sql.sql`) dans votre base de données.
 
 11. **Exécuter les migrations :**
 
