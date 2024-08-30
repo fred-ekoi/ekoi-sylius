@@ -95,7 +95,13 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
     L'application devrait maintenant être accessible via :
 
-    [http://localhost](http://localhost)
+    [http://localhost/admin](http://localhost/admin)
+
+13. **Connectez-vous à l'admin :**
+
+    Connectez-vous avez ces accès pour vous créer votre compte :
+   contact@16h33.fr
+   Password1234@&
 
 ## Support
 
