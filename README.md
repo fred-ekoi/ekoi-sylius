@@ -1,86 +1,101 @@
-<p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="https://media.sylius.com/sylius-logo-800-dark.png">
-          <source media="(prefers-color-scheme: light)" srcset="https://media.sylius.com/sylius-logo-800.png">
-          <img alt="Sylius Logo." src="https://media.sylius.com/sylius-logo-800.png">
-        </picture>
-    </a>
-</p>
 
-<h1 align="center">Sylius Standard Edition</h1>
+# Installation et Configuration du Projet Sylius
 
-<p align="center">This is Sylius Standard Edition repository for starting new projects.</p>
+## Prérequis
 
-## About
+Assurez-vous d'avoir les éléments suivants installés sur votre machine :
+- Docker
+- Docker Compose
 
-Sylius is the first decoupled eCommerce framework based on [**Symfony**](http://symfony.com) and [**Doctrine**](http://doctrine-project.org). 
-The highest quality of code, strong testing culture, built-in Agile (BDD) workflow and exceptional flexibility make it the best solution for application tailored to your business requirements. 
-Enjoy being an eCommerce Developer again!
+## Étapes d'installation
 
-Powerful REST API allows for easy integrations and creating unique customer experience on any device.
+1. **Cloner le dépôt :**
 
-We're using full-stack Behavior-Driven-Development, with [phpspec](http://phpspec.net) and [Behat](http://behat.org)
+   Clonez le dépôt Git en utilisant la commande suivante :
 
-## Documentation
+   ```bash
+   git clone git@github.com:16h33/sylius.git
+   ```
 
-Documentation is available at [docs.sylius.com](http://docs.sylius.com).
+2. **Ouvrir le terminal :**
 
-## Installation
+   Ouvrez votre terminal favori pour exécuter les commandes suivantes.
 
-### Traditional
-```bash
-$ wget http://getcomposer.org/composer.phar
-$ php composer.phar create-project sylius/sylius-standard project
-$ cd project
-$ yarn install
-$ yarn build
-$ php bin/console sylius:install
-$ symfony serve --p12=localhost.pem
-$ open http://localhost:8000/
-```
+3. **Vérifier le bon fonctionnement de Docker :**
 
-For more detailed instruction please visit [installation chapter in our docs](https://docs.sylius.com/en/latest/book/installation/installation.html).
+   Assurez-vous que Docker est correctement installé et fonctionne en exécutant :
 
-### Docker
+   ```bash
+   docker --version
+   docker-compose --version
+   ```
 
-#### Development
+4. **Accéder au répertoire `.docker` :**
 
-Make sure you have installed [Docker](https://docs.docker.com/get-docker/) on your local machine.
-Execute `make init` in your favorite terminal and wait some time until the services will be ready.
-Then enter `localhost` in your browser or execute `open localhost` in your terminal.
+   Déplacez-vous dans le répertoire `.docker` du projet :
 
+   ```bash
+   cd .docker
+   ```
 
-## Troubleshooting
+5. **Construire et démarrer les conteneurs :**
 
-If something goes wrong, errors & exceptions are logged at the application level:
+   Lancez la construction des conteneurs Docker et démarrez-les en arrière-plan :
 
-```bash
-$ tail -f var/log/prod.log
-$ tail -f var/log/dev.log
-```
+   ```bash
+   docker-compose up --build -d
+   ```
 
-## Contributing
+6. **Configurer Composer pour Sylius :**
 
-Would like to help us and build the most developer-friendly eCommerce framework? Start from reading our [Contribution Guide](https://docs.sylius.com/en/latest/contributing/)!
+   Sur le conteneur PHP, exécutez les commandes suivantes pour configurer Composer :
 
-## Stay Updated
+   ```bash
+   docker-compose exec php composer config repositories.sylius composer https://sylius.repo.packagist.com/16h33/
+   docker-compose exec php composer config --global --auth http-basic.sylius.repo.packagist.com token ac8d4bcd8ed8abe2846fc593ae4099a5b7f5443bd3d17c799397b97b4c85
+   ```
 
-If you want to keep up with the updates, [follow the official Sylius account on Twitter](http://twitter.com/Sylius) and [like us on Facebook](https://www.facebook.com/SyliusEcommerce/).
+7. **Installer les dépendances PHP :**
 
-## Bug Tracking
+   Toujours sur le conteneur PHP, installez les dépendances du projet avec Composer :
 
-If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/Sylius/Sylius/issues).
+   ```bash
+   docker-compose exec php composer install
+   ```
 
-## Community Support
+8. **Installer les dépendances Node.js et construire les assets :**
 
-Get Sylius support on [Slack](https://sylius.com/slack), [Forum](https://forum.sylius.com/) or [Stack Overflow](https://stackoverflow.com/questions/tagged/sylius).
+   Sur le conteneur Node.js, installez les dépendances et construisez les assets front-end :
 
-## MIT License
+   ```bash
+   docker-compose run --rm nodejs npm i
+   docker-compose run --rm nodejs npm run build
+   ```
 
-Sylius is completely free and released under the [MIT License](https://github.com/Sylius/Sylius/blob/master/LICENSE).
+9. **Accéder à l'application :**
 
-## Authors
+   Vous pouvez maintenant accéder à l'application via votre navigateur à l'adresse suivante :
 
-Sylius was originally created by [Paweł Jędrzejewski](http://pjedrzejewski.com).
-See the list of [contributors from our awesome community](https://github.com/Sylius/Sylius/contributors).
+   [http://localhost:8080](http://localhost:8080/)
+
+10. **Importer la base de données :**
+
+    Importez le fichier SQL situé à la racine du projet (`sql.sql`) dans votre base de données.
+
+11. **Exécuter les migrations :**
+
+    Depuis le conteneur PHP, exécutez les migrations pour mettre à jour la base de données :
+
+    ```bash
+    docker-compose exec php bin/console doctrine:migrations:migrate
+    ```
+
+12. **Accéder à l'application finale :**
+
+    L'application devrait maintenant être accessible via :
+
+    [http://localhost:8080](http://localhost:8080/)
+
+## Support
+
+Pour toute question ou problème, n'hésitez pas à créer une issue sur le dépôt GitHub.
