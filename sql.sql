@@ -139,7 +139,7 @@ INSERT INTO `sylius_admin_user` (`id`, `username`, `username_canonical`, `enable
 (1, 'simon@16h33.fr', 'simon@16h33.fr', 1, 'iar3umskwrkkk0c40884kcg0kcgwgo4', '$argon2i$v=19$m=65536,t=4,p=1$a1lPM3pXenUzQ0RjbVp1dg$LmfwBXTYScLYfFrnPQZSxFYiBuk2k7XrogjB5rJ1WcE', '2024-08-05 12:46:45', NULL, NULL, NULL, NULL, 0, NULL, NULL, '[\"ROLE_ADMINISTRATION_ACCESS\"]', 'simon@16h33.fr', 'simon@16h33.fr', '2024-07-09 07:53:53', '2024-08-05 12:46:45', NULL, NULL, 'fr', 'argon2i');
 
 INSERT INTO `sylius_admin_user` (`id`, `username`, `username_canonical`, `enabled`, `salt`, `password`, `last_login`, `password_reset_token`, `password_requested_at`, `email_verification_token`, `verified_at`, `locked`, `expires_at`, `credentials_expire_at`, `roles`, `email`, `email_canonical`, `created_at`, `updated_at`, `first_name`, `last_name`, `locale_code`, `encoder_name`) VALUES 
-(2, 'contact@16h33.fr', 'contact@16h33.fr', '1', '3tdaz9n2q9icswg4g0ksw48kws4ssow', '$argon2i$v=19$m=65536,t=4,p=1$NS5UVk9QSHRwREN1dS9Qbg$mi2S+uTBgFrg8ptHuW7gGK3+5lb3og2lVFt0ct8L/8k', NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '[\"ROLE_ADMINISTRATION_ACCESS\"]', 'contact@16h33.fr', 'contact@16h33.fr', '2024-08-30 09:27:26', '2024-08-30 09:27:27', 'Admin', 'Admin', 'fr_FR', 'argon2i')
+(2, 'contact@16h33.fr', 'contact@16h33.fr', '1', '3tdaz9n2q9icswg4g0ksw48kws4ssow', '$argon2i$v=19$m=65536,t=4,p=1$NS5UVk9QSHRwREN1dS9Qbg$mi2S+uTBgFrg8ptHuW7gGK3+5lb3og2lVFt0ct8L/8k', NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '[\"ROLE_ADMINISTRATION_ACCESS\"]', 'contact@16h33.fr', 'contact@16h33.fr', '2024-08-30 09:27:26', '2024-08-30 09:27:27', 'Admin', 'Admin', 'fr_FR', 'argon2i');
 -- --------------------------------------------------------
 
 --

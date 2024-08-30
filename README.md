@@ -94,7 +94,7 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
     L'application devrait maintenant être accessible via :
 
-    [http://localhost:8080](http://localhost:8080/)
+    [http://localhost](http://localhost)
 
 ## Support
 
