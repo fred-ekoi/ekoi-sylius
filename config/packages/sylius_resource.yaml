@@ -41,3 +41,20 @@ sylius_resource:
             classes:
                 model: App\Entity\CategoryPromotion\CategoryPromotionImage
                 form: App\Form\Type\CategoryPromotionImageType
+
+        app.category_outfit:
+            driver: doctrine/orm            
+            classes:
+                model: App\Entity\CategoryOutfit\CategoryOutfit
+                repository: App\Repository\CategoryOutfit\CategoryOutfitRepository
+                form: App\Form\Type\CategoryOutfitType
+            translation:
+                classes:
+                    model: App\Entity\CategoryOutfit\CategoryOutfitTranslation
+                    form: App\Form\Type\CategoryOutfitType
+
+        app.category_outfit_image:
+            driver: doctrine/orm            
+            classes:
+                model: App\Entity\CategoryOutfit\CategoryOutfitImage
+                form: App\Form\Type\CategoryOutfitImageType

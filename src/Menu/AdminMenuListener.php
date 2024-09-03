@@ -28,6 +28,14 @@ final class AdminMenuListener
             ->addChild('menuGroup-menuItem', ['route' => 'app_admin_menu_item_index'])
             ->setLabel('app.ui.Front sites menus items')
         ;
+
+        $catalog = $menu->getChild('catalog');
+
+        $catalog
+            ->addChild('catalog-categoryOutfit', ['route' => 'app_admin_category_outfit_index'])
+            ->setLabel('app.ui.category_outfits')
+            ->setLabelAttribute('icon', 'pencil alternate')
+        ;
     }
 
 }

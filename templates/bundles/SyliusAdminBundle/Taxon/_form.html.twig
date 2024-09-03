@@ -9,6 +9,10 @@
     <div class="fields">
         {{ form_row(form.enabled) }}
     </div>
+    <div class="ui field element">
+            {{ form_label(form.categoryOutfit) }}
+        {{ form_widget(form.categoryOutfit) }}
+    </div>
     <div class="ui upload box" id="{{ form.vars.id }}">
         <div class="ui field element">
             {{ form_label(form.image) }}

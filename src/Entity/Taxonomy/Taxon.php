@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Taxonomy;
 
+use App\Entity\CategoryOutfit\CategoryOutfit;
 use App\Entity\CategoryPromotion\CategoryPromotion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -30,6 +31,9 @@ class Taxon extends BaseTaxon implements ImageAwareInterface, ResourceInterface
 
     #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
     private ?TaxonPageImage $image = null;
+
+    #[ORM\ManyToOne(inversedBy: 'taxons')]
+    private ?CategoryOutfit $categoryOutfit = null;
 
     public function __construct()
     {
@@ -68,7 +72,7 @@ class Taxon extends BaseTaxon implements ImageAwareInterface, ResourceInterface
 
         return $this;
     }
-    
+
     public function getImage(): ?TaxonPageImage
     {
         return $this->image;
@@ -79,5 +83,17 @@ class Taxon extends BaseTaxon implements ImageAwareInterface, ResourceInterface
         $taxonPageImage?->setOwner($this);
 
         $this->image = $taxonPageImage;
+    }
+
+    public function getCategoryOutfit(): ?CategoryOutfit
+    {
+        return $this->categoryOutfit;
+    }
+
+    public function setCategoryOutfit(?CategoryOutfit $categoryOutfit): static
+    {
+        $this->categoryOutfit = $categoryOutfit;
+
+        return $this;
     }
 }

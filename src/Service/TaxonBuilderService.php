@@ -39,6 +39,18 @@ class TaxonBuilderService
             $taxonData["image"] = $pageImage->getPath();
         }
 
+        $taxonCategoryOutfits = $taxon->getCategoryOutfit();
+
+        if($taxonCategoryOutfits) {
+            $taxonData["categoryOutfit"] = [
+                "title" => $taxonCategoryOutfits->getTitle(),
+                "description" => $taxonCategoryOutfits->getDescription(),
+            ];
+            foreach ($taxonCategoryOutfits->getProducts() as $product) {
+                $taxonData["categoryOutfit"]["products"][] = $product->getCode();
+            }
+        }
+
         return $taxonData;
     }
 }

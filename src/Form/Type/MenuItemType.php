@@ -43,7 +43,7 @@ class MenuItemType extends AbstractType
                 }
             ])
             ->add('title', TextType::class, [
-                'label' => 'app.ui.Title'
+                'label' => 'app.ui.title'
             ])
             ->add('menu', EntityType::class, [
                 'class' => Menu::class,

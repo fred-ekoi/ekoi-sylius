@@ -11,7 +11,9 @@ app:
     new_menu_item: Nouvel item du menu
     URL: URL
     Position: Position
-    Title: Titre
+    title: Titre
+    description: Description
+    products: Produits
     Type: Type
     File: Fichier
     Image: Image
@@ -28,3 +30,9 @@ app:
     edit_category_promotion: Modifier la promotion de catégorie
     add_category_promotion: Ajouter une promotion de catégorie
     Handle your category promotions: Gérer vos promotions de catégorie
+
+
+    category_outfits: Tenues de catégorie
+    category_outfits_subheader: Gérer vos tenues par catégorie de produit
+    edit_category_outfit: Modifier la tenue de catégorie
+    new_category_outfit: Créer une tenue de catégorie

@@ -6,7 +6,6 @@ use App\Entity\Menu\Menu;
 use App\Entity\Menu\MenuItem;
 use App\Entity\Menu\MenuPage;
 use App\Form\Type\MenuPageImageType;
-use App\Repository\Menu\MenuItemRepository;
 use App\Repository\Menu\MenuRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,7 +20,7 @@ class MenuPageType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'app.ui.Title',
+                'label' => 'app.ui.title',
             ])
             ->add('menu', EntityType::class, [
                 'class' => Menu::class,
