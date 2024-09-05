@@ -15,13 +15,13 @@ class CategoryOutfitTranslationType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'app.ui.title',
+                'label' => 'app.ui.label.title',
             ])
             ->add('description', TextType::class, [
-                'label' => 'app.ui.description',
+                'label' => 'app.ui.label.description',
             ])
             ->add('image', CategoryOutfitImageType::class, [
-                'label' => 'app.ui.Image',
+                'label' => 'app.ui.label.image',
                 'required' => false,
             ]);
     }

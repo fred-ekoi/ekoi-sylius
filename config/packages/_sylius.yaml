@@ -276,7 +276,7 @@ sylius_grid:
                 #     type: relation
                 langName:
                     type: string
-                    label: "app.ui.Language"
+                    label: "app.ui.label.language"
                     path: "lang.name"
             actions:
                 main:
@@ -295,7 +295,7 @@ sylius_grid:
             fields:
                 title:
                     type: string
-                    label: "app.ui.title"
+                    label: "app.ui.label.title"
             actions:
                 main:
                     create:
@@ -313,23 +313,23 @@ sylius_grid:
             fields:
                 position:
                     type: string
-                    label: "app.ui.Position"
+                    label: "app.ui.label.position"
                 title:
                     type: string
-                    label: "app.ui.title"
+                    label: "app.ui.label.title"
                 type:
                     type: string
-                    label: "app.ui.Type"
+                    label: "app.ui.label.type"
             filters:
                 position:
                     type: string
-                    label: "app.ui.Position"
+                    label: "app.ui.label.position"
                 title:
                     type: string
-                    label: "app.ui.title"
+                    label: "app.ui.label.title"
                 type:
                     type: string
-                    label: "app.ui.Type"
+                    label: "app.ui.label.type"
             actions:
                 main:
                     create:
@@ -348,7 +348,7 @@ sylius_grid:
             fields:
                 title:
                     type: string
-                    label: "app.ui.title"
+                    label: "app.ui.label.title"
             actions:
                 main:
                     create:
@@ -367,7 +367,7 @@ sylius_grid:
             fields:
                 title:
                     type: string
-                    label: "app.ui.title"
+                    label: "app.ui.label.title"
             actions:
                 main:
                     create:

@@ -18,7 +18,7 @@ class TaxonType extends AbstractTypeExtension
     {
         $builder
             ->add('image', TaxonPageImageType::class, [
-                'label' => 'app.ui.Image',
+                'label' => 'app.ui.label.image',
                 'required' => false,
             ])
             ->add('categoryOutfit', EntityType::class, [

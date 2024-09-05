@@ -1,38 +1,45 @@
 app:
   ui:
-    Menus: Menus
-    menus: Menus
-    Menu: Menu
-    Handle your menus: Gérer vos menus
-    Front sites menus: Menu des sites frontaux
-    Front sites menus items: Items du menu des sites frontaux
-    Language: Langue
-    menu_items: Items du menu
-    new_menu_item: Nouvel item du menu
-    URL: URL
-    Position: Position
-    title: Titre
-    description: Description
-    products: Produits
-    Type: Type
-    File: Fichier
-    Image: Image
-    new_menu_page: Nouvelle page de menu
-    Handle your menu pages: Gérer vos pages de menu
-    Menu item parent: Item du menu parent
-    menu_pages : Pages de menu
-    Front sites menu pages: Pages de menu des sites frontaux
-    edit_menu_item: Modifier l'item du menu
-    Handle your menus items: Gérer vos items de menu
-    No menu item: Pas d'item parent
-    Taxon: Taxon
-    edit_menu_page: Modifier la page de menu
-    edit_category_promotion: Modifier la promotion de catégorie
-    add_category_promotion: Ajouter une promotion de catégorie
-    Handle your category promotions: Gérer vos promotions de catégorie
-
+    label:
+      language: Langue
+      position: Position
+      title: Titre
+      description: Description
+      products: Produits
+      type: Type
+      url: URL
+      file: Fichier
+      image: Image
+      taxon: Taxon
 
     category_outfits: Tenues de catégorie
     category_outfits_subheader: Gérer vos tenues par catégorie de produit
     edit_category_outfit: Modifier la tenue de catégorie
     new_category_outfit: Créer une tenue de catégorie
+
+    category_promotions: Promotions de catégorie
+    category_promotions_subheader: Gérer vos promotions par catégorie de produit
+    edit_category_promotion: Modifier la promotion de catégorie
+    add_category_promotion: Ajouter une promotion de catégorie
+    new_category_promotion: Créer une promotion de catégorie
+
+    menu: Menu
+    menus: Menus des sites frontaux
+    menus_subheader: Gérer vos menus
+    edit_menu: Modifier le menu 
+    add_menu: Ajouter un menu
+    new_menu: Créer un menu
+
+    menu_pages: Pages des menus
+    menu_pages_subheader: Gérer vos pages de menu
+    edit_menu_page: Modifier la page de menu
+    add_menu_page: Ajouter une page de menu
+    new_menu_page: Créer une page de menu
+    menu_item_parent: Item du menu parent
+    no_menu_item_parent: Pas d'item parent
+
+    menu_items: Items des menus
+    menu_items_subheader: Gérer vos items de menu des sites frontaux
+    edit_menu_item: Modifier l'item du menu
+    add_menu_item: Ajouter un item du menu
+    new_menu_item: Créer un item du menu

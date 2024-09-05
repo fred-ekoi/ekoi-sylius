@@ -21,7 +21,7 @@ class CategoryPromotionTranslationType extends AbstractType
         $builder
             ->add('title')
             ->add('image', CategoryPromotionImageType::class, [
-                'label' => 'app.ui.Image',
+                'label' => 'app.ui.label.image',
                 'required' => false,
             ]);
     }

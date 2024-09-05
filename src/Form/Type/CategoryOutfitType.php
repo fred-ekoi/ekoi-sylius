@@ -17,7 +17,7 @@ class CategoryOutfitType extends AbstractType
         $builder
             ->add('products', EntityType::class, [
                 'class' => Product::class,
-                'label' => 'app.ui.products',
+                'label' => 'app.ui.label.products',
                 'choice_label' => 'id',
                 'multiple' => true,
                 'choice_label' => function (Product $product) {

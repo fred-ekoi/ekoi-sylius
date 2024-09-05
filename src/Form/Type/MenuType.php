@@ -20,7 +20,7 @@ class MenuType extends AbstractResourceType
             ->add('lang', EntityType::class, [
                 'class' => Locale::class,
                 'choice_label' => 'name',
-                'label' => 'app.ui.Language',
+                'label' => 'app.ui.label.language',
             ])
             ->add('menuItems', CollectionType::class, [
                 'entry_type' => MenuItemType::class,
