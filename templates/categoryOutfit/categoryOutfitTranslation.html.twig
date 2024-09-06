@@ -2,7 +2,7 @@
 {% import '@SyliusUi/Macro/flags.html.twig' as flags %}
 {# all the contents copied from SyliusAdminBundle/views/PaymentMethod/_form.html.twig #}
 <div class="ui segment">
-	{{ form_row(form.products) }}
+	{{ form_row(form.products, { 'attr' : { 'style': 'display: none' } })  }}
 </div>
 <div class="ui styled fluid accordion">
 	{% for locale, translationForm in form.translations %}

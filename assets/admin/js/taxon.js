@@ -4,7 +4,6 @@ class Taxon {
   constructor() {}
 
   init = () => {
-    console.log("Taxon init");
     if (document.querySelector('form[name="sylius_taxon"]')) {
       this.imageWrapper = document.querySelector(`.upload[id="sylius_taxon"]`);
 

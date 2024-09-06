@@ -1,7 +1,16 @@
+@import "~tom-select/dist/css/tom-select.css";
+
 label + .ui.button{
     margin-bottom: 0.5rem;
 }
 
 label + img{
     margin-bottom: 0.5rem;
+}
+
+.ts-wrapper {
+    width: 100% !important;
+}
+.ts-control input {
+    width: unset !important;
 }

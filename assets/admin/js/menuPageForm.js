@@ -40,7 +40,7 @@ class MenuItemForm {
   setEvents = () => {
     this.imageWrapper.addEventListener("change", () => {
       this.updatePreview(this.imageWrapper);
-      console.log(this.imageWrapper);
+      // console.log(this.imageWrapper);
       
     });
   };

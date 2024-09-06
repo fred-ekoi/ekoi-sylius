@@ -47,8 +47,8 @@ class MenuItemForm {
     this.pageField.innerHTML = "";
     const menuId = this.menuField.value;
     this.pageOptions.forEach(option => {
-      console.log(option.dataset.menu);
-      console.log(menuId);
+      // console.log(option.dataset.menu);
+      // console.log(menuId);
       if(option.dataset.menu === menuId){
         this.pageField.appendChild(option);
       }

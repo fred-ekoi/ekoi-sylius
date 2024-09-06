@@ -1,4 +1,4 @@
-import FormSelect from "./formSelect.js";
+import TomSelect from "tom-select";
 import { updatePreview } from "./main.js";
 
 class CategoryOutfit {
@@ -17,6 +17,14 @@ class CategoryOutfit {
       );
 
       this.setEvents();
+      new TomSelect(this.productsSelect, {
+        maxItems: 3,
+        maxOptions: 2,
+        sortField: {
+          field: "text",
+          direction: "asc"
+        }
+      })
     }
   };
 
