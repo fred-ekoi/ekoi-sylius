@@ -1,6 +1,7 @@
 class MenuItemForm {
   itemField = null;
   menuField = null;
+  imageWrapper = null;
   itemOptions = [];
   constructor() {}
 
@@ -8,9 +9,12 @@ class MenuItemForm {
     if (document.querySelector('form[name="menu_page"]')) {
       this.menuField = document.getElementById("menu_page_menu");
       this.itemField = document.getElementById("menu_page_menuItemParent");
+      this.imageWrapper = document.querySelector(`.upload[id="menu_page"]`);
       this.buildItemOptionsArray();
       this.menuField.addEventListener("change", this.updateItemsSelect);
       this.updateItemsSelect();
+
+      this.setEvents();
     }
   };
 
@@ -30,6 +34,28 @@ class MenuItemForm {
         this.itemField.appendChild(option);
       }
     });
+  };
+
+
+  setEvents = () => {
+    this.imageWrapper.addEventListener("change", () => {
+      this.updatePreview(this.imageWrapper);
+      // console.log(this.imageWrapper);
+      
+    });
+  };
+
+  updatePreview = imageWrapper => {
+    const image = imageWrapper.querySelector("img");
+    const file = imageWrapper.querySelector("input[type=file]").files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        image.src = reader.result;
+      });
+      reader.readAsDataURL(file);
+      image.classList.remove("hidden");
+    }
   };
 }
 

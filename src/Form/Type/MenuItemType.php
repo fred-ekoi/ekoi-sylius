@@ -24,26 +24,26 @@ class MenuItemType extends AbstractType
     {
         $builder
             ->add('position', IntegerType::class, [
-                'label' => 'app.ui.Position',
+                'label' => 'app.ui.label.position',
             ])
             ->add('type', ChoiceType::class, [
-                'label' => 'app.ui.Type',
+                'label' => 'app.ui.label.type',
                 'choices' => MenuItem::getTypes(),
             ])
             ->add('url', TextType::class, [
-                'label' => 'app.ui.URL',
+                'label' => 'app.ui.url',
                 'required' => false,
             ])
             ->add('taxon', EntityType::class, [
                 'class' => Taxon::class,
-                'label' => 'app.ui.Taxon',
+                'label' => 'app.ui.label.taxon',
                 'required' => false,
                 'choice_label' => function (Taxon $taxon) {
                     return $taxon->getSlug();
                 }
             ])
             ->add('title', TextType::class, [
-                'label' => 'app.ui.Title'
+                'label' => 'app.ui.label.title'
             ])
             ->add('menu', EntityType::class, [
                 'class' => Menu::class,

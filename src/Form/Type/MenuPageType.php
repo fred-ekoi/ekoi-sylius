@@ -6,7 +6,6 @@ use App\Entity\Menu\Menu;
 use App\Entity\Menu\MenuItem;
 use App\Entity\Menu\MenuPage;
 use App\Form\Type\MenuPageImageType;
-use App\Repository\Menu\MenuItemRepository;
 use App\Repository\Menu\MenuRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,7 +20,7 @@ class MenuPageType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'app.ui.Title',
+                'label' => 'app.ui.label.title',
             ])
             ->add('menu', EntityType::class, [
                 'class' => Menu::class,
@@ -32,7 +31,7 @@ class MenuPageType extends AbstractType
                     return $menuRepository->createQueryBuilder('m')
                         ->join('App\Entity\Locale\Locale', 'l', 'WITH', 'm.lang = l.id');
                 },
-                'label' => 'app.ui.Menu',
+                'label' => 'app.ui.menu',
             ])
             ->add('menuItemParent', EntityType::class, [
                 'class' => MenuItem::class,
@@ -45,12 +44,12 @@ class MenuPageType extends AbstractType
                     }
                     return ['data-menu' => $menuItem->getMenu()->getId()];
                 },
-                'label' => 'app.ui.Menu item parent',
-                'placeholder' => 'app.ui.No menu item',
+                'label' => 'app.ui.menu_item_parent',
+                'placeholder' => 'app.ui.no_menu_item_parent',
                 'required' => false,
             ])
             ->add('image', MenuPageImageType::class, [
-                'label' => 'app.ui.Image',
+                'label' => 'app.ui.label.image',
                 'required' => false,
             ]);
         ;

@@ -24,16 +24,16 @@ class ApiMenuController extends AbstractController
     public function getMenus(String $localeIso, MenuRepository $menuRepository, MenuPageRepository $menuPageRepository): JsonResponse
     {
         // Logique personnalisée pour récupérer les données de menu
-        $menuDatas = [];
+        $menuData = [];
         $locales = $this->localeService->getLocaleByCode($localeIso);
 
         $menu = $menuRepository->findOneBy(['lang' => $locales->getId()]);
         $menuPageTopLevel = $menuPageRepository->findOneBy(['menu' => $menu->getId(), 'menuItemParent' => null]);
-        $menuDatas = $this->menuBuilderService->buildMenu($menuPageTopLevel->getId(), $localeIso);        
+        $menuData = $this->menuBuilderService->buildMenu($menuPageTopLevel->getId(), $localeIso);        
 
 
         // dd($menuPageTopLevelItems);
-        return new JsonResponse($menuDatas);
+        return new JsonResponse($menuData);
     }
 }
 

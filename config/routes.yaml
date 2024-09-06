@@ -10,7 +10,7 @@ app_admin_menu:
         grid: app_admin_menu
         vars:
             all:
-                subheader: app.ui.Handle your menus
+                subheader: app.ui.menus_subheader
             index:
                 icon: 'file image outline'
     type: sylius.resource
@@ -25,7 +25,7 @@ app_admin_menu_page:
         grid: app_admin_menu_page
         vars:
             all:
-                subheader: app.ui.Handle your menu pages
+                subheader: app.ui.menu_pages_subheader
                 templates:
                     form: "menu/menuPage.html.twig"
             index:
@@ -42,7 +42,7 @@ app_admin_menu_item:
         grid: app_admin_menu_item
         vars:
             all:
-                subheader: app.ui.Handle your menus items
+                subheader: app.ui.menu_items_subheader
             index:
                 icon: 'file image outline'
     type: sylius.resource
@@ -57,9 +57,25 @@ app_admin_category_promotion:
         grid: app_admin_category_promotion
         vars:
             all:
-                subheader: app.ui.Handle your category promotions
+                subheader: app.ui.category_promotions_subheader
                 templates: 
                     form: "categoryPromotion/categoryPromotionTranslation.html.twig"
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin
+app_admin_category_outfit:
+    resource: |
+        alias: app.category_outfit
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_category_outfit
+        vars:
+            all:
+                subheader: app.ui.category_outfits_subheader
+                templates: 
+                    form: "categoryOutfit/categoryOutfitTranslation.html.twig"
             index:
                 icon: 'file image outline'
     type: sylius.resource

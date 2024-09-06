@@ -1,6 +1,8 @@
+{# {{ render(path('sylius_admin_partial_taxon_tree', {'template': '@SyliusAdmin/Taxon/_treeWithButtons.html.twig'})) }} #}
 {% form_theme form '@SyliusAdmin/Form/imagesTheme.html.twig' %}
 {% import '@SyliusUi/Macro/flags.html.twig' as flags %}
 {# all the contents copied from SyliusAdminBundle/views/PaymentMethod/_form.html.twig #}
+
 <div class="ui segment">
 	{{ form_row(form.title) }}
 	{{ form_row(form.menu) }}

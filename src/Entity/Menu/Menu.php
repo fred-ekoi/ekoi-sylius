@@ -28,7 +28,7 @@ class Menu implements ResourceInterface
     /**
      * @var Collection<int, MenuItem>
      */
-    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuItem::class)]
+    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuItem::class, cascade: ['persist'])]
     private Collection $menuItems;
 
     /**

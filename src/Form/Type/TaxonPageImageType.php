@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Form\Type;
 
-use App\Entity\Menu\MenuPageImage;
+use App\Entity\Taxonomy\TaxonPageImage;
 // use Liip\ImagineBundle\Form\Type\ImageType
 use Sylius\Bundle\CoreBundle\Form\Type\ImageType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class MenuPageImageType extends ImageType
+final class TaxonPageImageType extends ImageType
 {
     public function __construct()
     {
-        parent::__construct(MenuPageImage::class, ['sylius']);
+        parent::__construct(TaxonPageImage::class, ['sylius']);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -34,6 +34,6 @@ final class MenuPageImageType extends ImageType
 
     public function getBlockPrefix(): string
     {
-        return 'menu_page_image';
+        return 'taxon_page_image';
     }
 }
