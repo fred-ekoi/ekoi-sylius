@@ -32,11 +32,12 @@ class TaxonBuilderService
             "slug" => $taxonTranslation->getSlug(),
             "description" => $taxonTranslation->getDescription(),
             "image" => null,
-        ];
+            "categoryOutfit" => null,
+            "categoryPromotions" => null       ];
 
-        $pageImage = $taxon->getImage();
-        if (null !== $pageImage) {
-            $taxonData["image"] = $pageImage->getPath();
+        $taxonImage = $taxon->getImage();
+        if (null !== $taxonImage) {
+            $taxonData["image"] = $taxonImage->getPath();
         }
 
         $taxonCategoryOutfits = $taxon->getCategoryOutfit();
@@ -50,6 +51,19 @@ class TaxonBuilderService
                 $taxonData["categoryOutfit"]["products"][] = $product->getCode();
             }
         }
+
+        $taxonCategoryPromotions = $taxon->getCategoryPromotions();
+        foreach ($taxonCategoryPromotions as $taxonCategoryPromotion) {
+            $taxonData["categoryPromotions"][] = [
+                "title" => $taxonCategoryPromotion->getTranslation($locale)->getTitle(),
+                "image" => null,
+            ];
+            $taxonCategoryPromotionImage = $taxonCategoryPromotion->getTranslation($locale)->getImage();
+            if (null !== $taxonCategoryPromotionImage) {
+                $taxonData["categoryPromotions"]["image"] = $taxonCategoryPromotionImage->getPath();
+            }
+        }
+        dd($taxonData);
 
         return $taxonData;
     }
