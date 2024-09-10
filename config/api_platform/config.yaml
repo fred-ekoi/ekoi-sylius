@@ -1,8 +1,8 @@
-'App\Entity\Menu\Menu':
+'MonsieurBiz\SyliusMenuPlugin\Entity\Menu':
     collectionOperations:
         get:
             method: 'GET'
-            path: '/menus/{localeIso}'
+            path: '/shop/menus/{localeIso}'
             controller: 'App\Controller\ApiMenuController::getMenus'
             normalization_context:
                 groups: ['menu:read']
@@ -10,7 +10,7 @@
     collectionOperations:
         get:
             method: 'GET'
-            path: '/taxons/{code}/{localeIso}'
+            path: '/shop/taxons/{code}/{localeIso}'
             controller: 'App\Controller\ApiTaxonController::getTaxons'
             normalization_context:
                 groups: ['taxon:read']

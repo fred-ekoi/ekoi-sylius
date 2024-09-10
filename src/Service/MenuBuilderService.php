@@ -2,71 +2,68 @@
 
 namespace App\Service;
 
-use App\Entity\MenuItem;
-use App\Repository\Menu\MenuItemRepository;
-use App\Repository\Menu\MenuPageRepository;
-use App\Repository\Menu\MenuRepository;
+use MonsieurBiz\SyliusMenuPlugin\Repository\MenuRepository;
 use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository;
-use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 
 class MenuBuilderService
 {
-    private $menuItemRepository;
-    private $menuPageRepository;
-    private $menuRepository;
     private $taxonRepository;
+    private $menuRepository;
 
-    public function __construct(MenuItemRepository $menuItemRepository, MenuPageRepository $menuPageRepository, MenuRepository $menuRepository, TaxonRepository $taxonRepository)
+    public function __construct(TaxonRepository $taxonRepository, MenuRepository $menuRepository)
     {
-        $this->menuItemRepository = $menuItemRepository;
-        $this->menuPageRepository = $menuPageRepository;
-        $this->menuRepository = $menuRepository;
         $this->taxonRepository = $taxonRepository;
+        $this->menuRepository = $menuRepository;
     }
 
-    public function buildMenu($pageId, $locale)
+    public function buildMenu($localeIso)
     {
-        $page = $this->menuPageRepository->find($pageId);
-        $pageItems = $page->getMenuItems();
-        $pageData = [
-            "title" => $page->getTitle(),
-        ];
-        $itemsData = [];
+        $menu = $this->menuRepository->findOneBy(['code' => $localeIso]);
+
+        if ($menu == null) return ["error" => "No menu found"];
         
-        $pageImage = $page->getImage();
-        if (null !== $pageImage) {
-            $pageData["image"] = $pageImage->getPath();
-        }
+        $menuItems = $menu->getItems();
+        $menuData = [
+            "code" => $menu->getCode(),
+        ];
 
-        foreach ($pageItems as $item) {
-            $pageWithItemParent = $this->menuPageRepository->findOneBy(['menuItemParent' => $item->getId()]);
-            $itemData = [
-                "title" => $item->getTitle(),
+        $menuItemDataArray = [];
+        foreach ($menuItems as $menuItem) {
+            $menuItemTranslations = $menuItem->getTranslation($localeIso);
+            $menuItemData = [
+                "title" => $menuItemTranslations->getLabel(),
+                "url" => $menuItemTranslations->getUrl(),
+                "parent_id" => $menuItem->getParent() == null ? null : $menuItem->getParent()->getId(),
             ];
-
-            if ("category" === $item->getType()) {
-                $taxonUrl = $this->generateTaxonUrl($item->getTaxon()->getId(), $locale);
-                $itemData["link"] = $taxonUrl;
-
-            } else {
-                $itemData["link"] = $item->getUrl();
-            }
-
-            if (null !== $pageWithItemParent) {
-                $itemData["page"] = $this->buildMenu($pageWithItemParent->getId(), $locale);
-            }
-
-            $itemsData[] = $itemData;
+            // if ($menuItem->getParent() == null) {
+                $menuItemDataArray[$menuItem->getId()] = $menuItemData;
+            // } else {
+            //     $this->addChildToParent($menuItemDataArray, $menuItem->getParent()->getId(), $menuItemData);
+            // }
         }
 
-        $pageData["items"] = $itemsData;
+        $menuData["items"] = $this->buildTree($menuItemDataArray);
 
-        return $pageData;
+        return $menuData;
     }
 
-    private function generateTaxonUrl($taxonId, $locale)
-    {
-        $taxon = $this->taxonRepository->findOneBy(['id'=>$taxonId]);
-        return $taxon->getTranslation($locale)->getSlug();
+    function buildTree(array &$items, $parentId = null) {
+        $branch = [];
+    
+        foreach ($items as $key => &$item) {
+            // If the item's parent_id matches the current parentId, it's a child
+            if ($item['parent_id'] == $parentId) {
+                // Recursively find children of the current item
+                $children = $this->buildTree($items, $key);
+                // If children are found, add them under 'children'
+                if ($children) {
+                    $item['children'] = $children;
+                }
+                // Add the current item to the branch
+                $branch[] = $item;
+            }
+        }
+    
+        return $branch;
     }
 }

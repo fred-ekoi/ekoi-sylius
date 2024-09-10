@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "414639991717a03e5bb1f1238763059e",
+    "content-hash": "d874f1775d93cf45027258f094acd16d",
     "packages": [
         {
             "name": "alcohol/iso4217",
@@ -4695,6 +4695,67 @@
                 }
             ],
             "time": "2024-06-28T09:40:51+00:00"
+        },
+        {
+            "name": "monsieurbiz/sylius-menu-plugin",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monsieurbiz/SyliusMenuPlugin.git",
+                "reference": "e221cbdb39bfb8f28f29dc7c760b71ca8ad0a73d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monsieurbiz/SyliusMenuPlugin/zipball/e221cbdb39bfb8f28f29dc7c760b71ca8ad0a73d",
+                "reference": "e221cbdb39bfb8f28f29dc7c760b71ca8ad0a73d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "sylius/sylius": ">=1.11 <1.14"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.16",
+                "phpmd/phpmd": "^2.15",
+                "phpspec/phpspec": "^7.0",
+                "phpstan/phpstan": "^1.8.4",
+                "phpstan/phpstan-doctrine": "^1.3.2",
+                "phpstan/phpstan-webmozart-assert": "^1.1",
+                "phpunit/phpunit": "^10.5"
+            },
+            "type": "sylius-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                },
+                "symfony": {
+                    "docker": false,
+                    "endpoint": [
+                        "https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master",
+                        "flex://defaults"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MonsieurBiz\\SyliusMenuPlugin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This plugins allows you to manage menus.",
+            "keywords": [
+                "monsieurbiz",
+                "sylius",
+                "sylius-plugin"
+            ],
+            "support": {
+                "issues": "https://github.com/monsieurbiz/SyliusMenuPlugin/issues",
+                "source": "https://github.com/monsieurbiz/SyliusMenuPlugin/tree/v1.4.1"
+            },
+            "time": "2024-09-05T12:44:54+00:00"
         },
         {
             "name": "myclabs/php-enum",

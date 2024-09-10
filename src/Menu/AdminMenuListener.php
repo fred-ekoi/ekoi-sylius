@@ -9,28 +9,28 @@ final class AdminMenuListener
     {
         $menu = $event->getMenu();
 
-        $newSubmenu = $menu
-            ->addChild('menuGroup')
-            ->setLabel('app.ui.menu')
-        ;
+        // $newSubmenu = $menu
+        //     ->addChild('menuGroup')
+        //     ->setLabel('app.ui.menu')
+        // ;
 
-        $newSubmenu
-            ->addChild('menuGroup-menu', ['route' => 'app_admin_menu_index'])
-            ->setLabel('app.ui.menus')
-            ->setLabelAttribute('icon', 'list')
-        ;
+        // $newSubmenu
+        //     ->addChild('menuGroup-menu', ['route' => 'app_admin_menu_index'])
+        //     ->setLabel('app.ui.menus')
+        //     ->setLabelAttribute('icon', 'list')
+        // ;
 
-        $newSubmenu
-            ->addChild('menuGroup-menuPage', ['route' => 'app_admin_menu_page_index'])
-            ->setLabel('app.ui.menu_pages')
-            ->setLabelAttribute('icon', 'columns')
-        ;
+        // $newSubmenu
+        //     ->addChild('menuGroup-menuPage', ['route' => 'app_admin_menu_page_index'])
+        //     ->setLabel('app.ui.menu_pages')
+        //     ->setLabelAttribute('icon', 'columns')
+        // ;
         
-        $newSubmenu
-            ->addChild('menuGroup-menuItem', ['route' => 'app_admin_menu_item_index'])
-            ->setLabel('app.ui.menu_items')
-            ->setLabelAttribute('icon', 'th list')
-        ;
+        // $newSubmenu
+        //     ->addChild('menuGroup-menuItem', ['route' => 'app_admin_menu_item_index'])
+        //     ->setLabel('app.ui.menu_items')
+        //     ->setLabelAttribute('icon', 'th list')
+        // ;
 
         $catalog = $menu->getChild('catalog');
 

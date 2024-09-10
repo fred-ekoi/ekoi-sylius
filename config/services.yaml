@@ -38,11 +38,11 @@ services:
                   method: addAdminMenuItems,
               }
 
-    app.form.type.menu:
-        class: App\Form\Type\MenuType
-        arguments: [App\Entity\Menu\Menu]
-        tags:
-            - { name: form.type }
+    # app.form.type.menu:
+    #     class: App\Form\Type\MenuType
+    #     arguments: [App\Entity\Menu\Menu]
+    #     tags:
+    #         - { name: form.type }
 
     App\Service\LocaleService:
         arguments:

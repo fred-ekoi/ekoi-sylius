@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "monsieurbiz/sylius-menu-plugin": "^1.4",
         "sylius/customer-service-plugin": "^0.6.0",
         "sylius/loyalty-plugin": "^0.6.0",
         "sylius/multi-source-inventory-plugin": "^0.6.0",
@@ -90,10 +91,7 @@
         "symfony": {
             "allow-contrib": false,
             "require": "^6.4",
-            "endpoint": [
-                "https://api.github.com/repos/Sylius/SyliusRecipes/contents/index.json?ref=flex/main",
-                "flex://defaults"
-            ]
+            "endpoint": ["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master", "flex://defaults"]
         }
     },
     "autoload": {
