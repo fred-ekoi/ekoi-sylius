@@ -34,6 +34,7 @@ class MenuBuilderService
                 "title" => $menuItemTranslations->getLabel(),
                 "url" => $menuItemTranslations->getUrl(),
                 "parent_id" => $menuItem->getParent() == null ? null : $menuItem->getParent()->getId(),
+                "image" => $menuItem->getImage() == null ? null : $menuItem->getImage()->getPath(),
             ];
             // if ($menuItem->getParent() == null) {
                 $menuItemDataArray[$menuItem->getId()] = $menuItemData;
