@@ -58,3 +58,6 @@ sylius_resource:
             classes:
                 model: App\Entity\CategoryOutfit\CategoryOutfitImage
                 form: App\Form\Type\CategoryOutfitImageType
+        monsieurbiz_menu.menu_item:
+            classes:
+                model: App\Entity\Menu\MenuItem
