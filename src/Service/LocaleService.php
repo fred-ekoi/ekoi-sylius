@@ -16,6 +16,6 @@ class LocaleService
     public function getLocaleByCode(string $code)
     {
         $locales = $this->localeCollectionProvider->getAll();
-        return $locales[$code] != null ? $locales[$code] : null;
+        return array_key_exists($code, $locales) ? $locales[$code] : null;
     }
 }
