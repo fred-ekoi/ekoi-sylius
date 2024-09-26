@@ -90,9 +90,6 @@ jobs:
                   echo "DATABASE_URL=${{ secrets.DATABASE_URL_PREPROD }}" >> .env.local
                   echo "APP_URL=${{ secrets.APP_URL_PREPROD }}" >> .env.local
                   echo "MAILER_DSN=${{ secrets.MAILER_DSN_PREPROD }}" >> .env.local
-                  echo "SENDER_EMAIL=${{ secrets.SENDER_EMAIL_PREPROD }}" >> .env.local
-                  echo "TURNSTILE_KEY=${{ secrets.TURNSTILE_SITE }}" >> .env.local
-                  echo "TURNSTILE_SECRET=${{ secrets.TURNSTILE_SECRET }}" >> .env.local
 
             # Install composer dependencies and dump environment
             - name: Composer install & dump-env
@@ -116,11 +113,11 @@ jobs:
             # Deploy repository onto the host provided in Github Secrets, including downloaded artifacts and files created (like vendor folder)
             # Deploy is running thanks to "Deployator" NPM dependency (https://github.com/la-haute-societe/deployator)
             # See "deployment-config.js" to get the config in use
-            - name: Deploy on prod
+            - name: Deploy on preprod
               env:
-                  SSH_HOST: ${{ secrets.SSH_HOST }}
-                  SSH_LOGIN: ${{ secrets.SSH_LOGIN }}
-                  SSH_PWD: ${{ secrets.SSH_PWD }}
-                  SSH_PATH: ${{ secrets.SSH_PATH_PREPROD }}
+                  SSH_HOST: ${{ secrets.SSH_HOST_PREPROD }}
+                  SSH_LOGIN: ${{ secrets.SSH_LOGIN_PREPROD }}
+                  SSH_PWD: ${{ secrets.SSH_PASSWORD_PREPROD }}
+                  SSH_PATH: ${{ secrets.SSH_HOST_PREPROD }}
               run: |
                   npx --cache .npm deployator deploy --config deployment-config.js --environment=preprod
