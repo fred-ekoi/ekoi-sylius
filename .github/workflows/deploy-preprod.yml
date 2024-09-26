@@ -3,7 +3,7 @@ name: Deploy Sylius
 on:
   push:
     branches:
-      - main  # Change to your default branch
+      - _preprod  # Change to your default branch
 
 jobs:
   deploy:
