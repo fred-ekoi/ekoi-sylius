@@ -1,78 +1,123 @@
-name: Deploy Sylius
-
+name: CI/CD preprod
 on:
-  push:
-    branches:
-      - _preprod  # Change to your default branch
+    push:
+        branches: [_preprod]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            # Mandatory: fetch the current repository
+            - name: Checkout repository
+              uses: actions/checkout@v3  # Updated to v3
 
-    strategy:
-      matrix:
-        php-versions: ['8.1']  # Sylius requires PHP 8.1+ at the time of writing
+            # Use cache system for NPM to be faster
+            - name: Cache NPM (node_modules)
+              uses: actions/cache@v3  # Updated to v3
+              env:
+                  cache-name: cache-node-modules
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-${{ env.cache-name }}-
+                      ${{ runner.os }}-build-
+                      ${{ runner.os }}-
 
-    steps:
-    # Step 1: Checkout the repository
-    - name: Checkout repository
-      uses: actions/checkout@v3
+            # Define the right Node.js environment
+            - name: Environment for NPM
+              uses: actions/setup-node@v3  # Updated to v3
+              with:
+                  node-version: "20"
 
-    # Step 2: Set up PHP with Composer
-    - name: Set up PHP ${{ matrix.php-versions }}
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        extensions: mbstring, intl, pdo_mysql
-        coverage: none
-        tools: composer
+            # NPM run build
+            - name: NPM build
+              run: |
+                  node -v
+                  npm ci --cache .npm --unsafe-perm --prefer-offline
+                  npm run build
 
-    # Step 3: Cache Composer dependencies
-    - name: Get Composer Cache directory
-      id: composer-cache
-      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-    
-    - name: Cache Composer dependencies
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-composer-
+            # Upload artifacts (= built files) to download them in the next job
+            - name: NPM artifacts
+              uses: actions/upload-artifact@v3  # Updated to v3
+              with:
+                  name: npm-build
+                  retention-days: 1
+                  path: public/build/
 
-    # Step 4: Install Composer dependencies
-    - name: Install Composer dependencies
-      run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+    deploy:
+        # The "build" job must be complete before starting it
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            # Mandatory: fetch the current repository
+            - name: Checkout repository
+              uses: actions/checkout@v3  # Updated to v3
 
-    # Step 5: Build assets (optional, only if using Webpack Encore or other frontend tools)
-    - name: Build assets
-      run: |
-        npm install
-        npm run build
+            # Use cache system for Composer to be faster
+            - name: Get Composer Cache Directory
+              id: composer-cache
+              run: |
+                  echo "::set-output name=dir::$(composer config cache-files-dir)"
+            - name: Cache composer (vendor)
+              uses: actions/cache@v3  # Updated to v3
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-composer-
 
-    # Step 6: Run database migrations (optional)
-    - name: Run Doctrine migrations
-      run: php bin/console doctrine:migrations:migrate --no-interaction
+            # Define the right PHP environment
+            # https://github.com/shivammathur/setup-php (community)
+            - name: Environment for PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: "8.2"
+                  tools: composer:v2
+                  coverage: none
+              env:
+                  update: true
 
-    # Step 7: Deploy to the server using SSH
-    - name: Deploy to production server
-      uses: appleboy/ssh-action@v0.1.3
-      with:
-        host: ${{ secrets.SSH_HOST_PREPROD }}
-        username: ${{ secrets.SSH_USER_PREPROD }}
-        key: ${{ secrets.SSH_PASSWORD_PREPROD }}
-        script: |
-          cd /path/to/your/sylius-project
-          git pull origin main
-          composer install --no-dev --optimize-autoloader
-          php bin/console doctrine:migrations:migrate --no-interaction
-          npm install && npm run build
-          php bin/console cache:clear --no-warmup
-          php bin/console cache:warmup
+            # Validate composer.json and composer.lock
+            - name: Validate composer.json and composer.lock
+              run: composer validate
 
-    # Step 8: Clear cache and restart services if necessary
-    - name: Clear cache and restart services (optional)
-      run: |
-        sudo systemctl restart php8.1-fpm
-        sudo systemctl restart nginx
+            # Create .env.local file
+            - name: Create .env.local file
+              run: |
+                  echo "APP_ENV=${{ secrets.APP_ENV_PREPROD }}" >> .env.local
+                  echo "APP_SECRET=${{ secrets.APP_SECRET }}" >> .env.local
+                  echo "DATABASE_URL=${{ secrets.DATABASE_URL_PREPROD }}" >> .env.local
+                  echo "APP_URL=${{ secrets.APP_URL_PREPROD }}" >> .env.local
+                  echo "MAILER_DSN=${{ secrets.MAILER_DSN_PREPROD }}" >> .env.local
 
+            # Install composer dependencies and dump environment
+            - name: Composer install & dump-env
+              run: |
+                  composer install --no-progress --no-scripts --prefer-dist -a
+                  composer dump-env ${{ secrets.APP_ENV_PREPROD }}
+
+            # Download artifacts created in the previous job
+            - name: Download NPM artifacts
+              uses: actions/download-artifact@v3 #Updated to v3
+              with:
+                  name: npm-build
+                  path: public/build
+
+            # Define the right Node.js environment
+            - name: Environment for deploy
+              uses: actions/setup-node@v3  # Updated to v3
+              with:
+                  node-version: "20"
+
+            # Deploy repository onto the host provided in Github Secrets, including downloaded artifacts and files created (like vendor folder)
+            # Deploy is running thanks to "Deployator" NPM dependency (https://github.com/la-haute-societe/deployator)
+            # See "deployment-config.js" to get the config in use
+            - name: Deploy on preprod
+              env:
+                  SSH_HOST: ${{ secrets.SSH_HOST_PREPROD }}
+                  SSH_LOGIN: ${{ secrets.SSH_LOGIN_PREPROD }}
+                  SSH_PWD: ${{ secrets.SSH_PASSWORD_PREPROD }}
+                  SSH_PATH: ${{ secrets.SSH_HOST_PREPROD }}
+              run: |
+                  npx --cache .npm deployator deploy --config deployment-config.js --environment=preprod
