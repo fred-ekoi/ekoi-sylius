@@ -6,15 +6,6 @@ on:
             - "dependabot/**"
         paths-ignore:
             - "*.md"
-    pull_request:
-        paths-ignore:
-            - "*.md"
-    release:
-        types: [created]
-    schedule:
-        -
-            cron: "0 1 * * 6" # Run at 1am every Saturday
-    workflow_dispatch: ~
 
 jobs:
     tests:
@@ -58,6 +49,30 @@ jobs:
                     composer config extra.symfony.require "${{ matrix.symfony }}"
 
             # These dependencies since Sylius 1.13 have been shifted to dev ones: https://github.com/Sylius/Sylius/pull/15485
+
+            -
+                name: Restrict Symfony version
+                if: matrix.symfony != ''
+                run: composer config extra.symfony.require "${{ matrix.symfony }}"
+
+            -
+                name: Get Composer cache directory
+                id: composer-cache
+                run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+            -
+                name: Cache Composer
+                uses: actions/cache@v3
+                with:
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json **/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
+            -
+                name: Install PHP dependencies
+                run: composer install --no-interaction
+                
             -
                 name: Add Payum dependencies
                 run: |
@@ -96,29 +111,6 @@ jobs:
             -
                 name: Run webserver
                 run: symfony server:start --port=8080 --dir=public --daemon
-
-            -
-                name: Restrict Symfony version
-                if: matrix.symfony != ''
-                run: composer config extra.symfony.require "${{ matrix.symfony }}"
-
-            -
-                name: Get Composer cache directory
-                id: composer-cache
-                run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-            -
-                name: Cache Composer
-                uses: actions/cache@v3
-                with:
-                    path: ${{ steps.composer-cache.outputs.dir }}
-                    key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json **/composer.lock') }}
-                    restore-keys: |
-                        ${{ runner.os }}-php-${{ matrix.php }}-composer-
-
-            -
-                name: Install PHP dependencies
-                run: composer install --no-interaction
 
             -
                 name: Get Yarn cache directory
