@@ -80,7 +80,7 @@ jobs:
             # Deploy repository onto the host provided in Github Secrets, including downloaded artifacts and files created (like vendor folder)
             # Deploy is running thanks to "Deployator" NPM dependency (https://github.com/la-haute-societe/deployator)
             # See "deployment-config.js" to get the config in use
-            - name: Deploy on preprod
+            - name: Deploy on preprod server
               env:
                   SSH_HOST: ${{ secrets.SSH_HOST_PREPROD }}
                   SSH_LOGIN: ${{ secrets.SSH_LOGIN_PREPROD }}
