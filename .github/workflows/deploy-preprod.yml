@@ -55,13 +55,6 @@ jobs:
                   composer install --no-progress --no-scripts --prefer-dist -a
                   composer dump-env ${{ secrets.APP_ENV_PREPROD }}
 
-            # Download artifacts created in the previous job
-            - name: Download NPM artifacts
-              uses: actions/download-artifact@v3 #Updated to v3
-              with:
-                  name: npm-build
-                  path: public/build
-
             # Use cache system for NPM to be faster
             - name: Cache NPM (node_modules)
               uses: actions/cache@v3  # Updated to v3
