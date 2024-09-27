@@ -4,50 +4,7 @@ on:
         branches: [_preprod]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            # Mandatory: fetch the current repository
-            - name: Checkout repository
-              uses: actions/checkout@v3  # Updated to v3
-
-            # Use cache system for NPM to be faster
-            - name: Cache NPM (node_modules)
-              uses: actions/cache@v3  # Updated to v3
-              env:
-                  cache-name: cache-node-modules
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
-
-            # Define the right Node.js environment
-            - name: Environment for NPM
-              uses: actions/setup-node@v3  # Updated to v3
-              with:
-                  node-version: "20"
-
-            # NPM run build
-            - name: NPM build
-              run: |
-                  node -v
-                  npm ci --cache .npm --unsafe-perm --prefer-offline
-                  npm run build
-
-            # Upload artifacts (= built files) to download them in the next job
-            - name: NPM artifacts
-              uses: actions/upload-artifact@v3  # Updated to v3
-              with:
-                  name: npm-build
-                  retention-days: 1
-                  path: public/build/
-
     deploy:
-        # The "build" job must be complete before starting it
-        needs: build
         runs-on: ubuntu-latest
         steps:
             # Mandatory: fetch the current repository
@@ -107,11 +64,31 @@ jobs:
                   name: npm-build
                   path: public/build
 
+                  node-version: "20"
+            # Use cache system for NPM to be faster
+            - name: Cache NPM (node_modules)
+              uses: actions/cache@v3  # Updated to v3
+              env:
+                  cache-name: cache-node-modules
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-${{ env.cache-name }}-
+                      ${{ runner.os }}-build-
+                      ${{ runner.os }}-
+
             # Define the right Node.js environment
             - name: Environment for deploy
               uses: actions/setup-node@v3  # Updated to v3
               with:
-                  node-version: "20"
+
+            # NPM run build
+            - name: NPM build
+              run: |
+                  node -v
+                  npm ci --cache .npm --unsafe-perm --prefer-offline
+                  npm run build
 
             # Deploy repository onto the host provided in Github Secrets, including downloaded artifacts and files created (like vendor folder)
             # Deploy is running thanks to "Deployator" NPM dependency (https://github.com/la-haute-societe/deployator)
