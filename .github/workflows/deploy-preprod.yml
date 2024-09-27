@@ -50,6 +50,8 @@ jobs:
             # Install composer dependencies and dump environment
             - name: Composer install & dump-env
               run: |
+                  composer config repositories.sylius composer https://sylius.repo.packagist.com/16h33/
+                  composer config --global --auth http-basic.sylius.repo.packagist.com token ${{ secrets.SYLIUS_PACKAGIST_TOKEN }}
                   composer install --no-progress --no-scripts --prefer-dist -a
                   composer dump-env ${{ secrets.APP_ENV_PREPROD }}
 
