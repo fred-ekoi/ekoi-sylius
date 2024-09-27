@@ -4,7 +4,8 @@ on:
         branches: [_preprod]
 
 jobs:
-    deploy:
+    deploy:seize
+
         runs-on: ubuntu-latest
         steps:
             # Mandatory: fetch the current repository
@@ -64,7 +65,6 @@ jobs:
                   name: npm-build
                   path: public/build
 
-                  node-version: "20"
             # Use cache system for NPM to be faster
             - name: Cache NPM (node_modules)
               uses: actions/cache@v3  # Updated to v3
@@ -82,6 +82,7 @@ jobs:
             - name: Environment for deploy
               uses: actions/setup-node@v3  # Updated to v3
               with:
+                  node-version: "20"
 
             # NPM run build
             - name: NPM build
