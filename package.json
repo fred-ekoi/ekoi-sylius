@@ -8,7 +8,8 @@
     "watch": "encore dev --watch"
   },
   "devDependencies": {
-    "@sylius-ui/frontend": "^1.0"
+    "@sylius-ui/frontend": "^1.0",
+    "deployator": "^2.0.0"
   },
   "dependencies": {
     "tom-select": "^2.3.1"
