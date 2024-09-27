@@ -89,6 +89,5 @@ jobs:
                   SSH_HOST: ${{ secrets.SSH_HOST_PREPROD }}
                   SSH_LOGIN: ${{ secrets.SSH_LOGIN_PREPROD }}
                   SSH_PWD: ${{ secrets.SSH_PASSWORD_PREPROD }}
-                  SSH_PATH: ${{ secrets.SSH_HOST_PREPROD }}
               run: |
                   npx --cache .npm deployator deploy --config deployment-config.js --environment=preprod
