@@ -39,13 +39,9 @@ jobs:
             - name: Create .env.local file
               run: |
                   echo "APP_ENV=${{ secrets.APP_ENV_PREPROD }}" >> .env.local
-                  echo "APP_SECRET=${{ secrets.APP_SECRET }}" >> .env.local
                   echo "DATABASE_URL=${{ secrets.DATABASE_URL_PREPROD }}" >> .env.local
                   echo "APP_URL=${{ secrets.APP_URL_PREPROD }}" >> .env.local
                   echo "MAILER_DSN=${{ secrets.MAILER_DSN_PREPROD }}" >> .env.local
-                  echo "SENDER_EMAIL=${{ secrets.SENDER_EMAIL_PREPROD }}" >> .env.local
-                  echo "TURNSTILE_KEY=${{ secrets.TURNSTILE_SITE }}" >> .env.local
-                  echo "TURNSTILE_SECRET=${{ secrets.TURNSTILE_SECRET }}" >> .env.local
 
             # Install composer dependencies and dump environment
             - name: Composer install & dump-env
