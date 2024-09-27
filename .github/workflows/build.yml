@@ -44,6 +44,8 @@ jobs:
                 name: Restrict Symfony version
                 if: matrix.symfony != ''
                 run: |
+                    composer config repositories.sylius composer https://sylius.repo.packagist.com/16h33/
+                    composer config --global --auth http-basic.sylius.repo.packagist.com token ${{ secrets.SYLIUS_REPO_PACKAGIST_TOKEN }}
                     composer global config --no-plugins allow-plugins.symfony/flex true
                     composer global require --no-progress --no-scripts --no-plugins "symfony/flex:^2.4"
                     composer config extra.symfony.require "${{ matrix.symfony }}"
