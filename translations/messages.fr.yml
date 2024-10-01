@@ -23,8 +23,11 @@ app:
     add_category_promotion: Ajouter une promotion de catégorie
     new_category_promotion: Créer une promotion de catégorie
     
-    translation_override_dictionary: Dictionnaire de traduction
-    translation_override_dictionary_subheader: Gérer vos traductions personnalisées
+    translation_override_dictionaries: Dictionnaire de traduction
+    translation_override_dictionaries_subheader: Gérer vos traductions personnalisées
+    edit_translation_override_dictionary: Modifier le dictionnaire de traduction
+    add_translation_override_dictionary: Ajouter un dictionnaire de traduction
+    new_translation_override_dictionary: Créer un dictionnaire de traduction
     
 
     menu: Menu
