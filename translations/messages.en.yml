@@ -13,3 +13,6 @@ app:
 
     category_outfits: Category Outfits
     category_outfits_subheader: Handle your outfits by category
+    
+    autotranslation_dictionary: Translation dictionary
+    autotranslation_dictionary_subheader: Handle your custom translations

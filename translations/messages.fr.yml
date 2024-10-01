@@ -22,6 +22,10 @@ app:
     edit_category_promotion: Modifier la promotion de catégorie
     add_category_promotion: Ajouter une promotion de catégorie
     new_category_promotion: Créer une promotion de catégorie
+    
+    autotranslation_dictionary: Dictionnaire de traduction
+    autotranslation_dictionary_subheader: Gérer vos traductions personnalisées
+    
 
     menu: Menu
     menus: Menus des sites frontaux
