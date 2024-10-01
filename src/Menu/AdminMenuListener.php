@@ -49,8 +49,8 @@ final class AdminMenuListener
         $configuration = $menu->getChild('configuration');
 
         $configuration
-            ->addChild('configuration-translation')
-            ->setLabel('app.ui.autotranslation_dictionary')
+            ->addChild('configuration-translationOverride')
+            ->setLabel('app.ui.translation_override_dictionary')
             ->setLabelAttribute('icon', 'list');
     }
 
