@@ -58,3 +58,10 @@ sylius_resource:
             classes:
                 model: App\Entity\CategoryOutfit\CategoryOutfitImage
                 form: App\Form\Type\CategoryOutfitImageType
+
+        app.translation_override_dictionary:
+            driver: doctrine/orm
+            classes:
+                model: App\Entity\Translation\TranslationOverrideDictionary
+                repository: App\Repository\Translation\TranslationOverrideDictionaryRepository
+                form: App\Form\Type\TranslationOverrideDictionaryType

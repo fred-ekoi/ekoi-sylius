@@ -80,3 +80,18 @@ app_admin_category_outfit:
                 icon: 'file image outline'
     type: sylius.resource
     prefix: /admin
+    
+app_admin_translation_override_dictionary:
+    resource: |
+        alias: app.translation_override_dictionary
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_translation_override_dictionary
+        vars:
+            all:
+                subheader: app.ui.translation_override_dictionaries_subheader
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin

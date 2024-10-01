@@ -377,3 +377,31 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                        
+        app_admin_translation_override_dictionary:
+            driver:
+                name: doctrine/orm
+                options:       
+                    class: App\Entity\Translation\TranslationOverrideDictionary
+            fields:
+                key_locale:
+                    type: string
+                    label: "app.ui.label.key_locale"
+                key_text:
+                    type: string
+                    label: "app.ui.label.key_text"
+                value_locale:
+                    type: string
+                    label: "app.ui.label.value_locale"
+                value_text:
+                    type: string
+                    label: "app.ui.label.value_text"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete                
