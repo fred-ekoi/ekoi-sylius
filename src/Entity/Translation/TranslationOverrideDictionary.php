@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Entity\TranslationOverrideDictionary;
+namespace App\Entity\Translation;
 
 use App\Entity\Locale\Locale;
-use App\Repository\TranslationOverrideDictionary\TranslationOverrideDictionaryRepository;
+use App\Repository\Translation\TranslationOverrideDictionaryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Resource\Model\ResourceInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TranslationOverrideDictionaryRepository::class)]
-class TranslationOverrideDictionary
+#[ORM\Table(name: 'sylius_translation_override_dictionary')]
+class TranslationOverrideDictionary implements ResourceInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,6 +22,7 @@ class TranslationOverrideDictionary
     private ?Locale $keyLocale = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     private ?string $keyText = null;
 
     #[ORM\ManyToOne]
@@ -26,6 +30,7 @@ class TranslationOverrideDictionary
     private ?Locale $valueLocale = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     private ?string $valueText = null;
 
     public function getId(): ?int

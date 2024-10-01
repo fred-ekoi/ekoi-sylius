@@ -1,21 +1,15 @@
 <?php
 
-namespace App\Repository\TranslationOverrideDictionary;
+namespace App\Repository\Translation;
 
-use App\Entity\TranslationOverrideDictionary\TranslationOverrideDictionary;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Translation\TranslationOverrideDictionary;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
- * @extends ServiceEntityRepository<TranslationOverrideDictionary>
+ * @extends EntityRepository<TranslationOverrideDictionary>
  */
-class TranslationOverrideDictionaryRepository extends ServiceEntityRepository
+class TranslationOverrideDictionaryRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, TranslationOverrideDictionary::class);
-    }
-
     //    /**
     //     * @return TranslationOverrideDictionary[] Returns an array of TranslationOverrideDictionary objects
     //     */
