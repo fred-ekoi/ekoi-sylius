@@ -11,6 +11,7 @@ app:
       file: Fichier
       image: Image
       taxon: Taxon
+      features: Caractéristiques
 
     category_outfits: Tenues de catégorie
     category_outfits_subheader: Gérer vos tenues par catégorie de produit
