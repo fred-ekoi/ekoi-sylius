@@ -69,4 +69,5 @@ return [
     Sylius\RefundPlugin\SyliusRefundPlugin::class => ['all' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     MonsieurBiz\SyliusMenuPlugin\MonsieurBizSyliusMenuPlugin::class => ['all' => true],
+    OpenAI\Symfony\OpenAIBundle::class => ['all' => true],
 ];
