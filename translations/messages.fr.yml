@@ -49,3 +49,11 @@ monsieurbiz_menu:
   ui:
     help_target_blank: Ouvrir dans un nouvel onglet
     help_noreferer: Pas de referrer
+monsieurbiz_media_manager:
+  ui:
+    current_image: Image actuelle
+    choose_image: Choisir une image
+    remove_image: Supprimer l'image
+    create_folder: Créer un dossier
+    upload_file_in_this_folder: Télécharger un fichier dans ce dossier
+    cancel: Annuler

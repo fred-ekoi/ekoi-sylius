@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "monsieurbiz/sylius-media-manager-plugin": "^1.1",
         "monsieurbiz/sylius-menu-plugin": "^1.4",
         "monsieurbiz/sylius-rich-editor-plugin": "^2.9",
         "sylius/customer-service-plugin": "^0.6.0",

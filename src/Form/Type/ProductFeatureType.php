@@ -15,15 +15,14 @@ class ProductFeatureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('title', TextType::class, [
+            ->add('image', ProductFeatureImageType::class, [
+                'label' => false,
+            ])
+            ->add('title', TextType::class, [
             'label' => 'app.ui.label.title',
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'app.ui.label.description',
-            ])
-            ->add('image', ProductFeatureImageType::class, [
-                'label' => 'app.ui.label.image',
-                'required' => false,
             ]);
     }
 

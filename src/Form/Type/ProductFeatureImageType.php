@@ -8,6 +8,7 @@ use App\Entity\Product\ProductFeatureImage;
 use Sylius\Bundle\CoreBundle\Form\Type\ImageType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType as MediaManagerImageType;
 
 final class ProductFeatureImageType extends ImageType
 {
@@ -20,8 +21,10 @@ final class ProductFeatureImageType extends ImageType
     {
         parent::buildForm($builder, $options);
 
-        $builder->remove('type')
-            ->add('file', FileType::class, [
+        $builder
+            ->remove('type')
+            ->remove('file')
+            ->add('path', MediaManagerImageType::class, [
                 'label' => false,
                 'required' => false,
                 'label_format' => null,

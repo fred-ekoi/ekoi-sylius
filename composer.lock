@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84512963d634ba7ac057966ba48a1311",
+    "content-hash": "afa0f019254ec6aa2e1c90ec3e24cacb",
     "packages": [
         {
             "name": "alcohol/iso4217",
@@ -4959,6 +4959,67 @@
                 }
             ],
             "time": "2024-06-28T09:40:51+00:00"
+        },
+        {
+            "name": "monsieurbiz/sylius-media-manager-plugin",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monsieurbiz/SyliusMediaManagerPlugin.git",
+                "reference": "f385c3ac2647b310ccabe5ff5b6707d8ddd8fc48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monsieurbiz/SyliusMediaManagerPlugin/zipball/f385c3ac2647b310ccabe5ff5b6707d8ddd8fc48",
+                "reference": "f385c3ac2647b310ccabe5ff5b6707d8ddd8fc48",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "sylius/sylius": ">=1.11 <1.14"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.16",
+                "phpmd/phpmd": "^2.15",
+                "phpspec/phpspec": "^7.0",
+                "phpstan/phpstan": "^1.8.4",
+                "phpstan/phpstan-doctrine": "^1.3.2",
+                "phpstan/phpstan-webmozart-assert": "^1.1",
+                "phpunit/phpunit": "^10.5"
+            },
+            "type": "sylius-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                },
+                "symfony": {
+                    "docker": false,
+                    "endpoint": [
+                        "https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master",
+                        "flex://defaults"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MonsieurBiz\\SyliusMediaManagerPlugin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Add a media manager to your Sylius.",
+            "keywords": [
+                "monsieurbiz",
+                "sylius",
+                "sylius-plugin"
+            ],
+            "support": {
+                "issues": "https://github.com/monsieurbiz/SyliusMediaManagerPlugin/issues",
+                "source": "https://github.com/monsieurbiz/SyliusMediaManagerPlugin/tree/v1.1.0"
+            },
+            "time": "2024-07-01T12:53:45+00:00"
         },
         {
             "name": "monsieurbiz/sylius-menu-plugin",
