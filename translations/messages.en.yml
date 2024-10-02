@@ -1,5 +1,11 @@
 app:
   ui:
+    label:
+        key_locale: Key locale
+        value_locale: Value locale
+        key_text: Key text
+        value_text: Value text
+      
     Menus: Menus
     menus: Menus
     Menu: Menu
@@ -16,3 +22,6 @@ app:
     
     translation_override_dictionaries: Translation dictionary
     translation_override_dictionaries_subheader: Handle your custom translations
+    edit_translation_override_dictionary: Edit entry in translation dictionary
+    add_translation_override_dictionary: Add entry in translation dictionary
+    new_translation_override_dictionary: Create entry in translation dictionary
