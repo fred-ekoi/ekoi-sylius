@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Menu;
 
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
@@ -25,7 +25,7 @@ final class AdminMenuListener
         //     ->setLabel('app.ui.menu_pages')
         //     ->setLabelAttribute('icon', 'columns')
         // ;
-        
+
         // $newSubmenu
         //     ->addChild('menuGroup-menuItem', ['route' => 'app_admin_menu_item_index'])
         //     ->setLabel('app.ui.menu_items')
@@ -45,6 +45,13 @@ final class AdminMenuListener
             ->setLabel('app.ui.category_promotions')
             ->setLabelAttribute('icon', 'tags')
         ;
+
+        $configuration = $menu->getChild('configuration');
+
+        $configuration
+            ->addChild('configuration-translationOverride' , ['route' => 'app_admin_translation_override_dictionary_index'])
+            ->setLabel('app.ui.translation_override_dictionaries')
+            ->setLabelAttribute('icon', 'list');
     }
 
 }

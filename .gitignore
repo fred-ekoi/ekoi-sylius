@@ -56,3 +56,7 @@
 .docker/mailhog
 
 .DS_Store
+
+###> IDE ###
+/.idea
+###< IDE ###
