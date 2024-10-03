@@ -1,7 +1,7 @@
 name: CI/CD preprod
 on:
     push:
-        branches: [_preprod]
+        branches: [27-fix-cicd]
 
 jobs:
     deploy:
