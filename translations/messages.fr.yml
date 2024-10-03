@@ -13,6 +13,12 @@ app:
       taxon: Taxon
       features: Caractéristiques
 
+    product_features: Caractéristiques
+    product_features_subheader: Gérer vos caractéristiques de produit
+    edit_product_feature: Modifier la caractéristique de produit
+    add_product_feature: Ajouter une caractéristique de produit
+    new_product_feature: Créer une caractéristique de produit
+
     category_outfits: Tenues de catégorie
     category_outfits_subheader: Gérer vos tenues par catégorie de produit
     edit_category_outfit: Modifier la tenue de catégorie

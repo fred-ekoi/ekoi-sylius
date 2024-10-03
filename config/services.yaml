@@ -37,6 +37,11 @@ services:
                   event: sylius.menu.admin.main,
                   method: addAdminMenuItems,
               }
+            - {
+                  name: kernel.event_listener,
+                  event: sylius.menu.admin.product.form,
+                  method: addAdminProductMenuItems,
+              }
 
     # app.form.type.menu:
     #     class: App\Form\Type\MenuType

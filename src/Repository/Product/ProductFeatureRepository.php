@@ -3,18 +3,13 @@
 namespace App\Repository\Product;
 
 use App\Entity\Product\ProductFeature;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
  * @extends ServiceEntityRepository<ProductFeature>
  */
-class ProductFeatureRepository extends ServiceEntityRepository
+class ProductFeatureRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, ProductFeature::class);
-    }
 
     //    /**
     //     * @return ProductFeature[] Returns an array of ProductFeature objects

@@ -35,6 +35,12 @@ final class AdminMenuListener
         $catalog = $menu->getChild('catalog');
 
         $catalog
+            ->addChild('catalog-productFeature', ['route' => 'app_admin_product_feature_index'])
+            ->setLabel('app.ui.product_features')
+            ->setLabelAttribute('icon', 'cube')
+        ;
+
+        $catalog
             ->addChild('catalog-categoryOutfit', ['route' => 'app_admin_category_outfit_index'])
             ->setLabel('app.ui.category_outfits')
             ->setLabelAttribute('icon', 'pencil alternate')
@@ -45,6 +51,42 @@ final class AdminMenuListener
             ->setLabel('app.ui.category_promotions')
             ->setLabelAttribute('icon', 'tags')
         ;
+
+        $catalog->reorderChildren([
+            'taxons',
+            'products',
+            'inventory',
+            'attributes',
+            'catalog-productFeature',
+            'options',
+            'association_types',
+            'catalog-categoryOutfit',
+            'catalog-categoryPromotion'
+        ]);
+    }
+
+    /**
+     * Add a custom menu item to the product form menu.
+     *
+     * @param MenuBuilderEvent $event
+     */
+    public function addAdminProductMenuItems(MenuBuilderEvent $event): void
+    {
+        $menu = $event->getMenu();
+        // Add a custom menu item (e.g., Product Features tab)
+        $menu->addChild('product_features')
+        ->setLabel('app.ui.product_features') // Translation key for the label
+        ->setAttribute('template', '@SyliusAdmin/Product/Tab/_features.html.twig'); // Add a template to the menu item
+        // dd($menu);
+        $menu->reorderChildren([
+            'details',
+            'taxonomy',
+            'attributes',
+            'product_features',
+            'associations',
+            'media',
+            'inventory',
+        ]);
     }
 
 }

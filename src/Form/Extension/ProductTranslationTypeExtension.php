@@ -31,14 +31,6 @@ class ProductTranslationTypeExtension extends AbstractTypeExtension
                 'label' => 'sylius.form.product.description',
                 'locale' => $builder->getName(),
                 'tags' => ['-noseeme'],
-            ])
-            ->add('features', CollectionType::class, [
-                'label' => 'app.ui.label.features',
-                'entry_type' => ProductFeatureType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'attr' => ['class' => 'sylius-product-features'],
             ]);
     }
 

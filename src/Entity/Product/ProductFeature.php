@@ -3,27 +3,26 @@
 namespace App\Entity\Product;
 
 use App\Repository\Product\ProductFeatureRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
 #[ORM\Table(name: 'sylius_product_feature')]
 #[ORM\Entity(repositoryClass: ProductFeatureRepository::class)]
-class ProductFeature
+class ProductFeature implements ResourceInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(mappedBy: 'owner')]
+    #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
     private ?ProductFeatureImage $image = null;
-
-    #[ORM\ManyToOne(inversedBy: 'features', cascade: ['persist', 'remove'])]
-    private ?ProductTranslation $productTranslation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     public function getId(): ?int
@@ -36,23 +35,10 @@ class ProductFeature
         return $this->image;
     }
 
-    public function setImage(?ProductFeatureImage $image): static
+    public function setImage(?ProductFeatureImage $image): void
     {
+        $image?->setOwner($this);
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getProductTranslation(): ?ProductTranslation
-    {
-        return $this->productTranslation;
-    }
-
-    public function setProductTranslation(?ProductTranslation $productTranslation): static
-    {
-        $this->productTranslation = $productTranslation;
-
-        return $this;
     }
 
     public function getTitle(): ?string
