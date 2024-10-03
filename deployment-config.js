@@ -8,7 +8,6 @@ module.exports = function (options) {
     return {
         common: {
             mode: "synchronize",
-            currentReleaseLink: "current",
             localPath: "./", //Warning : Do not leave blank !
             share: {
                 uploads: "public/uploads",
@@ -17,7 +16,7 @@ module.exports = function (options) {
                 log: "var/log",
             },
             exclude: [".github/**", ".github", "assets/**", "assets", "tests/**", "tests", ".git/**", ".git"],
-            create: ["var", "var/log"],
+            create: ["var", "var/log", "var/cache", "var/cache/prod", "var/cache/dev", "public/uploads", "public/media/cache"],
             onAfterDeploy: afterDeploy,
         },
 
