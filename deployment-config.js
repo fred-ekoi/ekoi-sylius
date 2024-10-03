@@ -1,7 +1,7 @@
 "use strict";
 
 function afterDeploy(context) {
-    return [`cd synchronized/`, `php bin/console d:m:m -n`, `php bin/console c:c`];
+    return [`php bin/console d:m:m -n`, `php bin/console c:c`];
 }
 
 module.exports = function (options) {
@@ -16,7 +16,7 @@ module.exports = function (options) {
                 log: "var/log",
             },
             exclude: [".github/**", ".github", "assets/**", "assets", "tests/**", "tests", ".git/**", ".git"],
-            create: ["var", "var/log", "var/cache", "var/cache/prod", "var/cache/dev", "public/uploads", "public/media/cache", "public/media/image"],
+            create: ["var", "var/log", "var/cache", "var/cache/prod", "var/cache/preprod", "public/uploads", "public/media/cache", "public/media/image"],
             onAfterDeploy: afterDeploy,
         },
 
