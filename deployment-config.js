@@ -16,7 +16,7 @@ module.exports = function (options) {
                 log: "var/log",
             },
             exclude: [".github/**", ".github", ".docker", ".docker/**", ".platform", ".platform/**", "tests/**", "tests", ".git/**", ".git"],
-            create: ["var", "var/log", "var/cache", "var/cache/prod", "var/cache/preprod", "public/uploads", "public/media/cache", "public/media/image", "public/media/gallery/image"],
+            create: ["var", "var/log", "var/cache", "var/cache/prod", "var/cache/preprod", "public/uploads", "public/media/cache", "public/media/image", "public/media/gallery" , "public/media/gallery/image"],
             onAfterDeploy: afterDeploy,
         },
 
