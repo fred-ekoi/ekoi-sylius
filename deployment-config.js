@@ -1,7 +1,7 @@
 "use strict";
 
 function afterDeploy(context) {
-    return [`php bin/console d:m:m -n`, `php bin/console c:c`];
+    return [`php ${context.release.path}/bin/console d:m:m -n`, `php ${context.release.path}/bin/console c:c`];
 }
 
 module.exports = function (options) {
@@ -15,7 +15,7 @@ module.exports = function (options) {
                 "translations-dir": "translations",
                 log: "var/log",
             },
-            exclude: [".github/**", ".github", "assets/**", "assets", "tests/**", "tests", ".git/**", ".git"],
+            exclude: [".github/**", ".github", ".docker", ".docker/**", ".platform", ".platform/**", "tests/**", "tests", ".git/**", ".git"],
             create: ["var", "var/log", "var/cache", "var/cache/prod", "var/cache/preprod", "public/uploads", "public/media/cache", "public/media/image"],
             onAfterDeploy: afterDeploy,
         },
