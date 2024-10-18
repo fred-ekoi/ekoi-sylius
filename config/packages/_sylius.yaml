@@ -423,4 +423,23 @@ sylius_grid:
                     update:
                         type: update
                     delete:
-                        type: delete                
+                        type: delete   
+
+        app_admin_product_description_template:
+            driver:
+                name: doctrine/orm
+                options:       
+                    class: App\Entity\Product\ProductDescriptionTemplate
+            fields:
+                name:
+                    type: string
+                    label: "app.ui.label.name"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete                   

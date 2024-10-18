@@ -1,0 +1,31 @@
+{# {% form_theme form '@SyliusAdmin/Form/imagesTheme.html.twig'  %} #}
+{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+{# all the contents copied from SyliusAdminBundle/views/PaymentMethod/_form.html.twig #}
+{# <div class="ui segment"> #}
+    {# Template selection dropdown #}
+    {# <select id="template-select" name="template">
+        <option value="">Select Template</option>
+        {% for template in templates %}
+            <option value="{{ template.id }}">{{ template.name }}</option>
+        {% endfor %}
+    </select> #}
+        {# {{ form_row(form.productDescriptionBlockContents) }} #}
+        {# {{ dump(blocks) }} #}
+        {% for block in blocks %}
+            <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}"> 
+                <div data-form-collection="list" class="ui column stackable grid" style="flex-wrap: nowrap;">
+                    {% if block.children is defined %}
+                        {% for child in block.children %}
+                            <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%;"> 
+                                {{ form_widget(child) }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {{ form_widget(block) }}
+                    {% endif %}
+                    </div>
+                </div>
+                <div id="sylius_product_translations_fr_FR_productDescription_productDescriptionBlockContents_{{ loop.index0 }}"></div>
+            </div>
+            {% endfor %}
+{# </div> #}

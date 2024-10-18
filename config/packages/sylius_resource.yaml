@@ -66,6 +66,13 @@ sylius_resource:
                 repository: App\Repository\Product\ProductFeatureRepository
                 form: App\Form\Type\ProductFeatureType
         
+        app.product_description_template:
+            driver: doctrine/orm            
+            classes:
+                model: App\Entity\Product\ProductDescriptionTemplate
+                repository: App\Repository\Product\ProductDescriptionTemplateRepository
+                form: App\Form\Type\ProductDescriptionTemplateType
+        
     
         app.translation_override_dictionary:
             driver: doctrine/orm

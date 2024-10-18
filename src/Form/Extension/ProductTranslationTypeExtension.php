@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace App\Form\Extension;
 
-use App\Form\Type\ProductFeatureType;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\RichEditorType;
+use App\Entity\Product\ProductDescriptionTemplate;
+use App\Form\Type\ProductDescriptionBlockContentType;
+use App\Form\Type\ProductDescriptionType;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductTranslationType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,11 +28,19 @@ class ProductTranslationTypeExtension extends AbstractTypeExtension
     {
         $builder
             ->remove('description')
-            ->add('description', RichEditorType::class, [
-                'required' => false,
-                'label' => 'sylius.form.product.description',
-                'locale' => $builder->getName(),
-                'tags' => ['-noseeme'],
+            ->add('productDescriptionTemplate', EntityType::class, [
+                'class' => ProductDescriptionTemplate::class,
+                'placeholder' => 'Select a template',
+                'choice_label' => 'name',
+                'attr' => ['class' => 'product-description-template-select'],
+            ])
+            ->add('productDescriptionBlockContents', CollectionType::class, [
+                'entry_type' => ProductDescriptionBlockContentType::class, // The form type for block contents
+                'label' => 'Blocks',
+                'allow_add' => false,  // Allows dynamic addition of blocks
+                'allow_delete' => false,
+                'mapped' => false,
+                'attr' => ['class' => 'product-description-content-collection'],
             ]);
     }
 

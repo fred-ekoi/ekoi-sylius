@@ -1,0 +1,19 @@
+#product_description_template_productDescriptionTemplateBlocks {
+    > div[data-form-collection="list"] {
+        > div[data-form-collection="item"] {
+            width: 100%;
+        }
+        div[data-form-collection="item"] {
+            padding-bottom: 0;
+        }
+    }
+
+    .field:has(.product-description-template-block-alignment),
+    .field:has(.product-description-template-block-children) {
+        display: none;
+    }
+
+    .button[data-form-collection="add"] {
+        margin-top: 28px;
+    }
+}

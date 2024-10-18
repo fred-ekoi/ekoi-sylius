@@ -52,6 +52,13 @@ final class AdminMenuListener
             ->setLabelAttribute('icon', 'tags')
         ;
 
+
+        $catalog
+            ->addChild('catalog-productDescriptionTemplate', ['route' => 'app_admin_product_description_template_index'])
+            ->setLabel('app.ui.product_description_templates_menu')
+            ->setLabelAttribute('icon', 'paste')
+        ;
+
         $catalog->reorderChildren([
             'taxons',
             'products',
@@ -61,7 +68,8 @@ final class AdminMenuListener
             'options',
             'association_types',
             'catalog-categoryOutfit',
-            'catalog-categoryPromotion'
+            'catalog-categoryPromotion',
+            'catalog-productDescriptionTemplate',
         ]);
         
         $configuration = $menu->getChild('configuration');

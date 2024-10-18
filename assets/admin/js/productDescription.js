@@ -1,0 +1,86 @@
+class ProductDescription {
+  productId = null;
+
+  constructor() {
+  }
+
+  init = () => {
+    if (document.querySelector('form[name="sylius_product"]')) {
+      this.productId = document.querySelector('form[name="sylius_product"]').getAttribute('action').split("/")[3];
+      $.DirtyForms.ignoreClass = 'form';
+      
+      const locales = document.querySelectorAll(".accordion > div[data-locale]");
+      
+      
+      locales.forEach((locale) => {
+        const localeValue = locale.getAttribute('data-locale');
+        const templateSelect = locale.querySelector('.product-description-template-select');
+        if (templateSelect.value) {
+          this.generateFormDescription(templateSelect.value, localeValue);
+        }
+        templateSelect.addEventListener('change', (e) => {
+          this.generateFormDescription(e.target.value, localeValue);
+        })
+      })
+
+      document.querySelector('form[name="sylius_product"]').addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent the default form submission to inspect the data
+
+        // You can now see if the "description" field contains the right value
+        let data = {};
+        for (const locale of locales) {
+          let localeValue = locale.getAttribute('data-locale');
+
+          // Ensure that data[localeValue] is initialized as an empty array
+          if (!data[localeValue]) {
+            data[localeValue] = {};
+          }
+
+          document.querySelectorAll(".product_description_block_content_" + localeValue).forEach((element) => {
+            let templateBlockId = element.getAttribute('data-template-block');
+            let type = element.getAttribute('data-type');
+            let value = element.value;
+            if (type == 'image') {
+              value = element.querySelector(`#product_description_block_content_image-${localeValue}-${templateBlockId}_path`).value;
+            }
+            console.log(value);
+
+            data[localeValue][templateBlockId] = value;
+            
+          });
+        }
+        jQuery.ajax({
+          type: "POST",
+          url: "/admin/product-description-form/" + this.productId + "/update",
+          data: {
+            template_id: 8, // Pass the selected template ID
+            description: JSON.stringify(data)
+          },
+          success: function (data) {
+            console.log(data);
+    
+            // After debugging, submit the form
+            e.target.submit();
+          }
+        });
+      });
+    }
+  };
+
+  generateFormDescription = (templateId, locale) => {
+    jQuery.ajax({
+      type: "POST",
+      url: "/admin/product-description-form/" + this.productId + "/show",
+      data: {
+        template_id: templateId, // Pass the selected template ID
+        locale: locale
+      },
+      success: function (data) {
+        console.log(data);
+        document.querySelector("#sylius_product_translations_"  + locale + "_productDescriptionBlockContents").innerHTML = data.form;
+      }
+    });
+  };
+}
+
+export default ProductDescription;

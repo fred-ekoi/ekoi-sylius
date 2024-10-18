@@ -16,6 +16,19 @@ app:
       value_locale: Locale de la valeur
       value_text: Texte de la valeur
       features: Caractéristiques
+      name: Nom
+      blocks: Blocs
+      sort_order: Ordre
+      alignment: Alignement
+      column: Colonne
+      row: Ligne
+      text: Texte
+      layout: Disposition
+      video: Vidéo
+    placeholder:
+      type: Choisissez un type de bloc
+      alignment: Choisissez un alignement
+      
 
     product_features: Caractéristiques
     product_features_subheader: Gérer vos caractéristiques de produit
@@ -39,6 +52,13 @@ app:
     edit_translation_override_dictionary: Modifier le dictionnaire de traduction
     add_translation_override_dictionary: Ajouter un dictionnaire de traduction
     new_translation_override_dictionary: Créer un dictionnaire de traduction
+
+    product_description_templates: Modèles de description produit
+    product_description_templates_menu: Modèles description produit
+    product_description_template_subheader: Gérer vos modèles de description produit
+    edit_product_description_template: Modifier le modèle de description produit
+    add_product_description_template: Ajouter un modèle de description produit
+    new_product_description_template: Créer un modèle de description produit
     
     
     menu: Menu

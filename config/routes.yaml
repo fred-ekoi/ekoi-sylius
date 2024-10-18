@@ -109,3 +109,20 @@ app_admin_translation_override_dictionary:
                 icon: 'file image outline'
     type: sylius.resource
     prefix: /admin
+
+app_admin_product_description_template:
+    resource: |
+        alias: app.product_description_template
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_product_description_template
+        vars:
+            all:
+                subheader: app.ui.product_description_template_subheader
+                templates: 
+                    form: "product/productDescriptionTemplate.html.twig"
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin
