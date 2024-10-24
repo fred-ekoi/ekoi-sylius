@@ -33,10 +33,8 @@ class AdminProductController extends AbstractController
         $this->productDescriptionTemplateBlockRepository = $productDescriptionTemplateBlockRepository;
     }
 
-    /**
-     * @Route("/admin/product-description-form/{id}/show", name="admin_product_description_form_show", methods={"POST"})
-     */
-    public function show(Request $request, Product $product, ): JsonResponse
+    #[Route('/admin/product-description-form/{id}/render', name: 'admin_product_description_form_show', methods: ['POST'])]
+    public function show(Request $request, Product $product): JsonResponse
     {
         $formHtml = null;
         // Get the template ID from the AJAX request
@@ -73,7 +71,7 @@ class AdminProductController extends AbstractController
                 }
                 $templateBlockChildren = $this->productDescriptionTemplateBlockRepository->findBy(['parent' => $templateBlock->getId()], ['sortOrder' => 'ASC']);
                 foreach ($templateBlockChildren as $templateBlockChild) {
-                    $blocks[$templateBlock->getSortOrder()]['children'][$templateBlockChild->getSortOrder()] = $this->createProductDescriptionBlockContentForm($templateBlockChild, $productTranslation, $locale);
+                    $blocks[$templateBlock->getSortOrder()]['templateBlockChildren'][$templateBlockChild->getSortOrder()] = $this->createProductDescriptionBlockContentForm($templateBlockChild, $productTranslation, $locale);
                 }
             }
         }
@@ -87,10 +85,7 @@ class AdminProductController extends AbstractController
         return new JsonResponse(['success' => true, 'form' => $formHtml]);
     }
 
-
-    /**
-     * @Route("/admin/product-description-form/{id}/update", name="admin_product_description_form_update", methods={"POST"})
-     */
+    #[Route('/admin/product-description-form/{id}/update', name: 'admin_product_description_form_update', methods: ['POST'])]
     public function update(Request $request, Product $product, ProductDescriptionBlockContentRepository $productDescriptionBlockContentRepository): JsonResponse
     {
         $description = json_decode($request->request->get('description'));

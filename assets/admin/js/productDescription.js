@@ -1,5 +1,6 @@
 class ProductDescription {
   productId = null;
+  locales = null;
 
   constructor() {
   }
@@ -8,20 +9,15 @@ class ProductDescription {
     if (document.querySelector('form[name="sylius_product"]')) {
       this.productId = document.querySelector('form[name="sylius_product"]').getAttribute('action').split("/")[3];
       $.DirtyForms.ignoreClass = 'form';
+      this.locales = document.querySelectorAll(".accordion > div[data-locale]");
       
-      const locales = document.querySelectorAll(".accordion > div[data-locale]");
       
-      
-      locales.forEach((locale) => {
-        const localeValue = locale.getAttribute('data-locale');
-        const templateSelect = locale.querySelector('.product-description-template-select');
-        if (templateSelect.value) {
-          this.generateFormDescription(templateSelect.value, localeValue);
-        }
-        templateSelect.addEventListener('change', (e) => {
-          this.generateFormDescription(e.target.value, localeValue);
-        })
-      })
+      const templateSelect = document.querySelector("#sylius_product_translations_fr_FR_productDescriptionTemplate");
+      this.generateFormDescription(templateSelect.value);
+
+      document.querySelectorAll('.product-description-template-select').forEach((select) => select.addEventListener('change', (e) => {
+        this.generateFormDescription(e.target.value);
+      }));
 
       document.querySelector('form[name="sylius_product"]').addEventListener('submit', (e) => {
         e.preventDefault(); // Prevent the default form submission to inspect the data
@@ -67,18 +63,41 @@ class ProductDescription {
     }
   };
 
-  generateFormDescription = (templateId, locale) => {
-    jQuery.ajax({
-      type: "POST",
-      url: "/admin/product-description-form/" + this.productId + "/show",
-      data: {
-        template_id: templateId, // Pass the selected template ID
-        locale: locale
-      },
-      success: function (data) {
-        console.log(data);
-        document.querySelector("#sylius_product_translations_"  + locale + "_productDescriptionBlockContents").innerHTML = data.form;
+  generateFormDescription = (templateId) => {
+    console.log(templateId);
+    
+    this.locales.forEach((locale) => {
+      locale.querySelector('.product-description-template-select').value = templateId;
+      const localeValue = locale.getAttribute('data-locale');
+      if (templateId) {
+        fetch('/admin/product-description-form/' + this.productId + '/render', {
+          method: 'POST',  // Specify POST method
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify({
+            template_id: templateId, // Pass the selected template ID
+            locale: localeValue
+          })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          document.querySelector("#sylius_product_translations_"  + localeValue + "_productDescriptionBlockContents").innerHTML = data.form;
+        })
+        .catch(
+          error => console.error('Error:', error)
+        );
+      } else {
+        document.querySelector("#sylius_product_translations_"  + localeValue + "_productDescriptionBlockContents").innerHTML = '';
       }
+
     });
   };
 }

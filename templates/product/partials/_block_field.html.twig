@@ -14,18 +14,18 @@
         {% for block in blocks %}
             <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}"> 
                 <div data-form-collection="list" class="ui column stackable grid" style="flex-wrap: nowrap;">
-                    {% if block.children is defined %}
-                        {% for child in block.children %}
+                    {% if block.templateBlockChildren is defined %}
+                        {% for child in block.templateBlockChildren %}
                             <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%;"> 
                                 {{ form_widget(child) }}
                             </div>
                         {% endfor %}
                     {% else %}
-                        {{ form_widget(block) }}
+                        <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%;"> 
+                            {{ form_widget(block) }}
+                        </div>
                     {% endif %}
-                    </div>
                 </div>
-                <div id="sylius_product_translations_fr_FR_productDescription_productDescriptionBlockContents_{{ loop.index0 }}"></div>
             </div>
             {% endfor %}
 {# </div> #}
