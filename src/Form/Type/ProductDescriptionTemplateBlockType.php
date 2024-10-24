@@ -10,6 +10,7 @@ use App\Enum\BlockType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -31,8 +32,9 @@ class ProductDescriptionTemplateBlockType extends AbstractType
                 'placeholder' => 'app.ui.placeholder.type',
                 'attr' => ['class' => 'product-description-template-block-type'],
             ])
-            ->add('sortOrder', IntegerType::class, [
+            ->add('sortOrder', HiddenType::class, [
                 'label' => 'app.ui.label.sort_order',
+                'attr' => ['class' => 'product-description-template-block-sort-order'],
             ])
             ->add('alignment', ChoiceType::class, [
                 'label' => 'app.ui.label.alignment',

@@ -22,4 +22,12 @@ enum BlockAlign: string
             self::COLUMN => 'app.ui.label.column',
         };
     }
+
+    public static function getAvailableAlignments(): array
+    {
+        return [
+            self::ROW,
+            self::COLUMN,
+        ];
+    }
 }

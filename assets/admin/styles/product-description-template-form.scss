@@ -17,3 +17,16 @@
         margin-top: 28px;
     }
 }
+
+.draggable--handle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+}
+
+.product-description-content-collection {
+    > div[data-form-collection="item"] {
+        margin-bottom: 20px;
+    }
+}
