@@ -25,3 +25,11 @@ app:
     edit_translation_override_dictionary: Edit entry in translation dictionary
     add_translation_override_dictionary: Add entry in translation dictionary
     new_translation_override_dictionary: Create entry in translation dictionary
+    
+    translate: Translate
+    confirm: Confirm
+    select_locales_translation: Select desired languages
+    
+error: Error
+anglais: English
+français: French

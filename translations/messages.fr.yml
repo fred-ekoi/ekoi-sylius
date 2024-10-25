@@ -33,6 +33,9 @@ app:
     add_translation_override_dictionary: Ajouter un dictionnaire de traduction
     new_translation_override_dictionary: Créer un dictionnaire de traduction
     
+    translate: Traduire
+    confirm: Confirmer
+    select_locales_translation: Sélectionnez les langues souhaitées
 
     menu: Menu
     menus: Menus des sites frontaux
@@ -54,8 +57,14 @@ app:
     edit_menu_item: Modifier l'item du menu
     add_menu_item: Ajouter un item du menu
     new_menu_item: Créer un item du menu
+    
+    
   
 monsieurbiz_menu:
   ui:
     help_target_blank: Ouvrir dans un nouvel onglet
     help_noreferer: Pas de referrer
+
+error: Erreur
+anglais: Anglais
+français: Français
