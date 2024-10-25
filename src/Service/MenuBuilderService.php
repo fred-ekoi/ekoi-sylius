@@ -16,9 +16,9 @@ class MenuBuilderService
         $this->menuRepository = $menuRepository;
     }
 
-    public function buildMenu($localeIso)
+    public function buildMenu($locale)
     {
-        $menu = $this->menuRepository->findOneBy(['code' => $localeIso]);
+        $menu = $this->menuRepository->findOneBy(['locale' => $locale]);
 
         if ($menu == null) return ["error" => "No menu found"];
         
@@ -29,11 +29,12 @@ class MenuBuilderService
 
         $menuItemDataArray = [];
         foreach ($menuItems as $menuItem) {
-            $menuItemTranslations = $menuItem->getTranslation($localeIso);
+            $menuItemTranslations = $menuItem->getTranslation($locale);
             $menuItemData = [
                 "title" => $menuItemTranslations->getLabel(),
                 "url" => $menuItemTranslations->getUrl(),
                 "parent_id" => $menuItem->getParent() == null ? null : $menuItem->getParent()->getId(),
+                "image" => $menuItem->getImage() == null ? null : $menuItem->getImage()->getPath(),
             ];
             // if ($menuItem->getParent() == null) {
                 $menuItemDataArray[$menuItem->getId()] = $menuItemData;

@@ -24,8 +24,10 @@ class ApiMenuController extends AbstractController
         // Logique personnalisée pour récupérer les données de menu
         $menuData = [];
 
-        $menuData = $this->menuBuilderService->buildMenu($localeIso);        
-
+        $locale = $this->localeService->getLocaleByCode($localeIso);
+        if ($locale == null) return new JsonResponse(["error" => "No locale found"]);
+        
+        $menuData = $this->menuBuilderService->buildMenu($locale);        
 
         // dd($menuPageTopLevelItems);
         return new JsonResponse($menuData);

@@ -59,9 +59,31 @@ sylius_resource:
                 model: App\Entity\CategoryOutfit\CategoryOutfitImage
                 form: App\Form\Type\CategoryOutfitImageType
 
+        app.product_feature:
+            driver: doctrine/orm            
+            classes:
+                model: App\Entity\Product\ProductFeature
+                repository: App\Repository\Product\ProductFeatureRepository
+                form: App\Form\Type\ProductFeatureType
+        
+        app.product_description_template:
+            driver: doctrine/orm            
+            classes:
+                model: App\Entity\Product\ProductDescriptionTemplate
+                repository: App\Repository\Product\ProductDescriptionTemplateRepository
+                form: App\Form\Type\ProductDescriptionTemplateType
+        
+    
         app.translation_override_dictionary:
             driver: doctrine/orm
             classes:
                 model: App\Entity\Translation\TranslationOverrideDictionary
                 repository: App\Repository\Translation\TranslationOverrideDictionaryRepository
                 form: App\Form\Type\TranslationOverrideDictionaryType
+                
+        monsieurbiz_menu.menu:
+            classes:
+                model: App\Entity\Menu\Menu        
+        monsieurbiz_menu.menu_item:
+            classes:
+                model: App\Entity\Menu\MenuItem

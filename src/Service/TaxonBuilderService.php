@@ -25,6 +25,8 @@ class TaxonBuilderService
         $taxon = $this->taxonRepository->findOneBy(['code' => $code]);
         // dd($taxon);
 
+        if ($taxon == null) return ["error" => "No taxon found"];
+
         $taxonTranslation = $taxon->getTranslation($locale);
         // dd($taxonTranslation);
         $taxonData = [

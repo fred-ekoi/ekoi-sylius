@@ -1,0 +1,50 @@
+<div data-form-collection="item" data-form-collection-index="__name__" class="column">
+    <div class="ui box segment">
+    <div id="__baseId_____name__">
+        <div class="field">
+        <label for="__baseId_____name___type">{{ 'app.ui.label.type'|trans }}</label>
+        <select
+            id="__baseId_____name___type"
+            name="__baseName__[__name__][type]"
+            class="product-description-template-block-type ui dropdown"
+        >
+            <option value="" selected="selected">{{ 'app.ui.placeholder.type'|trans }}</option>
+            {% for id, type in types %}
+                <option value="{{ id }}">{{ type.label|trans }}</option>
+            {% endfor %}
+        </select>
+        </div>
+
+        <div class="field">
+        <input 
+            type="hidden" 
+            id="__baseId_____name___sortOrder" 
+            name="__baseName__[__name__][sortOrder]" 
+            class="product-description-template-block-sort-order"
+            value="__sortOrder__">
+        </div>
+
+        <div class="field">
+        <label for="__baseId_____name___alignment">{{ 'app.ui.label.alignment'|trans }}</label>
+        <select
+            id="__baseId_____name___alignment"
+            name="__baseName__[__name__][alignment]"
+            class="product-description-template-block-alignment ui dropdown"
+        >
+            <option value="" selected="selected">{{ 'app.ui.placeholder.alignment'|trans }}</option>
+            {% for id, alignment in alignments %}
+                <option value="{{ id }}">{{ alignment.label|trans }}</option>
+            {% endfor %}
+        </select>
+        </div>
+    </div>
+    </div>
+
+    <a href="#" data-form-collection="delete" class="ui red labeled icon button" style="margin-bottom: 1em;">
+        <i class="trash icon"></i> Supprimer
+    </a>
+
+    <div class="draggable--handle">
+        <i class="align justify icon"></i>
+    </div>
+</div>

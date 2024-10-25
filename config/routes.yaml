@@ -80,6 +80,20 @@ app_admin_category_outfit:
                 icon: 'file image outline'
     type: sylius.resource
     prefix: /admin
+app_admin_product_feature:
+    resource: |
+        alias: app.product_feature
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_product_feature
+        vars:
+            all:
+                subheader: app.ui.product_features_subheader
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin
     
 app_admin_translation_override_dictionary:
     resource: |
@@ -91,6 +105,23 @@ app_admin_translation_override_dictionary:
         vars:
             all:
                 subheader: app.ui.translation_override_dictionaries_subheader
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_product_description_template:
+    resource: |
+        alias: app.product_description_template
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_product_description_template
+        vars:
+            all:
+                subheader: app.ui.product_description_template_subheader
+                templates: 
+                    form: "product/productDescriptionTemplate.html.twig"
             index:
                 icon: 'file image outline'
     type: sylius.resource

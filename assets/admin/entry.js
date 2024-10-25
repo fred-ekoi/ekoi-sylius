@@ -3,25 +3,31 @@
 
 // In this file you can import assets like images or stylesheets
 import './styles/app.scss';
-import MenuItemForm from "./js/menuItemForm.js";
-import MenuPageForm from "./js/menuPageForm.js";
+import ProductFeature from "./js/productFeature.js";
 import CategoryPromotion from "./js/categoryPromotion.js";
 import CategoryOutfit from "./js/categoryOutfit.js";
 import Taxon from './js/taxon.js';
 import AutoTranslation from './js/autoTranslation.js';
+import Menu from "./js/menu";
+import ProductDescriptionTemplate from './js/ProductDescriptionTemplate.js';
+import ProductDescription from './js/productDescription.js';
 
-const menuItemForm = new MenuItemForm();
-const menuPageForm = new MenuPageForm();
+const menu = new Menu();
+const productFeature = new ProductFeature();
 const categoryPromotion = new CategoryPromotion();
 const categoryOutfit = new CategoryOutfit();
 const taxon = new Taxon();
 const autoTranslation = new AutoTranslation();
+const productDescriptionTemplate = new ProductDescriptionTemplate();
+const productDescription = new ProductDescription();
 
 document.addEventListener("DOMContentLoaded", () => {
-  menuItemForm.init();
-  menuPageForm.init();
+  menu.init();
+  productFeature.init();
   categoryPromotion.init();
   categoryOutfit.init();
   taxon.init();
   autoTranslation.init();
+  productDescriptionTemplate.init();
+  productDescription.init();
 });

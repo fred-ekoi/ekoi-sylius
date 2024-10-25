@@ -23,8 +23,10 @@
     ],
     "require": {
         "php": "^8.1",
+        "monsieurbiz/sylius-media-manager-plugin": "^1.1",
         "monsieurbiz/sylius-menu-plugin": "^1.4",
         "openai-php/symfony": "^0.10.0",
+        "monsieurbiz/sylius-rich-editor-plugin": "^2.9",
         "sylius/customer-service-plugin": "^0.6.0",
         "sylius/loyalty-plugin": "^0.6.0",
         "sylius/multi-source-inventory-plugin": "^0.6.0",
@@ -122,6 +124,9 @@
             "@php bin/console sylius:show-plus-info --ansi"
         ],
         "auto-scripts": {
+
+            "vendor/monsieurbiz/sylius-rich-editor-plugin/scripts/replace_intl_extension.php": "php-script",
+
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         }

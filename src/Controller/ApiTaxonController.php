@@ -2,27 +2,29 @@
 
 namespace App\Controller;
 
+use App\Service\LocaleService;
 use App\Service\TaxonBuilderService;
-use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ApiTaxonController extends AbstractController
 {
-
-    private $taxonRepository;
     private $taxonBuilderService;
+    private $localeService;
 
-    public function __construct(TaxonRepository $taxonRepository, TaxonBuilderService $taxonBuilderService)
+    public function __construct(LocaleService $localeService, TaxonBuilderService $taxonBuilderService)
     {
-        $this->taxonRepository = $taxonRepository;
         $this->taxonBuilderService = $taxonBuilderService;
+        $this->localeService = $localeService;
     }
 
-    public function getTaxons(String $code, String $localeIso, TaxonRepository $taxonRepository): JsonResponse
+    public function getTaxons(String $code, String $localeIso): JsonResponse
     {
         $taxonData = [];
         
+        $locale = $this->localeService->getLocaleByCode($localeIso);
+        if ($locale == null) return new JsonResponse(["error" => "No locale found"]);
+
         // Logique personnalisée pour sélectionner les données de taxons
         $taxonData = $this->taxonBuilderService->buildTaxon($code, $localeIso);     
 
