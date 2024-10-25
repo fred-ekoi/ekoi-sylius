@@ -1,10 +1,10 @@
 app:
   ui:
     label:
-        key_locale: Key locale
-        value_locale: Value locale
-        key_text: Key text
-        value_text: Value text
+        key_locale: Original language
+        value_locale: Original text
+        key_text: Translation language
+        value_text: Translated text
       
     Menus: Menus
     menus: Menus

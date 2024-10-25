@@ -11,10 +11,10 @@ app:
       file: Fichier
       image: Image
       taxon: Taxon
-      key_locale: Locale de la clé
-      key_text: Texte de la clé
-      value_locale: Locale de la valeur
-      value_text: Texte de la valeur
+      key_locale: Langue d'origine
+      key_text: Texte d'origine
+      value_locale: Langue de la traduction
+      value_text: Texte traduit
 
     category_outfits: Tenues de catégorie
     category_outfits_subheader: Gérer vos tenues par catégorie de produit
