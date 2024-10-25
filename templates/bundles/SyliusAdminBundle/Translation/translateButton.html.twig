@@ -1,0 +1,14 @@
+<div style="margin-top: 1rem;">
+    <div id="errorDiv" class="ui negative message hidden">
+        <i class="close icon"></i>
+        <div class="header">
+            {{ 'error' | trans }}
+        </div>
+        <p class="error-message"></p>
+    </div>
+    <button id="translateButton" class="ui labeled icon primary button">
+        <i class="translate icon"></i>
+        {{ 'app.ui.translate' | trans }}
+        <div class="ui active inline loader inverted mini" style="left: 8px; display: none;"></div>
+    </button>
+</div>

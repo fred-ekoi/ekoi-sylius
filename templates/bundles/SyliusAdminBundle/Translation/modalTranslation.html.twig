@@ -1,0 +1,19 @@
+<div id="translationModal" class="translationModal" style="display:none;">
+    <div class="translationModal-content">
+        <span class="close" id="closeTranslationModal">&times;</span>
+        <p>{{'app.ui.select_locales_translation' | trans}} :</p>
+        <form>
+            {% for locale in locales %}
+                <label>
+                    <input type="checkbox" name="{{ locale.localeCode }}" value="{{ locale.localeCode }}" checked>
+                    <span>{{ locale.localeName | trans }}</span>
+                </label>
+            {% endfor %}
+            <button class="ui primary button" id="submitTranslationModal" type="submit">{{ 'app.ui.confirm' | trans}}</button>
+        </form>
+    </div>
+</div>
+
+<style>
+
+</style>
