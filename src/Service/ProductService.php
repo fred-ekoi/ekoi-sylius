@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Locale\Locale;
 use App\Entity\Product\Product;
 use App\Entity\Product\ProductDescriptionBlockContent;
 use App\Entity\Product\ProductDescriptionBlockContentImage;
@@ -22,6 +23,35 @@ class ProductService
     {
         $this->productDescriptionBlockContentRepository = $productDescriptionBlockContentRepository;
         $this->entityManager = $entityManager;
+    }
+
+    public function getProductDescriptionBlocks(Product $product, Locale $locale) : array
+    {   
+        $productTranslation = $product->getTranslation($locale->getCode());
+        if ($productTranslation) {
+            $productDescriptionTemplate = $productTranslation->getProductDescriptionTemplate();
+            // if ($productDescriptionTemplate) {
+                $blocks = [];
+                foreach ($productDescriptionTemplate->getProductDescriptionTemplateBlocks() as $productDescriptionTemplateBlock) {
+                    $blocks[$productDescriptionTemplateBlock->getSortOrder()] = [
+                        // 'text' => $productDescriptionBlockContent->getText(),
+                        'type' => $productDescriptionTemplateBlock->getType(),
+                        'alignment' => $productDescriptionTemplateBlock->getAlignment(),
+                        // 'image' => $productDescriptionBlockContent->getType() === BlockType::IMAGE ? $productDescriptionBlockContent->getProductDescriptionBlockContentImage()->getPath() : null,
+                    ];
+                    foreach ($productDescriptionTemplateBlock->getChildren() as $child) {
+                        $blocks[$productDescriptionTemplateBlock->getSortOrder()]['children'][$child->getSortOrder()] = [
+                            // 'text' => $productDescriptionBlockContent->getText(),
+                            'type' => $child->getType(),
+                            'alignment' => $child->getAlignment(),
+                            // 'image' => $productDescriptionBlockContent->getType() === BlockType::IMAGE ? $productDescriptionBlockContent->getProductDescriptionBlockContentImage()->getPath() : null,
+                        ];
+                    }
+                }
+            // }
+        }
+
+        return $blocks ?? [];
     }
 
     public function getProductDescriptionBlockContent(ProductDescriptionTemplateBlock $productDescriptionTemplateBlock, ProductTranslation $productTranslation) : ProductDescriptionBlockContent
