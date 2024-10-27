@@ -31,24 +31,6 @@ class ProductService
         if ($productTranslation) {
             $productDescriptionTemplate = $productTranslation->getProductDescriptionTemplate();
             $blocks = $this->getDescriptionBlockRecursive($productDescriptionTemplate->getProductDescriptionTemplateBlocks(), $productTranslation);
-            // foreach ($productDescriptionTemplate->getProductDescriptionTemplateBlocks() as $productDescriptionTemplateBlock) {
-            //     $productDescriptionBlockContent = $this->productDescriptionBlockContentRepository->findOneBy(['productDescriptionTemplateBlock' => $productDescriptionTemplateBlock->getId(), 'productTranslation' => $productTranslation->getId()]);
-            //     $blocks[$productDescriptionTemplateBlock->getSortOrder()] = [
-            //         'text' => $productDescriptionBlockContent ? $productDescriptionBlockContent->getText() : null,
-            //         'type' => $productDescriptionTemplateBlock->getType(),
-            //         'alignment' => $productDescriptionTemplateBlock->getAlignment(),
-            //         'image' => $productDescriptionBlockContent && $productDescriptionBlockContent->getType() === BlockType::IMAGE ? $productDescriptionBlockContent->getProductDescriptionBlockContentImage()->getPath() : null,
-            //     ];
-            //     foreach ($productDescriptionTemplateBlock->getChildren() as $child) {
-            //         $productDescriptionBlockContentChild = $this->productDescriptionBlockContentRepository->findOneBy(['productDescriptionTemplateBlock' => $child->getId(), 'productTranslation' => $productTranslation->getId()]);
-            //         $blocks[$productDescriptionTemplateBlock->getSortOrder()]['children'][$child->getSortOrder()] = [
-            //             'text' => $productDescriptionBlockContentChild ? $productDescriptionBlockContentChild->getText() : null,
-            //             'type' => $child->getType(),
-            //             'alignment' => $child->getAlignment(),
-            //             'image' => $productDescriptionBlockContentChild && $child->getType() === BlockType::IMAGE ? $productDescriptionBlockContentChild->getProductDescriptionBlockContentImage()->getPath() : null,
-            //         ];
-            //     }
-            // }
         }
 
         return $blocks ?? [];
@@ -82,6 +64,22 @@ class ProductService
         }
     
         return $result;
+    }
+
+    public function buildProductFeatures(Product $product, Locale $locale) : array
+    {   
+        $productFeatures = $product->getFeatures();
+        $features = [];
+        foreach ($productFeatures as $productFeature) {
+            $productFeatureTranslation = $productFeature->getTranslation($locale->getCode());
+            $features[] = [
+                'title' => $productFeatureTranslation->getTitle(),
+                'description' => $productFeatureTranslation->getDescription(),
+                'image' => $productFeature->getImage() ? $productFeature->getImage()->getPath() : null
+            ];
+        }
+
+        return $features;
     }
 
     public function getProductDescriptionBlockContent(ProductDescriptionTemplateBlock $productDescriptionTemplateBlock, ProductTranslation $productTranslation) : ProductDescriptionBlockContent

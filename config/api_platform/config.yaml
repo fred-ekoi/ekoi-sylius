@@ -22,3 +22,11 @@
             controller: 'App\Controller\ApiProductController::getProductDescription'
             normalization_context:
                 groups: ['product:read']
+'App\Entity\Product\ProductFeature':
+    collectionOperations:
+        get:
+            method: 'GET'
+            path: '/shop/product/{productId}/features/{localeIso}'
+            controller: 'App\Controller\ApiProductController::getProductFeatures'
+            normalization_context:
+                groups: ['product:read']

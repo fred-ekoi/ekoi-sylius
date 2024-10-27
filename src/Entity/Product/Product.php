@@ -22,6 +22,9 @@ class Product extends BaseProduct
      * @var Collection<int, ProductFeature>
      */
     #[ORM\ManyToMany(targetEntity: ProductFeature::class)]
+    #[ORM\JoinTable(name: 'product_productfeature')]
+    #[ORM\JoinColumn(name: 'product_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'productfeature_id', referencedColumnName: 'id')]
     private Collection $features;
 
     public function __construct()

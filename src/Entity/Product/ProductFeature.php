@@ -4,6 +4,8 @@ namespace App\Entity\Product;
 
 use App\Entity\Product\ProductFeatureTranslation;
 use App\Repository\Product\ProductFeatureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -31,10 +33,14 @@ class ProductFeature implements ResourceInterface, TranslatableInterface
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'features')]
+    private Collection $products;
+
     public function __construct()
     {
         $this->initializeTranslationsCollection();
         
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,5 +89,10 @@ class ProductFeature implements ResourceInterface, TranslatableInterface
         $this->getTranslation()->setDescription($description);
 
         return $this;
+    }
+
+    public function getProducts(): Collection
+    {
+        return $this->products;
     }
 }
