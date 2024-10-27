@@ -25,33 +25,63 @@ class ProductService
         $this->entityManager = $entityManager;
     }
 
-    public function getProductDescriptionBlocks(Product $product, Locale $locale) : array
+    public function buildProductDescriptionBlocks(Product $product, Locale $locale) : array
     {   
         $productTranslation = $product->getTranslation($locale->getCode());
         if ($productTranslation) {
             $productDescriptionTemplate = $productTranslation->getProductDescriptionTemplate();
-            // if ($productDescriptionTemplate) {
-                $blocks = [];
-                foreach ($productDescriptionTemplate->getProductDescriptionTemplateBlocks() as $productDescriptionTemplateBlock) {
-                    $blocks[$productDescriptionTemplateBlock->getSortOrder()] = [
-                        // 'text' => $productDescriptionBlockContent->getText(),
-                        'type' => $productDescriptionTemplateBlock->getType(),
-                        'alignment' => $productDescriptionTemplateBlock->getAlignment(),
-                        // 'image' => $productDescriptionBlockContent->getType() === BlockType::IMAGE ? $productDescriptionBlockContent->getProductDescriptionBlockContentImage()->getPath() : null,
-                    ];
-                    foreach ($productDescriptionTemplateBlock->getChildren() as $child) {
-                        $blocks[$productDescriptionTemplateBlock->getSortOrder()]['children'][$child->getSortOrder()] = [
-                            // 'text' => $productDescriptionBlockContent->getText(),
-                            'type' => $child->getType(),
-                            'alignment' => $child->getAlignment(),
-                            // 'image' => $productDescriptionBlockContent->getType() === BlockType::IMAGE ? $productDescriptionBlockContent->getProductDescriptionBlockContentImage()->getPath() : null,
-                        ];
-                    }
-                }
+            $blocks = $this->getDescriptionBlockRecursive($productDescriptionTemplate->getProductDescriptionTemplateBlocks(), $productTranslation);
+            // foreach ($productDescriptionTemplate->getProductDescriptionTemplateBlocks() as $productDescriptionTemplateBlock) {
+            //     $productDescriptionBlockContent = $this->productDescriptionBlockContentRepository->findOneBy(['productDescriptionTemplateBlock' => $productDescriptionTemplateBlock->getId(), 'productTranslation' => $productTranslation->getId()]);
+            //     $blocks[$productDescriptionTemplateBlock->getSortOrder()] = [
+            //         'text' => $productDescriptionBlockContent ? $productDescriptionBlockContent->getText() : null,
+            //         'type' => $productDescriptionTemplateBlock->getType(),
+            //         'alignment' => $productDescriptionTemplateBlock->getAlignment(),
+            //         'image' => $productDescriptionBlockContent && $productDescriptionBlockContent->getType() === BlockType::IMAGE ? $productDescriptionBlockContent->getProductDescriptionBlockContentImage()->getPath() : null,
+            //     ];
+            //     foreach ($productDescriptionTemplateBlock->getChildren() as $child) {
+            //         $productDescriptionBlockContentChild = $this->productDescriptionBlockContentRepository->findOneBy(['productDescriptionTemplateBlock' => $child->getId(), 'productTranslation' => $productTranslation->getId()]);
+            //         $blocks[$productDescriptionTemplateBlock->getSortOrder()]['children'][$child->getSortOrder()] = [
+            //             'text' => $productDescriptionBlockContentChild ? $productDescriptionBlockContentChild->getText() : null,
+            //             'type' => $child->getType(),
+            //             'alignment' => $child->getAlignment(),
+            //             'image' => $productDescriptionBlockContentChild && $child->getType() === BlockType::IMAGE ? $productDescriptionBlockContentChild->getProductDescriptionBlockContentImage()->getPath() : null,
+            //         ];
+            //     }
             // }
         }
 
         return $blocks ?? [];
+    }
+
+    private function getDescriptionBlockRecursive($blocks, $productTranslation) : array
+    {
+        $result = [];
+        foreach ($blocks as $block) {
+            // Fetch block content
+            $blockContent = $this->productDescriptionBlockContentRepository->findOneBy([
+                'productDescriptionTemplateBlock' => $block->getId(),
+                'productTranslation' => $productTranslation->getId()
+            ]);
+    
+            // Build the block data
+            $blockData = [
+                'text' => $blockContent ? $blockContent->getText() : null,
+                'type' => $block->getType(),
+                'alignment' => $block->getAlignment(),
+                'image' => $blockContent && $block->getType() === BlockType::IMAGE ? $blockContent->getProductDescriptionBlockContentImage()->getPath() : null,
+            ];
+    
+            // Recursively process children if they exist
+            if ($block->getChildren()->count() > 0) {
+                $blockData['children'] = $this->getDescriptionBlockRecursive($block->getChildren(), $productTranslation);
+            }
+    
+            // Sort the blocks according to their sort order
+            $result[$block->getSortOrder()] = $blockData;
+        }
+    
+        return $result;
     }
 
     public function getProductDescriptionBlockContent(ProductDescriptionTemplateBlock $productDescriptionTemplateBlock, ProductTranslation $productTranslation) : ProductDescriptionBlockContent
