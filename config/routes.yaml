@@ -90,6 +90,8 @@ app_admin_product_feature:
         vars:
             all:
                 subheader: app.ui.product_features_subheader
+                templates: 
+                    form: "product/product_feature.html.twig"
             index:
                 icon: 'file image outline'
     type: sylius.resource

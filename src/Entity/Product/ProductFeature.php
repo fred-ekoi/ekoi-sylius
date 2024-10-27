@@ -2,15 +2,24 @@
 
 namespace App\Entity\Product;
 
+use App\Entity\Product\ProductFeatureTranslation;
 use App\Repository\Product\ProductFeatureRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TranslatableInterface;
+use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
 
 #[ORM\Table(name: 'sylius_product_feature')]
 #[ORM\Entity(repositoryClass: ProductFeatureRepository::class)]
-class ProductFeature implements ResourceInterface
+class ProductFeature implements ResourceInterface, TranslatableInterface
 {
+
+    use TranslatableTrait {
+        __construct as private initializeTranslationsCollection;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -22,8 +31,11 @@ class ProductFeature implements ResourceInterface
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
+    public function __construct()
+    {
+        $this->initializeTranslationsCollection();
+        
+    }
 
     public function getId(): ?int
     {
@@ -41,26 +53,34 @@ class ProductFeature implements ResourceInterface
         $this->image = $image;
     }
 
-    public function getTitle(): ?string
+    /**
+     * {@inheritdoc}
+     */
+    protected function createTranslation():TranslationInterface
     {
-        return $this->title;
+        return new ProductFeatureTranslation();
     }
 
-    public function setTitle(string $title): static
+    public function getTitle(): ?string
     {
-        $this->title = $title;
+        return $this->getTranslation()->getTitle();
+    }
+
+    public function setTitle($title): static
+    {
+        $this->getTranslation()->setTitle($title);
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription()
     {
-        return $this->description;
+        return $this->getTranslation()->getDescription();
     }
 
-    public function setDescription(?string $description): static
+    public function setDescription(string $description): static
     {
-        $this->description = $description;
+        $this->getTranslation()->setDescription($description);
 
         return $this;
     }
