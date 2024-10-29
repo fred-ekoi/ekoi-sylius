@@ -14,3 +14,19 @@
             controller: 'App\Controller\ApiTaxonController::getTaxons'
             normalization_context:
                 groups: ['taxon:read']
+'App\Entity\Product\ProductDescriptionBlockContent':
+    collectionOperations:
+        get:
+            method: 'GET'
+            path: '/shop/product/{productId}/description/{localeIso}'
+            controller: 'App\Controller\ApiProductController::getProductDescription'
+            normalization_context:
+                groups: ['product:read']
+'App\Entity\Product\ProductFeature':
+    collectionOperations:
+        get:
+            method: 'GET'
+            path: '/shop/product/{productId}/features/{localeIso}'
+            controller: 'App\Controller\ApiProductController::getProductFeatures'
+            normalization_context:
+                groups: ['product:read']

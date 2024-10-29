@@ -1,0 +1,22 @@
+{% form_theme form '@SyliusAdmin/Form/imagesTheme.html.twig' %}
+{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+{# all the contents copied from SyliusAdminBundle/views/PaymentMethod/_form.html.twig #}
+<div class="ui segment">
+	{{ form_row(form.image) }}
+</div>
+<div class="ui styled fluid accordion">
+	{% for locale, translationForm in form.translations %}
+        <div data-locale="{{ locale }}">
+            <div class="title{% if loop.first %} active{% endif %}">
+                <i class="dropdown icon"></i>
+                {{ flags.fromLocaleCode(locale) }}{{ locale|sylius_locale_name }}
+            </div>
+            <div class="content{% if loop.first %} active{% endif %}">
+
+                {{ form_row(translationForm.title) }}
+                {{ form_row(translationForm.description) }}
+
+            </div>
+        </div>
+	{% endfor %}
+</div>

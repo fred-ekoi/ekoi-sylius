@@ -3,9 +3,8 @@
 namespace App\Form\Type;
 
 use App\Entity\Product\ProductFeature;
+use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,11 +17,9 @@ class ProductFeatureType extends AbstractType
             ->add('image', ProductFeatureImageType::class, [
                 'label' => false,
             ])
-            ->add('title', TextType::class, [
-            'label' => 'app.ui.label.title',
-            ])
-            ->add('description', TextareaType::class, [
-                'label' => 'app.ui.label.description',
+            ->add('translations', ResourceTranslationsType::class, [
+                'entry_type' => ProductFeatureTranslationType::class,
+                'label' => 'sylius.form.shipping_method.images',
             ]);
     }
 

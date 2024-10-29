@@ -24,7 +24,7 @@ class ProductDescription {
 
         // You can now see if the "description" field contains the right value
         let data = {};
-        for (const locale of locales) {
+        for (const locale of this.locales) {
           let localeValue = locale.getAttribute('data-locale');
 
           // Ensure that data[localeValue] is initialized as an empty array

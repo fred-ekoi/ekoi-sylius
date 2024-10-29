@@ -14,8 +14,7 @@ class ProductFeature {
       console.log(this.productFeatureSelect);
 
       new TomSelect(this.productFeatureSelect, {
-        maxItems: 3,
-        maxOptions: 2,
+        maxOptions: 5,
         sortField: {
           field: "text",
           direction: "asc"
