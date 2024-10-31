@@ -30,3 +30,9 @@
             controller: 'App\Controller\ApiProductController::getProductFeatures'
             normalization_context:
                 groups: ['product:read']
+'App\Entity\Product\ProductAttribute':
+    itemOperations:
+        get:
+            method: 'GET'
+            path: '/shop/product/{productId}/attribute/image'
+            controller: 'App\Controller\ApiProductController::getAttributeImage'

@@ -35,6 +35,7 @@ class MenuBuilderService
                 "url" => $menuItemTranslations->getUrl(),
                 "parent_id" => $menuItem->getParent() == null ? null : $menuItem->getParent()->getId(),
                 "image" => $menuItem->getImage() == null ? null : $menuItem->getImage()->getPath(),
+                "position" => $menuItem->getPosition(),
             ];
             // if ($menuItem->getParent() == null) {
                 $menuItemDataArray[$menuItem->getId()] = $menuItemData;
@@ -58,13 +59,14 @@ class MenuBuilderService
                 $children = $this->buildTree($items, $key);
                 // If children are found, add them under 'children'
                 if ($children) {
+                    ksort($children);
                     $item['children'] = $children;
                 }
                 // Add the current item to the branch
-                $branch[] = $item;
+                $branch[$item['position']] = $item;
             }
         }
-    
+        ksort($branch);
         return $branch;
     }
 }

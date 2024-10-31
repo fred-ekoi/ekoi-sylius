@@ -27,6 +27,9 @@ class Product extends BaseProduct
     #[ORM\InverseJoinColumn(name: 'productfeature_id', referencedColumnName: 'id')]
     private Collection $features;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $attributeImage = null;
+
     public function __construct()
     {
         parent::__construct();
@@ -58,6 +61,18 @@ class Product extends BaseProduct
     public function removeFeature(ProductFeature $feature): static
     {
         $this->features->removeElement($feature);
+
+        return $this;
+    }
+
+    public function getAttributeImage(): ?string
+    {
+        return $this->attributeImage;
+    }
+
+    public function setAttributeImage(?string $attributeImage): static
+    {
+        $this->attributeImage = $attributeImage;
 
         return $this;
     }
