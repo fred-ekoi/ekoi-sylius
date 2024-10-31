@@ -1,43 +1,82 @@
 <div data-form-collection="item" data-form-collection-index="__name__" class="column">
     <div class="ui box segment">
-    <div id="__baseId_____name__">
-        <div class="field">
-        <label for="__baseId_____name___type">{{ 'app.ui.label.type'|trans }}</label>
-        <select
-            id="__baseId_____name___type"
-            name="__baseName__[__name__][type]"
-            class="product-description-template-block-type ui dropdown"
-        >
-            <option value="" selected="selected">{{ 'app.ui.placeholder.type'|trans }}</option>
-            {% for id, type in types %}
-                <option value="{{ id }}">{{ type.label|trans }}</option>
-            {% endfor %}
-        </select>
-        </div>
+        <div id="__baseId_____name__">
+            <div class="field">
+                <label for="__baseId_____name___type">{{ 'app.ui.label.type'|trans }}</label>
+                <select
+                    id="__baseId_____name___type"
+                    name="__baseName__[__name__][type]"
+                    class="product-description-template-block-type ui dropdown"
+                >
+                    <option value="" selected="selected">{{ 'app.ui.placeholder.type'|trans }}</option>
+                    {% for id, type in types %}
+                        <option value="{{ id }}">{{ type.label|trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-        <div class="field">
-        <input 
-            type="hidden" 
-            id="__baseId_____name___sortOrder" 
-            name="__baseName__[__name__][sortOrder]" 
-            class="product-description-template-block-sort-order"
-            value="__sortOrder__">
-        </div>
+            <div class="field">
+                <input 
+                    type="hidden" 
+                    id="__baseId_____name___sortOrder" 
+                    name="__baseName__[__name__][sortOrder]" 
+                    class="product-description-template-block-sort-order"
+                    value="__sortOrder__"
+                >
+            </div>
 
-        <div class="field">
-        <label for="__baseId_____name___alignment">{{ 'app.ui.label.alignment'|trans }}</label>
-        <select
-            id="__baseId_____name___alignment"
-            name="__baseName__[__name__][alignment]"
-            class="product-description-template-block-alignment ui dropdown"
-        >
-            <option value="" selected="selected">{{ 'app.ui.placeholder.alignment'|trans }}</option>
-            {% for id, alignment in alignments %}
-                <option value="{{ id }}">{{ alignment.label|trans }}</option>
-            {% endfor %}
-        </select>
+            <div class="field">
+                <label for="__baseId_____name___alignment">{{ 'app.ui.label.alignment'|trans }}</label>
+                <select
+                    id="__baseId_____name___alignment"
+                    name="__baseName__[__name__][alignment]"
+                    class="product-description-template-block-alignment ui dropdown"
+                >
+                    <option value="" selected="selected">{{ 'app.ui.placeholder.alignment'|trans }}</option>
+                    {% for id, alignment in alignments %}
+                        <option value="{{ id }}">{{ alignment.label|trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Children</label>
+                <div data-form-type="collection" id="__baseId_____name___children" class="product-description-template-block-children controls collection-widget" data-prototype='
+                    <div data-form-collection="item" data-form-collection-index="__name__" class="column">
+                        <div class="ui box segment">
+                            <div id="__baseId_____name___children___name__">
+                                <div class="field">
+                                    <label for="__baseId_____name___children___name___type">Type</label>
+                                    <select id="__baseId_____name___children___name___type" name="__baseName__[__name__][type]" class="product-description-template-block-type ui dropdown">
+                                        <option value="" selected="selected">{{ 'app.ui.placeholder.type'|trans }}</option>
+                                        {% for id, type in types %}
+                                            <option value="{{ id }}">{{ type.label|trans }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <input type="hidden" id="__baseId_____name___children___name___sortOrder" name="__baseName__[__name__][sortOrder]" class="product-description-template-block-sort-order" value="__sortOrder__"/>
+                                <div class="field">
+                                    <label for="__baseId_____name___children___name___alignment">Alignement</label>
+                                    <select id="__baseId_____name___children___name___alignment" name="__baseName__[__name__][alignment]" class="product-description-template-block-alignment ui dropdown">
+                                        <option value="" selected="selected">{{ 'app.ui.placeholder.alignment'|trans }}</option>
+                                        {% for id, alignment in alignments %}
+                                            <option value="{{ id }}">{{ alignment.label|trans }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" data-form-collection="delete" class="ui red labeled icon button" style="margin-bottom: 1em;">
+                            <i class="trash icon"></i> Supprimer
+                        </a>
+                    </div>' data-prototype-name="__name__">
+                    <div data-form-collection="list" class="ui three column stackable grid"></div>
+                    <a href="#" class="ui labeled icon button" data-form-collection="add">
+                        <i class="plus square outline icon"></i> Ajouter
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
 
     <a href="#" data-form-collection="delete" class="ui red labeled icon button" style="margin-bottom: 1em;">

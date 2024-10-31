@@ -22,6 +22,8 @@ class ProductDescriptionTemplateBlockType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $depth = $options['depth'];
+        
         $builder
             ->add('type', ChoiceType::class, [
                 'label' => 'app.ui.label.type',
@@ -46,15 +48,22 @@ class ProductDescriptionTemplateBlockType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'product-description-template-block-alignment'],
             ]);
-        if ($options['depth'] < 1) {
+
+        if ($depth < 2) {
             $builder->add('children', CollectionType::class, [
                 'entry_type' => self::class,
-                'entry_options' => ['depth' => $options['depth'] + 1], // Pass the depth
+                'entry_options' => [
+                    'depth' => $depth + 1,
+                ],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'required' => false,
-                'attr' => ['class' => 'product-description-template-block-children'],
+                'prototype' => true,
+                'prototype_name' => '__name__',
+                'attr' => [
+                    'class' => 'product-description-template-block-children',
+                    'data-depth' => $depth,
+                ],
             ]);
         }
     }

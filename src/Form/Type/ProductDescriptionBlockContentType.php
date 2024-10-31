@@ -5,6 +5,7 @@ use App\Entity\Product\ProductDescriptionBlockContent;
 use App\Entity\Product\ProductDescriptionTemplateBlock;
 use App\Enum\BlockType;
 use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\VideoType;
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,57 +19,47 @@ class ProductDescriptionBlockContentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($options['type'] == null) return;
-
+        $type = $options['type']->value;
+        $locale = $options['locale'];
+        $templateBlockId = $options['template_block_id'];
+        $fieldType = TextareaType::class;
+        $aditionnalAttr = [];
         $productDescriptionBlockContent = $options['data']; 
 
         switch ($options['type']) {
             case BlockType::TEXT:
-                $builder->add('text-' . $options['locale'] . '-' . $options['template_block_id'], TextareaType::class, [
-                    'label' => 'app.ui.label.text',
-                    'required' => false,
-                    'attr' => ['data-template-block' => $options['template_block_id']],
-                    'mapped' => false,
-                    'data' => $productDescriptionBlockContent->getText(),
-                    'attr' => [
-                        'class' => 'product_description_block_content_' . $options['locale'],
-                        'data-type' => 'text',
-                        'data-template-block' => $options['template_block_id']
-                    ]
-                ]);
+                $fieldType = TextareaType::class;
                 break;
-            // TODO use directly ImageType from MonsieurBiz\SyliusMediaManagerPlugin\Form\Type 
+            case BlockType::TITLE:
+            case BlockType::SHORT_TEXT:
+                $fieldType = TextType::class;
+                break;
             case BlockType::IMAGE:
-                $builder->add('image-' . $options['locale'] . '-' . $options['template_block_id'], ProductDescriptionBlockContentImageType::class, [
-                    'label' => 'app.ui.label.image',
-                    'required' => false,
-                    'attr' => ['data-template-block' => $options['template_block_id']],
-                    'mapped' => false,
-                    'data' => $productDescriptionBlockContent->getProductDescriptionBlockContentImage(),
-                    'attr' => [
-                        'class' => 'product_description_block_content_' . $options['locale'],
-                        'data-type' => 'image',
-                        'data-template-block' => $options['template_block_id']
-                    ]
-                ]);
+                $fieldType = ImageType::class;
+                $aditionnalAttr = ['accept' => 'image/*'];
                 break;
             case BlockType::VIDEO:
-                $builder->add('video-' . $options['locale'] . '-' . $options['template_block_id'], VideoType::class, [
-                    'label' => 'app.ui.label.video',
-                    'required' => false,
-                    'attr' => ['data-template-block' => $options['template_block_id']],
-                    'mapped' => false,
-                    'data' => $productDescriptionBlockContent->getText(),
-                    'attr' => [
-                        'class' => 'product_description_block_content_' . $options['locale'],
-                        'data-type' => 'video',
-                        'data-template-block' => $options['template_block_id']
-                    ]
-                ]);
+                $fieldType = VideoType::class;
+                $aditionnalAttr = ['accept' => 'video/*'];
                 break;
             // Add more types as needed (e.g., video, layout, etc.)
             default:
                 break;
         }
+        $builder->add('translations__' . $locale . '__' . $type . '-' . $templateBlockId, $fieldType, [
+            'label' => 'app.ui.label.' . $type,
+            'required' => false,
+            'attr' => ['data-template-block' => $templateBlockId],
+            'mapped' => false,
+            'data' => $productDescriptionBlockContent->getText(),
+            'attr' => [
+                'id' => $type . '-' . $locale . '-' . $templateBlockId,
+                'class' => 'product_description_block_content_' . $locale,
+                'data-type' => $type,
+                'data-template-block' => $templateBlockId,
+                ...$aditionnalAttr
+            ]
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

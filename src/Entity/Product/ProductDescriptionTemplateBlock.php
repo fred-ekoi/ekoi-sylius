@@ -33,10 +33,8 @@ class ProductDescriptionTemplateBlock
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
     private ?self $parent = null;
 
-    /**
-     * @var Collection<int, self>
-     */
     #[ORM\OneToMany(mappedBy: 'parent', cascade: ['persist', 'remove'], targetEntity: self::class)]
+    #[ORM\OrderBy(['sortOrder' => 'ASC'])]
     private Collection $children;
 
     public function __construct()

@@ -9,6 +9,7 @@ enum BlockType: string
     case LAYOUT = 'layout';
     case VIDEO = 'video';
     case TITLE = 'title';
+    case SHORT_TEXT = 'short_text';
     
     public function label(): string
     {
@@ -18,6 +19,7 @@ enum BlockType: string
             self::LAYOUT => 'app.ui.label.layout',
             self::VIDEO => 'app.ui.label.video',
             self::TITLE => 'app.ui.label.title',
+            self::SHORT_TEXT => 'app.ui.label.short_text',
         };
     }
 
@@ -29,6 +31,7 @@ enum BlockType: string
             self::LAYOUT,
             self::VIDEO,
             self::TITLE,
+            self::SHORT_TEXT,
         ];
     }
 }
