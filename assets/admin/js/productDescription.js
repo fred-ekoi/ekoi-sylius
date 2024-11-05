@@ -13,12 +13,14 @@ class ProductDescription {
       this.locales = document.querySelectorAll(".accordion > div[data-locale]");
       
       
-      const templateSelect = document.querySelector("#sylius_product_translations_fr_FR_productDescriptionTemplate");
-      this.generateFormDescription(templateSelect.value);
-
-      document.querySelectorAll('.product-description-template-select').forEach((select) => select.addEventListener('change', (e) => {
-        this.generateFormDescription(e.target.value);
-      }));
+      if (document.querySelector('form[name="sylius_product"]').getAttribute('action').includes('edit')) {
+        const templateSelect = document.querySelector("#sylius_product_translations_fr_FR_productDescriptionTemplate");
+        this.generateFormDescription(templateSelect.value);
+        
+        document.querySelectorAll('.product-description-template-select').forEach((select) => select.addEventListener('change', (e) => {
+          this.generateFormDescription(e.target.value);
+        }));
+      }
 
       document.querySelector('form[name="sylius_product"]').addEventListener('submit', (e) => {
         e.preventDefault(); // Prevent the default form submission to inspect the data
