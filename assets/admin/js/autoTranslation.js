@@ -60,6 +60,12 @@ class AutoTranslation {
   errorDiv = null;
 
   /**
+   * Target locales
+   * @type {string[]}
+   */
+  targetLocales = [];
+
+  /**
    * Initialize the AutoTranslation class.
    */
   init() {
@@ -68,9 +74,7 @@ class AutoTranslation {
 
     if (this.accordion === null || this.defaultContainer === null) return;
 
-    //TODO: refactor this
     this.fetchTemplates();
-    // this.appendTranslateButton();
   }
 
   /**
@@ -84,7 +88,6 @@ class AutoTranslation {
       .then((response) => {
         const domParser = new DOMParser();
         const buttonDiv = domParser.parseFromString(response.button, 'text/html').body.firstElementChild;
-        console.log(buttonDiv);
         this.translateButton = buttonDiv.querySelector('#translateButton');
         this.errorDiv = buttonDiv.querySelector('#errorDiv');
         this.accordion.after(buttonDiv);
@@ -102,7 +105,6 @@ class AutoTranslation {
    */
   handleModal() {
     // Get the modal
-    console.log(this.modal, this.modal.onclick)
     this.modal.onclick = function (event) {
       if (event.target === this.modal) {
         this.modal.style.display = "none";
@@ -133,9 +135,11 @@ class AutoTranslation {
         alert('Veuillez sélectionner au moins un champ.');
         return;
       }
+      this.targetLocales = locales;
       this.handleConfirmButton(locales);
       this.modal.style.display = "none";
       this.loader.style.display = 'inline-block';
+      this.translateButton?.classList.add('disabled');
     }.bind(this)
   }
 
@@ -163,8 +167,14 @@ class AutoTranslation {
     const data = [];
     defaultContainerInputs.forEach((input) => {
       const inputName = input.name;
-      const locale = inputName.split('[')[2].split(']')[0];
-      const name = inputName.split('[')[3].split(']')[0];
+      let locale, name;
+      if (inputName.startsWith("product_description_block_content[text")) {
+        locale = inputName.split('[')[1]?.split('-')[1];
+        name = inputName.split('[')[1]?.split('-')[2]?.split(']')[0];
+      } else {
+        locale = inputName.split('[')[2]?.split(']')[0];
+        name = inputName.split('[')[3]?.split(']')[0];
+      }
       if (locale && name && input.value) {
         data.push({
           locale,
@@ -183,7 +193,6 @@ class AutoTranslation {
    * @param {{data: {locale: string, name: string, value: string}[], targetLocales: string[]}} payload
    */
   fetchTranslations(payload) {
-    // TODO: Handle errors
     fetch('/admin/auto-translation', {
       method: 'POST',
       headers: {
@@ -194,6 +203,7 @@ class AutoTranslation {
       .then((response) => response.json())
       .then((response) => {
         this.loader.style.display = 'none';
+        this.translateButton?.classList.remove('disabled');
         if ('data' in response) {
           this.translatedData = response;
           this.fillTranslatedInputs();
@@ -203,7 +213,8 @@ class AutoTranslation {
         }
       })
       .catch((error) => {
-        this.setError('Une erreur s\'est produite lors de la traduction.');
+        console.log(error);
+        this.setError(error);
       });
   }
 
@@ -247,7 +258,7 @@ class AutoTranslation {
       if (container === null) return;
 
       localeData.forEach((data) => {
-        const input = container.querySelector(`input[name$="[${locale}][${data.name}]"],textarea[name$="[${locale}][${data.name}]"]`);
+        const input = container.querySelector(`input[name$="[${locale}][${data.name}]"],textarea[name$="[${locale}][${data.name}]"],textarea[name$="text-${locale}-${data.name}]"]`);
         if (input !== null) {
           input.value = data.value;
         }
@@ -279,6 +290,55 @@ class AutoTranslation {
           element.value = input.value;
         }
       });
+    })
+
+    /**
+     * All divs which represent images in default locale block
+     * @type {HTMLElement[]}
+     */
+    const defaultLocaleProductDescriptionBlockContentImages = Array.from(this.defaultContainer.querySelectorAll(`div[id^="product_description_block_content_image-${this.DEFAULT_LOCALE}"]`));
+    defaultLocaleProductDescriptionBlockContentImages.forEach((blockImage) => {
+
+      /**
+       * Value of the path input in default locale block
+       * @type {string}
+       */
+      const pathValue = blockImage.querySelector('input[id^="product_description_block_content_image-"]').value;
+      /**
+       * Div that contains preview image in default locale block
+       * @type {HTMLElement}
+       */
+      const defaultLocalePreviewImageDiv = blockImage.querySelector('.monsieurbiz-sylius-file-manager__current');
+
+      /**
+       * All divs which represent images in other locale blocks
+       * @type {HTMLElement[]}
+       */
+      let productDescriptionBlockContentImagesToHandle = Array.from(document.querySelectorAll(`div[id^="product_description_block_content_image-"]`));
+      productDescriptionBlockContentImagesToHandle = productDescriptionBlockContentImagesToHandle.filter((otherBlock) => this.targetLocales.some(locale => otherBlock.getAttribute('id').includes(`-${locale}-`)));
+      productDescriptionBlockContentImagesToHandle.forEach((otherBlock) => {
+        if (+otherBlock.getAttribute('data-template-block') === +blockImage.getAttribute('data-template-block')) {
+          /**
+           * Input path element in other locale block
+           * @type {HTMLElement}
+           */
+          const inputPathElement = otherBlock.querySelector('input[id^="product_description_block_content_image-"]');
+          inputPathElement.value = pathValue;
+
+          /**
+           * Div that preview will be replaced with default locale preview image
+           * @type {HTMLElement}
+           */
+          const currentDiv = otherBlock.querySelector('.monsieurbiz-sylius-file-manager__current');
+          currentDiv.innerHTML = defaultLocalePreviewImageDiv.innerHTML;
+          currentDiv.style.display = defaultLocalePreviewImageDiv.style.display;
+          // If we change the path value, we should display the remove button
+          if (pathValue) {
+            otherBlock.querySelector('.monsieurbiz-sylius-file-manager__button-remove').style.display = 'initial';
+          }
+        }
+      })
+
     })
   }
 }
