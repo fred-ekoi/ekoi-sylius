@@ -168,9 +168,9 @@ class AutoTranslation {
     defaultContainerInputs.forEach((input) => {
       const inputName = input.name;
       let locale, name;
-      if (inputName.startsWith("product_description_block_content[text")) {
-        locale = inputName.split('[')[1]?.split('-')[1];
-        name = inputName.split('[')[1]?.split('-')[2]?.split(']')[0];
+      if (inputName.startsWith("product_description_block_content[translations")) {
+        locale = inputName.split('[')[1]?.split('__')[1];
+        name = inputName.split('[')[1]?.split('__')[2]?.split(']')[0];
       } else {
         locale = inputName.split('[')[2]?.split(']')[0];
         name = inputName.split('[')[3]?.split(']')[0];
@@ -256,9 +256,8 @@ class AutoTranslation {
       const {locale, localeData} = translatedData;
       const container = document.querySelector(`.accordion div[data-locale="${locale}"] .content`);
       if (container === null) return;
-
       localeData.forEach((data) => {
-        const input = container.querySelector(`input[name$="[${locale}][${data.name}]"],textarea[name$="[${locale}][${data.name}]"],textarea[name$="text-${locale}-${data.name}]"]`);
+        const input = container.querySelector(`input[name$="[${locale}][${data.name}]"],textarea[name$="[${locale}][${data.name}]"],textarea[name$="translations__${locale}__${data.name}]"]`);
         if (input !== null) {
           input.value = data.value;
         }
@@ -294,16 +293,17 @@ class AutoTranslation {
 
     /**
      * All divs which represent images in default locale block
-     * @type {HTMLElement[]}
+     * @type {ParentNode[]}
      */
-    const defaultLocaleProductDescriptionBlockContentImages = Array.from(this.defaultContainer.querySelectorAll(`div[id^="product_description_block_content_image-${this.DEFAULT_LOCALE}"]`));
+    // const defaultLocaleProductDescriptionBlockContentImages = Array.from(this.defaultContainer.querySelectorAll(`div[id^="product_description_block_content_image-${this.DEFAULT_LOCALE}"]`));
+    const defaultLocaleProductDescriptionBlockContentImages = Array.from(this.defaultContainer.querySelectorAll(`input[id^="product_description_block_content_translations__${this.DEFAULT_LOCALE}__image"]`)).map((input) => input.parentNode.parentNode.parentNode);
     defaultLocaleProductDescriptionBlockContentImages.forEach((blockImage) => {
-
       /**
        * Value of the path input in default locale block
        * @type {string}
        */
-      const pathValue = blockImage.querySelector('input[id^="product_description_block_content_image-"]').value;
+      const pathValue = blockImage.querySelector('input[id^="product_description_block_content_translations__"]').value;
+
       /**
        * Div that contains preview image in default locale block
        * @type {HTMLElement}
@@ -312,17 +312,23 @@ class AutoTranslation {
 
       /**
        * All divs which represent images in other locale blocks
-       * @type {HTMLElement[]}
+       * @type {ParentNode[]}
        */
-      let productDescriptionBlockContentImagesToHandle = Array.from(document.querySelectorAll(`div[id^="product_description_block_content_image-"]`));
-      productDescriptionBlockContentImagesToHandle = productDescriptionBlockContentImagesToHandle.filter((otherBlock) => this.targetLocales.some(locale => otherBlock.getAttribute('id').includes(`-${locale}-`)));
+      let productDescriptionBlockContentImagesToHandle = Array.from(
+        document.querySelectorAll(`input[id^="product_description_block_content_translations__"]`)
+      ).filter(
+        (input) => this.targetLocales.some(locale => input.getAttribute('id').includes(`__${locale}__`))
+      ).map((input) => input.parentNode.parentNode.parentNode);
+
       productDescriptionBlockContentImagesToHandle.forEach((otherBlock) => {
-        if (+otherBlock.getAttribute('data-template-block') === +blockImage.getAttribute('data-template-block')) {
+        const otherBlockId = otherBlock.querySelector('input[id^="product_description_block_content_translations__"]').getAttribute('id').split('-').at(-1);
+        const blockImageId = blockImage.querySelector('input[id^="product_description_block_content_translations__"]').getAttribute('id').split('-').at(-1);
+        if (otherBlockId === blockImageId) {
           /**
            * Input path element in other locale block
            * @type {HTMLElement}
            */
-          const inputPathElement = otherBlock.querySelector('input[id^="product_description_block_content_image-"]');
+          const inputPathElement = otherBlock.querySelector('input[id^="product_description_block_content_translations__"]');
           inputPathElement.value = pathValue;
 
           /**
