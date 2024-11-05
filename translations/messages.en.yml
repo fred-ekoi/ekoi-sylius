@@ -30,6 +30,11 @@ app:
     confirm: Confirm
     select_locales_translation: Select desired languages
     
+  errors:
+    auto_translation:
+      json_error: Error parsing JSON. Please retry.
+      openai_error: Error with OpenAI API. Please retry.
+    
 error: Error
 anglais: English
 français: French

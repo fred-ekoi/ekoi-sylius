@@ -85,6 +85,11 @@ app:
     add_menu_item: Ajouter un item du menu
     new_menu_item: Créer un item du menu
   
+  errors:
+    auto_translation:
+      json_error: Erreur lors du parsing JSON. Veuillez réessayer.
+      openai_error: Erreur avec l'API OpenAI. Veuillez réessayer.          
+          
 monsieurbiz_menu:
   ui:
     help_target_blank: Ouvrir dans un nouvel onglet

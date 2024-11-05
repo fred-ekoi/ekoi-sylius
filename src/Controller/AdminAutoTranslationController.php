@@ -28,7 +28,8 @@ class AdminAutoTranslationController extends AbstractController
     #[Route('/admin/auto-translation', methods: ['POST'])]
     public function index(
         #[MapRequestPayload] AutoTranslationBodyDTO $data,
-        Client $openAI
+        Client $openAI,
+        TranslatorInterface $translator
     ): Response {
         // Validate the request body
         $defaultLocale = $data->getData()[0]['locale'];
@@ -75,7 +76,7 @@ class AdminAutoTranslationController extends AbstractController
         The targetLocales array specifies the locales into which you need to translate the data.
         Your output should be a JSON array structured as follows:
         {"data": [{"locale": "en","localeData": [{"name": "name","value": "Bike suit"},{"name": "slug","value": "bike-suit"}]},{"locale": "es","localeData": [{"name": "name","value": "Traje de ciclismo"},{"name": "slug","value": "traje-de-ciclismo"}]}]}
-        Ensure you respect the list of key/value pairs for overriding translations in specific locales. And respect absolutely the output format.
+        Ensure you respect the list of key/value pairs for overriding translations in specific locales. And respect absolutely the output format. Dont put any ```json or whatever. Just the JSON output as text.
         EOT;
         try {
             // Call the OpenAI model
@@ -93,13 +94,13 @@ class AdminAutoTranslationController extends AbstractController
                 ],
             ]);
             if (!isset($openAIResponse->choices[0]->message->content)) {
-                throw new \Exception('Erreur lors de la communication avec OpenAI');
+                throw new \Exception($translator->trans('app.errors.auto_translation.openai_error'));
             }
             $resultStr = $openAIResponse->choices[0]->message->content;
             $resultJson = json_decode($resultStr, true);
 
             if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \Exception('Erreur lors du décodage de la réponse JSON');
+                throw new \Exception($translator->trans('app.errors.auto_translation.json_error'));
             }
         } catch (\Exception $e) {
             return $this->json(['error' => $e->getMessage()], 500);
