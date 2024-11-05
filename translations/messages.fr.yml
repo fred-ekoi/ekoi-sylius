@@ -23,6 +23,7 @@ app:
       column: Colonne
       row: Ligne
       text: Texte
+      short_text: Texte court
       layout: Disposition
       video: Vidéo
     placeholder:

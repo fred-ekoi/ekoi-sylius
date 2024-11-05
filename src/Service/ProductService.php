@@ -48,10 +48,9 @@ class ProductService
     
             // Build the block data
             $blockData = [
-                'text' => $blockContent ? $blockContent->getText() : null,
+                'content' => $blockContent ? $blockContent->getText() : null,
                 'type' => $block->getType(),
                 'alignment' => $block->getAlignment(),
-                'image' => $blockContent && $block->getType() === BlockType::IMAGE ? $blockContent->getProductDescriptionBlockContentImage()->getPath() : null,
             ];
     
             // Recursively process children if they exist
@@ -110,21 +109,7 @@ class ProductService
             $productTranslation = $product->getTranslation($locale);
             foreach ($blocks as $templateBlockId =>$content) {
                 $productDescriptionBlockContent = $this->productDescriptionBlockContentRepository->findOneBy(['productDescriptionTemplateBlock' => $templateBlockId, 'productTranslation' => $productTranslation]);
-
-                switch ($productDescriptionBlockContent->getType()) {
-                    case BlockType::TEXT:
-                        $productDescriptionBlockContent->setText($content);
-                        break;
-                    case BlockType::IMAGE:
-                        $productDescriptionBlockContentImage = $productDescriptionBlockContent->getProductDescriptionBlockContentImage();
-                        if (!$productDescriptionBlockContentImage) {
-                            $productDescriptionBlockContentImage = new ProductDescriptionBlockContentImage();
-                            $productDescriptionBlockContent->setProductDescriptionBlockContentImage($productDescriptionBlockContentImage);
-                        }
-                        $productDescriptionBlockContentImage->setPath($content);
-                        break;
-                }
-                
+                $productDescriptionBlockContent->setText($content);
                 $this->entityManager->persist($productDescriptionBlockContent);
             }
         }

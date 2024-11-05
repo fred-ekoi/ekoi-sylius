@@ -4,6 +4,12 @@
     <h3 class="ui top attached header">{{ 'sylius.ui.attributes'|trans }}</h3>
 
     <div class="ui attached segment">
+        <div class="field">
+            {{ form_row(form.attributeImage) }}
+        </div>
+    </div>
+    
+    <div class="ui attached segment">
         {{ render(url('sylius_admin_get_product_attributes')) }}
         <div id="attributesContainer" data-count="{{ form.attributes|length }}">
             {{ form_widget(form.attributes, {'attr': {'translations': form.translations} }) }}

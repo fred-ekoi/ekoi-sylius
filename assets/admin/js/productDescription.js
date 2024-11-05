@@ -36,9 +36,6 @@ class ProductDescription {
             let templateBlockId = element.getAttribute('data-template-block');
             let type = element.getAttribute('data-type');
             let value = element.value;
-            if (type == 'image') {
-              value = element.querySelector(`#product_description_block_content_image-${localeValue}-${templateBlockId}_path`).value;
-            }
             console.log(value);
 
             data[localeValue][templateBlockId] = value;

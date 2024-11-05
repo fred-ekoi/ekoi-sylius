@@ -6,6 +6,7 @@ namespace App\Form\Extension;
 
 use App\Entity\Product\Product;
 use App\Entity\Product\ProductFeature;
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -25,6 +26,10 @@ final class ProductTypeExtension extends AbstractTypeExtension
                 'choice_label' => function (ProductFeature $productFeature) {
                     return $productFeature->getTitle();
                 },
+            ])
+            ->add('attributeImage', ImageType::class, [
+                'label' => 'app.ui.label.image',
+                'required' => false,
             ]);
     }
     public static function getExtendedTypes(): iterable

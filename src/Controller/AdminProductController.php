@@ -61,22 +61,14 @@ class AdminProductController extends AbstractController
             $this->entityManager->flush();
         }
 
-
-        $blocks = [];
         if ($template) {
             $templateBlocks = $this->productDescriptionTemplateBlockRepository->findBy(['template' => $template->getId()], ['sortOrder' => 'ASC']);
-            foreach ($templateBlocks as $templateBlock) {
-                if ($templateBlock->getType() !== BlockType::LAYOUT) {
-                    $blocks[$templateBlock->getSortOrder()] = $this->createProductDescriptionBlockContentForm($templateBlock, $productTranslation, $locale);
-                }
-                $templateBlockChildren = $this->productDescriptionTemplateBlockRepository->findBy(['parent' => $templateBlock->getId()], ['sortOrder' => 'ASC']);
-                foreach ($templateBlockChildren as $templateBlockChild) {
-                    $blocks[$templateBlock->getSortOrder()]['templateBlockChildren'][$templateBlockChild->getSortOrder()] = $this->createProductDescriptionBlockContentForm($templateBlockChild, $productTranslation, $locale);
-                }
-            }
+            $blocks = $this->processTemplateBlocks($templateBlocks, $productTranslation, $locale);
         }
         $productTranslation->setProductDescriptionTemplate($template);
         $this->entityManager->flush();
+
+        // dd($blocks);
 
         $formHtml = $this->renderView('product/partials/_block_field.html.twig', [
             'blocks' => $blocks
@@ -110,5 +102,29 @@ class AdminProductController extends AbstractController
             'locale' => $locale
         ]);
         return $formProductDescriptionBlockContentChild->createView(); 
+    }
+    
+    private function processTemplateBlocks(array $templateBlocks, ProductTranslation $productTranslation, string $locale): array 
+    {
+        $blocks = [];
+        foreach ($templateBlocks as $templateBlock) {
+            if ($templateBlock->getType() !== BlockType::LAYOUT) {
+                $blocks[$templateBlock->getSortOrder()] = $this->createProductDescriptionBlockContentForm($templateBlock, $productTranslation, $locale);
+                continue;
+            }
+
+            $blocks[$templateBlock->getSortOrder()]['alignment'] = $templateBlock->getAlignment();
+            
+            $templateBlockChildren = $this->productDescriptionTemplateBlockRepository->findBy(
+                ['parent' => $templateBlock->getId()], 
+                ['sortOrder' => 'ASC']
+            );
+            
+            if (!empty($templateBlockChildren)) {
+                $blocks[$templateBlock->getSortOrder()]['templateBlockChildren'] = 
+                    $this->processTemplateBlocks($templateBlockChildren, $productTranslation, $locale);
+            }
+        }
+        return $blocks;
     }
 }

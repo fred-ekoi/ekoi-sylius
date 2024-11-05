@@ -1,9 +1,7 @@
 #product_description_template_productDescriptionTemplateBlocks {
     > div[data-form-collection="list"] {
-        > div[data-form-collection="item"] {
-            width: 100%;
-        }
         div[data-form-collection="item"] {
+            width: 100%;
             padding-bottom: 0;
         }
     }
@@ -29,4 +27,18 @@
     > div[data-form-collection="item"] {
         margin-bottom: 20px;
     }
+}
+
+.ui.align-column,
+.ui.align-row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.ui.align-column {
+    flex-direction: column;
+}
+
+.ui.align-row {
+    flex-direction: row;
 }

@@ -12,20 +12,24 @@
         {# {{ form_row(form.productDescriptionBlockContents) }} #}
         {# {{ dump(blocks) }} #}
         {% for block in blocks %}
-            <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}"> 
-                <div data-form-collection="list" class="ui column stackable grid" style="flex-wrap: nowrap;">
-                    {% if block.templateBlockChildren is defined %}
+            {% if block.templateBlockChildren is defined %}
+                <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%; padding: 10px;"> 
+                    <div data-form-collection="list" class="ui column stackable grid align-{{ block.alignment.value }}" style="flex-wrap: nowrap;">
                         {% for child in block.templateBlockChildren %}
-                            <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%;"> 
-                                {{ form_widget(child) }}
-                            </div>
+                                {% if child.templateBlockChildren is defined %}
+                                    {% include 'product/partials/_block_field.html.twig' with {'blocks': [child]} %}
+                                {% else %}
+                                    <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%; padding: 10px;"> 
+                                        {{ form_widget(child) }}
+                                    </div>
+                            {% endif %}
                         {% endfor %}
-                    {% else %}
-                        <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%;"> 
-                            {{ form_widget(block) }}
-                        </div>
-                    {% endif %}
+                    </div>
                 </div>
-            </div>
+            {% else %}
+                <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%; padding: 10px;"> 
+                    {{ form_widget(block) }}
+                </div>
+            {% endif %}
             {% endfor %}
 {# </div> #}
