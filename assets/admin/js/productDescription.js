@@ -87,7 +87,7 @@ class ProductDescription {
           return response.json();
         })
         .then(data => {
-          console.log(data);
+          // console.log(data);
           document.querySelector("#sylius_product_translations_"  + localeValue + "_productDescriptionBlockContents").innerHTML = data.form;
           langProcessed++;
           if (langProcessed === this.locales.length) {
