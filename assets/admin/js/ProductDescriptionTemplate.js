@@ -57,10 +57,14 @@ class ProductDescriptionTemplate {
     this.setSortable();
     document.querySelectorAll(".product-description-template-block-children").forEach(element => {
       this.displayBlocksByOrder(element);
-      element.querySelectorAll(":scope > .button[data-form-collection='add']").forEach(button => {
-        button.addEventListener("click", (event) => this.onClick(event, element, button));
-      });
+      // console.log(element.querySelector(":scope > .button[data-form-collection='add']"));
+      
+      const button = element.querySelector(".button[data-form-collection='add']");
+      button.addEventListener("click", (event) => this.onClick(event, element, button));
     });
+    const element = document.querySelector(".sylius-product-description-template-block");
+    const button = element.querySelector(":scope > .button[data-form-collection='add']");
+    button.addEventListener("click", (event) => this.onClick(event, element, button, true));
   };
 
   setEventsOnChange = () => {
@@ -86,7 +90,7 @@ class ProductDescriptionTemplate {
   };
 
   updateDisplayBasedOnAlignment = (alignmentInput, childrenContainer) => {
-    console.log("update");
+    // console.log("update");
     
     let list = childrenContainer.querySelector(":scope > div[data-form-collection=list]");
     const items = list.querySelectorAll(":scope > div[data-form-collection='item']");
@@ -156,9 +160,10 @@ class ProductDescriptionTemplate {
     return `${prefixPart}[${remainingPart.map((item, index) => index === 1 ? `${item}` : item).join('][')}]`;
   };
 
-  onClick = (event, element, button) => {     
+  onClick = (event, element, button, isParent = false) => {     
     event.stopPropagation();
     event.preventDefault();
+    // console.log('click');
 
     const childrenContainer = button.parentElement;
     const list = element.querySelector("div[data-form-collection='list']");
@@ -171,6 +176,9 @@ class ProductDescriptionTemplate {
 
     list.insertAdjacentHTML("beforeend", newElement);
     const newChild = list.lastElementChild;
+    if (isParent) {
+      newChild.querySelector('.draggable--handle')?.remove();
+    }
     this.setEventsOnChild(newChild);
     this.setSelectedOptions();
   };

@@ -20,7 +20,7 @@
                                     {% include 'product/partials/_block_field.html.twig' with {'blocks': [child]} %}
                                 {% else %}
                                     <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%; padding: 10px;"> 
-                                        {{ form_widget(child) }}
+                                        {{ form_widget(child, {'attr': {'id': 'container-' ~ loop.index0}}) }}
                                     </div>
                             {% endif %}
                         {% endfor %}

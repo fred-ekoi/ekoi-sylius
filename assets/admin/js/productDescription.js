@@ -3,6 +3,7 @@ class ProductDescription {
   locales = null;
 
   constructor() {
+
   }
 
   init = () => {
@@ -36,7 +37,7 @@ class ProductDescription {
             let templateBlockId = element.getAttribute('data-template-block');
             let type = element.getAttribute('data-type');
             let value = element.value;
-            console.log(value);
+            // console.log(value);
 
             data[localeValue][templateBlockId] = value;
             
@@ -50,7 +51,7 @@ class ProductDescription {
             description: JSON.stringify(data)
           },
           success: function (data) {
-            console.log(data);
+            // console.log(data);
     
             // After debugging, submit the form
             e.target.submit();
@@ -61,8 +62,9 @@ class ProductDescription {
   };
 
   generateFormDescription = (templateId) => {
-    console.log(templateId);
-    
+    // console.log(templateId);
+    document.querySelector('form[name="sylius_product"]').classList.add('loading');
+    let langProcessed = 0;
     this.locales.forEach((locale) => {
       locale.querySelector('.product-description-template-select').value = templateId;
       const localeValue = locale.getAttribute('data-locale');
@@ -87,6 +89,10 @@ class ProductDescription {
         .then(data => {
           console.log(data);
           document.querySelector("#sylius_product_translations_"  + localeValue + "_productDescriptionBlockContents").innerHTML = data.form;
+          langProcessed++;
+          if (langProcessed === this.locales.length) {
+            document.querySelector('form[name="sylius_product"]').classList.remove('loading');
+          }
         })
         .catch(
           error => console.error('Error:', error)
