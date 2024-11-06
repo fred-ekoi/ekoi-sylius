@@ -17,7 +17,7 @@
                     {{ form_widget(block.view) }}
                         {% for child in block.children %}
                             <div data-form-collection="item" data-form-collection-index="{{ loop.index0 }}" style="width: 100%;"> 
-                                {{ form_widget(child.view) }}
+                                {{ form_ro(child.view) }}
                             </div>
                         {% endfor %}
                     </div>

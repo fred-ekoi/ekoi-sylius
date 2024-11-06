@@ -11,7 +11,7 @@ class ProductFeature {
         "sylius_product_features"
       );
 
-      console.log(this.productFeatureSelect);
+      // console.log(this.productFeatureSelect);
 
       new TomSelect(this.productFeatureSelect, {
         maxOptions: 5,
