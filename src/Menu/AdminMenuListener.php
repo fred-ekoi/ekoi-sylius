@@ -1,6 +1,7 @@
 <?php
 namespace App\Menu;
 
+use Knp\Menu\ItemInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
 final class AdminMenuListener
@@ -59,17 +60,8 @@ final class AdminMenuListener
             ->setLabelAttribute('icon', 'paste')
         ;
 
-        $catalog->reorderChildren([
-            'taxons',
-            'products',
-            'inventory',
-            'attributes',
-            'catalog-productFeature',
-            'options',
-            'association_types',
-            'catalog-categoryOutfit',
-            'catalog-categoryPromotion',
-            'catalog-productDescriptionTemplate',
+        $this->reorderMenuItems($catalog, [
+            ['position' => 5, 'key' => 'catalog-productFeature'],
         ]);
         
         $configuration = $menu->getChild('configuration');
@@ -90,18 +82,32 @@ final class AdminMenuListener
         $menu = $event->getMenu();
         // Add a custom menu item (e.g., Product Features tab)
         $menu->addChild('product_features')
-        ->setLabel('app.ui.product_features') // Translation key for the label
-        ->setAttribute('template', '@SyliusAdmin/Product/Tab/_features.html.twig'); // Add a template to the menu item
-        // dd($menu);
-        $menu->reorderChildren([
-            'details',
-            'taxonomy',
-            'attributes',
-            'product_features',
-            'associations',
-            'media',
-            'inventory',
-        ]);
+            ->setLabel('app.ui.product_features') // Translation key for the label
+            ->setAttribute('template', '@SyliusAdmin/Product/Tab/_features.html.twig') // Add a template to the menu item
+            // ->setPriority(3)
+        ;
+        $this->reorderMenuItems($menu, [["position" => 4, "key" => 'product_features']]);
+    }
+
+    /**
+     * Reorder menu items
+     *
+     * @param ItemInterface $menu
+     * @param array{position: int, key: string} $reorderedItems
+     */
+    private function reorderMenuItems(ItemInterface $menu, array $reorderedItems): void
+    {
+        // Get all current children keys and reorder them
+        $currentKeys = array_keys($menu->getChildren());
+        
+        foreach ($reorderedItems as $item) {
+            $currentItemPosition = array_search($item['key'], $currentKeys);
+            // Insert the new item after that position
+            array_splice($currentKeys, $item['position'] - 1 , 0, [$item['key']]);
+            unset($currentKeys[$currentItemPosition]);
+        }
+
+        $menu->reorderChildren($currentKeys);
     }
 
 }
