@@ -7,3 +7,12 @@ api_platform:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
+        api_keys:
+            JWT:
+                name: Authorization
+                type: header
+    # Use environment-specific configuration
+    enable_swagger: true
+    enable_swagger_ui: true
+    enable_docs: true
+    enable_entrypoint: true
