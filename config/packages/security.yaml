@@ -12,6 +12,10 @@ security:
     password_hashers:
         Sylius\Component\User\Model\UserInterface: argon2i
     firewalls:
+        api:
+            pattern: ^/api/v2
+            stateless: true
+            # ... other api config ...
         admin:
             switch_user: true
             context: admin
