@@ -41,6 +41,22 @@ web:
             allow: true
             expires: -1
             scripts: true
+            index:
+                - index.php
+            rules:
+                # Ensure proper handling of API routes
+                '^/api':
+                    passthru: true
+                '^/admin':
+                    passthru: true
+                # Handle Symfony routes
+                '\.(jpe?g|png|gif|ico|css|js|svg|map|ttf|woff2?)$':
+                    allow: true
+                    expires: 2w
+                '^/robots\.txt$':
+                    allow: true
+                '^/sitemap\.xml$':
+                    allow: true
         '/assets/shop':
             expires: 2w
             passthru: true

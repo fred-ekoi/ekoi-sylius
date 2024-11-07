@@ -1,53 +1,10 @@
 sylius_paypal_webhook:
     resource: "@SyliusPayPalPlugin/Resources/config/webhook_routing.yaml"
 
-# app_admin_menu:
-#     resource: |
-#         alias: app.menu
-#         section: admin
-#         templates: "@SyliusAdmin\\Crud"
-#         redirect: update
-#         grid: app_admin_menu
-#         vars:
-#             all:
-#                 subheader: app.ui.menus_subheader
-#             index:
-#                 icon: 'file image outline'
-#     type: sylius.resource
-#     prefix: /admin
-
-# app_admin_menu_page:
-#     resource: |
-#         alias: app.menu_page
-#         section: admin
-#         templates: "@SyliusAdmin\\Crud"
-#         redirect: update
-#         grid: app_admin_menu_page
-#         vars:
-#             all:
-#                 subheader: app.ui.menu_pages_subheader
-#                 templates:
-#                     form: "menu/menuPage.html.twig"
-#             index:
-#                 icon: 'file image outline'
-#     type: sylius.resource
-#     prefix: /admin
-
-# app_admin_menu_item:
-#     resource: |
-#         alias: app.menu_item
-#         section: admin
-#         templates: "@SyliusAdmin\\Crud"
-#         redirect: update
-#         grid: app_admin_menu_item
-#         vars:
-#             all:
-#                 subheader: app.ui.menu_items_subheader
-#             index:
-#                 icon: 'file image outline'
-#     type: sylius.resource
-#     prefix: /admin
-
+app:
+    resource: ../src/Controller/
+    type: annotation
+    
 app_admin_category_promotion:
     resource: |
         alias: app.category_promotion

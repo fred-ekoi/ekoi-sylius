@@ -1,6 +1,10 @@
 "https://{default}/":
     type: upstream
-    upstream: "sylius:http"
+    upstream: "app:http"
+    cache:
+        enabled: true
+        # Cache configuration for different content types
+        headers: ['Accept', 'Accept-Language']
 
 "https://www.{default}/":
     type: redirect
