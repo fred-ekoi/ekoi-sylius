@@ -60,7 +60,7 @@ class ApiProductController extends AbstractController
         return new JsonResponse($productProductFeatures);
     }
 
-    public function getAttributeImage(int $productId): JsonResponse
+    public function getProductAttributeImage(int $productId): JsonResponse
     {
         $product = $this->productRepository->find($productId);
 

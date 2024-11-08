@@ -15,9 +15,8 @@ parameters:
         - sylius_loyalty
         - sylius_multi_source_inventory
 
-when@dev:
-    sylius_api:
-        enabled: true
+sylius_api:
+    enabled: true
 
 sylius_addressing:
     resources:
