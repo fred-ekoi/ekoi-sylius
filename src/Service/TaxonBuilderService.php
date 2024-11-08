@@ -48,6 +48,7 @@ class TaxonBuilderService
             $taxonData["categoryOutfit"] = [
                 "title" => $taxonCategoryOutfits->getTitle(),
                 "description" => $taxonCategoryOutfits->getDescription(),
+                "image" => $taxonCategoryOutfits->getTranslation($locale)->getImage()?->getPath(),
             ];
             foreach ($taxonCategoryOutfits->getProducts() as $product) {
 
