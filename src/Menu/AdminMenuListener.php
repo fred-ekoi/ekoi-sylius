@@ -99,14 +99,13 @@ final class AdminMenuListener
     {
         // Get all current children keys and reorder them
         $currentKeys = array_keys($menu->getChildren());
-        
         foreach ($reorderedItems as $item) {
+            // Remove the item from the current keys
             $currentItemPosition = array_search($item['key'], $currentKeys);
+            unset($currentKeys[$currentItemPosition]);
             // Insert the new item after that position
             array_splice($currentKeys, $item['position'] - 1 , 0, [$item['key']]);
-            unset($currentKeys[$currentItemPosition]);
         }
-
         $menu->reorderChildren($currentKeys);
     }
 
