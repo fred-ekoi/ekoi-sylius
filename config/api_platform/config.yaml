@@ -32,7 +32,7 @@
                 groups: ['product:read']
 'App\Entity\Product\ProductAttribute':
     collectionOperations:
-        get_attribute_image:            # Changed from 'get' to 'get_attribute_image'
+        get_attribute_image:
             method: 'GET'
             path: '/shop/product/{productId}/attribute/image'
             controller: 'App\Controller\ApiProductController::getProductAttributeImage'
