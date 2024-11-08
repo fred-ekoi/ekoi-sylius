@@ -50,7 +50,14 @@ class TaxonBuilderService
                 "description" => $taxonCategoryOutfits->getDescription(),
             ];
             foreach ($taxonCategoryOutfits->getProducts() as $product) {
-                $taxonData["categoryOutfit"]["products"][] = $product->getCode();
+
+                $taxonData["categoryOutfit"]["products"][] = [
+                    "code" => $product->getCode(),
+                    "name" => $product->getTranslation($locale)->getName(),
+                    "price" => $product->getVariants()->first()->getChannelPricings()->first()->getPrice(),
+                    "originalPrice" => $product->getVariants()->first()->getChannelPricings()->first()->getOriginalPrice() ?? $product->getVariants()->first()->getChannelPricings()->first()->getPrice(),
+                    "image" => $product->getImages()?->first()?->getPath(),
+                ];
             }
         }
 
