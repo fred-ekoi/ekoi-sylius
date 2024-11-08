@@ -112,8 +112,9 @@ class CategoryOutfit implements ResourceInterface, TranslatableInterface
      */
     public function setTaxons($taxons): static
     {
-        dd($taxons);
-        return $this->taxons;
+        $this->taxons = $taxons;
+
+        return $this;
     }
 
     public function addTaxon(Taxon $taxon): static

@@ -65,7 +65,7 @@ class TaxonBuilderService
                 $taxonData["categoryPromotions"]["image"] = $taxonCategoryPromotionImage->getPath();
             }
         }
-        dd($taxonData);
+        // dd($taxonData);
 
         return $taxonData;
     }
